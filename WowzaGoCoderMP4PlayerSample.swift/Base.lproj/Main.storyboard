@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E64a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MP4Player" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8gu-A7-JlV">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTq-3z-HXH">
+                                <rect key="frame" x="525" y="545" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="QD0-Dq-vh2"/>
+                                    <constraint firstAttribute="height" constant="45" id="c9v-9V-utY"/>
+                                </constraints>
+                                <state key="normal" image="settings_button"/>
+                                <connections>
+                                    <action selector="didTapSettings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Ve-8w-82y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XT3-p3-wcQ">
+                                <rect key="frame" x="263" y="515" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="E9E-1U-Epw"/>
+                                    <constraint firstAttribute="height" constant="75" id="Rvf-Nc-p0q"/>
+                                </constraints>
+                                <state key="normal" image="start_button"/>
+                                <connections>
+                                    <action selector="didTapBroadcast:" destination="BYZ-38-t0r" eventType="touchUpInside" id="afQ-Ia-x6R"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDF-2b-aeG">
+                                <rect key="frame" x="30" y="545" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="1PQ-wF-eWX"/>
+                                    <constraint firstAttribute="width" constant="45" id="Dbh-Kb-auB"/>
+                                </constraints>
+                                <state key="normal" image="loop_off"/>
+                                <state key="selected" image="loop_on"/>
+                                <connections>
+                                    <action selector="didTapLoopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="prX-MR-HWz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cDF-2b-aeG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="36A-Rr-Nrh"/>
+                            <constraint firstItem="fTq-3z-HXH" firstAttribute="top" secondItem="8gu-A7-JlV" secondAttribute="bottom" constant="-50" id="5pa-fj-pnB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fTq-3z-HXH" secondAttribute="trailing" constant="10" id="7iP-qr-D0G"/>
+                            <constraint firstItem="cDF-2b-aeG" firstAttribute="top" secondItem="8gu-A7-JlV" secondAttribute="bottom" constant="-58" id="8BA-gC-V1b"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cDF-2b-aeG" secondAttribute="bottom" constant="10" id="9wm-RR-sfx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XT3-p3-wcQ" secondAttribute="bottom" constant="10" id="G6K-CY-QSt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8gu-A7-JlV" secondAttribute="trailing" id="OVu-qH-OTU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8gu-A7-JlV" secondAttribute="bottom" id="Sbb-KB-7sN"/>
+                            <constraint firstItem="8gu-A7-JlV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="TbR-Im-Zx5"/>
+                            <constraint firstItem="XT3-p3-wcQ" firstAttribute="centerX" secondItem="8gu-A7-JlV" secondAttribute="centerX" id="Wcn-on-Gqs"/>
+                            <constraint firstItem="8gu-A7-JlV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Wf4-Gc-Ro3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fTq-3z-HXH" secondAttribute="bottom" constant="10" id="bbV-ss-zff"/>
+                            <constraint firstItem="fTq-3z-HXH" firstAttribute="leading" secondItem="8gu-A7-JlV" secondAttribute="trailing" constant="-78" id="cNZ-MX-pe4"/>
+                            <constraint firstItem="8gu-A7-JlV" firstAttribute="leading" secondItem="cDF-2b-aeG" secondAttribute="trailing" constant="-71" id="lZk-ZA-h4N"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="lZk-ZA-h4N"/>
+                                <exclude reference="8BA-gC-V1b"/>
+                                <exclude reference="5pa-fj-pnB"/>
+                                <exclude reference="cNZ-MX-pe4"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="broadcastButton" destination="XT3-p3-wcQ" id="Bwt-5z-qjJ"/>
+                        <outlet property="imageView" destination="8gu-A7-JlV" id="Huu-VC-D7I"/>
+                        <outlet property="settingsButton" destination="fTq-3z-HXH" id="Zlg-0F-4km"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loop_off" width="45" height="45"/>
+        <image name="loop_on" width="45" height="45"/>
+        <image name="settings_button" width="45" height="45"/>
+        <image name="start_button" width="75" height="75"/>
+    </resources>
+</document>

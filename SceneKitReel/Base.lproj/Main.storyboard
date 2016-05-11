@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E64a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tkf-Uz-dzh">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="RDp-YH-MZz">
+            <objects>
+                <viewController id="tkf-Uz-dzh" customClass="AAPLGameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wan-Xa-845"/>
+                        <viewControllerLayoutGuide type="bottom" id="sda-do-g9Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6xx-bk-qpg" customClass="SCNView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjd-8V-XZk">
+                                <rect key="frame" x="10" y="535" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="DG5-st-FWS"/>
+                                    <constraint firstAttribute="height" constant="45" id="UuC-kx-UfS"/>
+                                </constraints>
+                                <state key="normal" image="settings_button"/>
+                                <connections>
+                                    <action selector="didTapGoCoderSettings:" destination="tkf-Uz-dzh" eventType="touchUpInside" id="e9T-Rb-NX9"/>
+                                    <action selector="didTapSettingsButton:" destination="tkf-Uz-dzh" eventType="touchUpInside" id="rkb-mD-uHJ"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RO8-co-8ry">
+                                <rect key="frame" x="10" y="20" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="FlJ-Xc-RHD"/>
+                                    <constraint firstAttribute="height" constant="45" id="Pfv-mS-v0W"/>
+                                </constraints>
+                                <state key="normal" image="mic_on_button"/>
+                                <connections>
+                                    <action selector="didTapMicButton:" destination="tkf-Uz-dzh" eventType="touchUpInside" id="pPt-Ek-xEc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JX-XW-r50">
+                                <rect key="frame" x="10" y="262.5" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="jpp-Be-lYl"/>
+                                    <constraint firstAttribute="height" constant="75" id="qR6-Bd-EcR"/>
+                                </constraints>
+                                <state key="normal" image="start_button"/>
+                                <connections>
+                                    <action selector="didTapBroadcastButton:" destination="tkf-Uz-dzh" eventType="touchUpInside" id="x3T-4n-VbQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3JX-XW-r50" firstAttribute="centerY" secondItem="Vjd-8V-XZk" secondAttribute="centerY" id="CcL-Kq-Z2e"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="RO8-co-8ry" secondAttribute="leading" constant="10" id="SdE-Tn-6cn"/>
+                            <constraint firstItem="3JX-XW-r50" firstAttribute="centerY" secondItem="6xx-bk-qpg" secondAttribute="centerY" id="Xfb-rA-sGS"/>
+                            <constraint firstItem="RO8-co-8ry" firstAttribute="top" secondItem="wan-Xa-845" secondAttribute="bottom" constant="20" id="fHn-CQ-InD"/>
+                            <constraint firstItem="sda-do-g9Z" firstAttribute="top" secondItem="Vjd-8V-XZk" secondAttribute="bottom" constant="20" id="jbK-La-cRi"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Vjd-8V-XZk" secondAttribute="leading" constant="10" id="kYP-Sm-xem"/>
+                            <constraint firstItem="3JX-XW-r50" firstAttribute="leading" secondItem="Vjd-8V-XZk" secondAttribute="trailing" constant="44" id="oVu-k2-Dt5"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="3JX-XW-r50" secondAttribute="leading" constant="10" id="q3L-JX-oTQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="CcL-Kq-Z2e"/>
+                                <exclude reference="oVu-k2-Dt5"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="broadcastButton" destination="3JX-XW-r50" id="Za9-8g-vlK"/>
+                        <outlet property="micButton" destination="RO8-co-8ry" id="sl0-Kt-qCD"/>
+                        <outlet property="settingsButton" destination="Vjd-8V-XZk" id="Uhj-aS-dv8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZhP-8g-yO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887" y="557"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="mic_on_button" width="45" height="45"/>
+        <image name="settings_button" width="45" height="45"/>
+        <image name="start_button" width="75" height="75"/>
+    </resources>
+</document>
