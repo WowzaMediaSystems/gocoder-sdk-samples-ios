@@ -26,6 +26,10 @@ listed above.
 
 [Wowza GoCoder SDK Developer Documentation](https://www.wowza.com/resources/gocodersdk/docs/1.0/)
 
+[Wowza GoCoder SDK for iOS API Reference](https://www.wowza.com/resources/gocodersdk/docs/1.0/api-reference-ios/)
+
+[Wowza GoCoder SDK for iOS Release Notes](https://www.wowza.com/resources/gocodersdk/docs/1.0/release-notes-ios/)
+
 Wowza Media Systems™ provides developers with a platform to create streaming applications and solutions. See [Wowza Developer Tools](https://www.wowza.com/resources/developers) to learn more about our APIs and SDK.
 
 ## Contact
