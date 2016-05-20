@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, SettingsViewSection) {
     SettingsViewSectionBroadcast,
     SettingsViewSectionCaptureOrientationMode,
     SettingsViewSectionBroadcastOrientationMode,
+    SettingsViewSectionBroadcastScaleMode,
     SettingsViewSectionBandwidthThrottling,
     SettingsViewSectionVideoEffects,
     SettingsViewSectionRecordVideoLocally,

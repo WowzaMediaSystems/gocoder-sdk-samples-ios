@@ -134,6 +134,14 @@ NSString * const RecordVideoLocallyKey = @"RecordVideoLocallyKey";
     self.config.broadcastVideoOrientation = broadcastVideoOrientation;
 }
 
+- (WZBroadcastScaleMode) broadcastScaleMode {
+    return self.config.broadcastScaleMode;
+}
+
+- (void) setBroadcastScaleMode:(WZBroadcastScaleMode)broadcastScaleMode {
+    self.config.broadcastScaleMode = broadcastScaleMode;
+}
+
 - (BOOL) blackAndWhite {
     return [[NSUserDefaults standardUserDefaults] boolForKey:BlackAndWhiteKey];
 }

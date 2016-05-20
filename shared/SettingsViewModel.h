@@ -66,6 +66,7 @@ typedef NS_ENUM(NSUInteger, SettingsCustomVideoItem) {
 @property (nonatomic, assign) BOOL capturedVideoRotates;
 @property (nonatomic, assign) BOOL videoPreviewRotates;
 @property (nonatomic, assign) WZBroadcastOrientation broadcastVideoOrientation;
+@property (nonatomic, assign) WZBroadcastScaleMode broadcastScaleMode;
 
 // the user-selected black-and-white mode (on or off)
 @property (nonatomic, assign) BOOL blackAndWhite;

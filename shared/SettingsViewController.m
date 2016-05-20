@@ -57,6 +57,7 @@
     [self addDisplaySection:SettingsViewSectionBroadcast];
     [self addDisplaySection:SettingsViewSectionCaptureOrientationMode];
     [self addDisplaySection:SettingsViewSectionBroadcastOrientationMode];
+    [self addDisplaySection:SettingsViewSectionBroadcastScaleMode];
     [self addDisplaySection:SettingsViewSectionBandwidthThrottling];
     [self addDisplaySection:SettingsViewSectionVideoEffects];
     [self addDisplaySection:SettingsViewSectionRecordVideoLocally];
@@ -96,6 +97,10 @@
             
         case SettingsViewSectionBroadcastOrientationMode:
             title = @"Broadcast Orientation Settings";
+            break;
+            
+        case SettingsViewSectionBroadcastScaleMode:
+            title = @"Broadcast Scale Mode";
             break;
             
         case SettingsViewSectionBandwidthThrottling:
@@ -141,6 +146,10 @@
             
         case SettingsViewSectionBroadcastOrientationMode:
             count = 3;
+            break;
+            
+        case SettingsViewSectionBroadcastScaleMode:
+            count = 2;
             break;
             
         case SettingsViewSectionBandwidthThrottling:
@@ -229,6 +238,33 @@
             case  2:
                 title = @"Always Portrait";
                 on = self.viewModel.broadcastVideoOrientation == WZBroadcastOrientationAlwaysPortrait;
+                
+            default:
+                break;
+        }
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+        cell.textLabel.text = title;
+        
+        cell.accessoryType = on ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryView = nil;
+        
+        return cell;
+    }
+    
+    else if (settingsSection == SettingsViewSectionBroadcastScaleMode) {
+        NSString *title = @"";
+        BOOL on = NO;
+        switch (indexPath.row) {
+            case 0:
+                title = @"Aspect Fit";
+                on = self.viewModel.broadcastScaleMode == WZBroadcastScaleModeAspectFit;
+                break;
+                
+            case 1:
+                title = @"Aspect Fill";
+                on = self.viewModel.broadcastScaleMode == WZBroadcastScaleModeAspectFill;
+                break;
                 
             default:
                 break;
@@ -398,6 +434,23 @@
                 
             case 2:
                 self.viewModel.broadcastVideoOrientation = WZBroadcastOrientationAlwaysPortrait;
+                break;
+                
+            default:
+                break;
+        }
+        
+        [self.tableView reloadData];
+    }
+    
+    else if (settingsSection == SettingsViewSectionBroadcastScaleMode) {
+        switch (indexPath.row) {
+            case 0:
+                self.viewModel.broadcastScaleMode = WZBroadcastScaleModeAspectFit;
+                break;
+                
+            case 1:
+                self.viewModel.broadcastScaleMode = WZBroadcastScaleModeAspectFill;
                 break;
                 
             default:
