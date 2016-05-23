@@ -1,7 +1,9 @@
 # Wowza GoCoder SDK for iOS Sample Apps
-This repository contains sample applications that demonstrate the capabilities of the [Wowza GoCoder™ SDK for iOS](https://www.wowza.com/products/gocoder/sdk).
+This repository contains sample applications that demonstrate the capabilities of the [Wowza GoCoder™ SDK for iOS](https://www.wowza.com/products/gocoder/sdk) and is provided for developer educational purposes. To build your own application, you must use the GoCoder SDK.
 
 ## Development Requirements
+Wowza GoCoder SDK. To get a copy of the SDK, send an email message to the [Wowza SDK Team](mailto:sdkteam@wowza.com).
+
 iOS SDK 8.01 or later
 
 Xcode 7 or later for debugging
@@ -22,13 +24,13 @@ To facilitate working with the various sample apps, an Xcode workspace named
 listed above.
 
 ## More resources
-[Wowza GoCoder Software Development Kit](https://www.wowza.com/products/gocoder/sdk)
-
 [Wowza GoCoder SDK Developer Documentation](https://www.wowza.com/resources/gocodersdk/docs/1.0/)
 
 [Wowza GoCoder SDK for iOS API Reference](https://www.wowza.com/resources/gocodersdk/docs/1.0/api-reference-ios/)
 
 [Wowza GoCoder SDK for iOS Release Notes](https://www.wowza.com/resources/gocodersdk/docs/1.0/release-notes-ios/)
+
+[Wowza GoCoder Product Page](https://www.wowza.com/products/gocoder)
 
 Wowza Media Systems™ provides developers with a platform to create streaming applications and solutions. See [Wowza Developer Tools](https://www.wowza.com/resources/developers) to learn more about our APIs and SDK.
 
