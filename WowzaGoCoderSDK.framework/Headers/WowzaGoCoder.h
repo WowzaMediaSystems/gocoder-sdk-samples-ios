@@ -148,6 +148,12 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
 @property (nonatomic, assign, getter=isAudioMuted) BOOL audioMuted;
 
 /*!
+ *  The AVAudioSessionCategoryOptions to use if streaming with audio. Default is AVAudioSessionCategoryOptionAllowBluetooth.
+ *  Note that this property must be set before starting a preview session.
+ */
+@property (nonatomic, assign) AVAudioSessionCategoryOptions audioSessionOptions;
+
+/*!
  *  Returns true if a live streaming broadcast is active
  */
 @property (nonatomic, readonly) BOOL isStreaming;

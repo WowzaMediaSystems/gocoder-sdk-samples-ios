@@ -63,6 +63,17 @@ typedef NS_ENUM(NSUInteger, WZBroadcastOrientation) {
 };
 
 /*!
+ *  @typedef WZBroadcastScaleMode
+ *  @constant WZBroadcastScaleModeAspectFit Captured frames that don't fit within the requested broadcast frame size will be scaled to fit within the broadcast frame
+ *  @constant WZBroadcastScaleModeAspectFill Captured frames that don't fit within the requested broadcast frame size will be scaled up to completely fill the broadcast frame.
+ *  @discussion Describes how captured frames that don't exactly fit the requested broadcast frame size will be adjusted to fit within the requested frame size.
+ */
+typedef NS_ENUM(NSUInteger, WZBroadcastScaleMode) {
+    WZBroadcastScaleModeAspectFit,
+    WZBroadcastScaleModeAspectFill
+};
+
+/*!
  *  @typedef WZAudioChannels
  *  @constant WZAudioChannelsMono Mono, or single channel.
  *  @constant WZAudioChannels Stereo, or two-channel.
@@ -200,6 +211,13 @@ typedef NS_ENUM(NSUInteger, WZAudioChannels) {
  */
 @property (nonatomic, assign) WZBroadcastOrientation broadcastVideoOrientation;
 
+
+/*!
+ *  Set the desired scale mode for captured frames that don't fit the requested broadcast frame size. See WZBroadcastScaleMode
+ *  for allowed values. Default is WZBroadcastScaleModeAspectFit.
+ */
+@property (nonatomic, assign) WZBroadcastScaleMode broadcastScaleMode;
+
 #pragma mark -
 
 /*!
@@ -210,7 +228,9 @@ typedef NS_ENUM(NSUInteger, WZAudioChannels) {
 
 /*!
  *  The desired audio sample rate. Note that the actual sample rate
- *  might be different from the desired rate.
+ *  might be different from the desired rate. Set this property to 0
+ *  to have WowzaGoCoder select the optimal sample rate based on the
+ *  current hardware capabilities.
  */
 @property (nonatomic, assign) NSUInteger audioSampleRate;
 

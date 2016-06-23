@@ -29,15 +29,22 @@
 @optional
 
 /*!
- Called for each frame of audio recorded by an audio device.
+ Called for each frame of audio recorded by an audio device. The format of the data is uninteresting
+ to the protocol adopter; this protocol should be used for timing information only. If you wish to access
+ raw audio data, please implement the audioPCMFrameWasCaptured protocol method instead of this one.
  @param data
  The audio frame data.
+ @param size
+ The size, in bytes, of the captured frame
  @param time
  The audio frame time, represented in a CMTime structure
  @param sampleRate
  The audio sample rate
  */
 - (void) audioFrameWasCaptured:(nonnull void *)data size:(uint32_t)size time:(CMTime)time sampleRate:(Float64)sampleRate;
+
+
+
 
 /*!
  Called whenever the audio level value changes.

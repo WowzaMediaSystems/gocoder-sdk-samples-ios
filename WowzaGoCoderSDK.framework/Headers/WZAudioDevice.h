@@ -38,6 +38,19 @@
 @property (nonatomic, assign) BOOL paused;
 
 /*!
+ *  Initialize a WZAudioDevice with default AVAudioSessionCategoryOptions.
+ *
+ */
+- (nonnull instancetype) init;
+
+/*!
+ *  Initialize a WZAudioDevice with specified options.
+ *
+ *  @param options The AVAudioSessionCategoryOptions to initialize the AVSesssion with
+ */
+- (nonnull instancetype) initWithOptions:(AVAudioSessionCategoryOptions)options;
+
+/*!
  *  Registers an object that conforms to the WZAudioSink protocol.
  *  the WZAudioSink protocol methods will be called each time an audio frame is captured.
  *
