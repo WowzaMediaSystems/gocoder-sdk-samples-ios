@@ -4,7 +4,7 @@ This repository contains sample applications that demonstrate the capabilities o
 ## Development Requirements
 1. **GoCoder SDK for iOS v1.0.1.424**  
 
-    :point_right: _**PLEASE NOTE** :point_left: The GoCoder SDK binaries necessary to build the sample apps are not provided here. To request a free trial of the SDK, send a message to [sdkteam@wowza.com](mailto:sdkteam@wowza.com) and you will receive a trial license key along with a link to download the SDK binaries._
+     _:warning: **PLEASE NOTE:** The GoCoder SDK binaries necessary to build the sample apps are not provided here. To request a free trial of the SDK, send a message to [sdkteam@wowza.com](mailto:sdkteam@wowza.com) and you will receive a trial license key along with a link to download the SDK binaries._
 
 2. iOS SDK 8.01 or later
 3. Xcode 7 or later for debugging
