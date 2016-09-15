@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E64a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G19a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -73,32 +73,54 @@
                                     <action selector="didTapMicButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dr2-f2-CIl"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wq-SI-3Vf">
+                                <rect key="frame" x="260" y="457" width="80" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.40002985668789809" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9aU-oN-E06"/>
+                                    <constraint firstAttribute="width" constant="80" id="oBS-Xn-Pve"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.36470588235294116" green="0.37647058823529411" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IMC-Rk-m4x" secondAttribute="bottom" constant="20" id="7Po-XY-dcr"/>
                             <constraint firstItem="Fe0-Ba-MDc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="8LR-hv-3du"/>
                             <constraint firstAttribute="leadingMargin" secondItem="BMm-D1-224" secondAttribute="leading" constant="-5" id="G0Y-YT-nAJ"/>
+                            <constraint firstItem="BMm-D1-224" firstAttribute="top" secondItem="6wq-SI-3Vf" secondAttribute="bottom" constant="45" id="Hev-5K-8HS"/>
                             <constraint firstItem="Fe0-Ba-MDc" firstAttribute="centerX" secondItem="BMm-D1-224" secondAttribute="centerX" id="HyB-KB-BU1"/>
+                            <constraint firstItem="6wq-SI-3Vf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="aDQ-gU-M1d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bcO-fq-Toa" secondAttribute="trailing" id="aS9-TH-C3b"/>
                             <constraint firstItem="r9O-5P-CN0" firstAttribute="leading" secondItem="Fe0-Ba-MDc" secondAttribute="trailing" id="g7c-mb-SlT"/>
+                            <constraint firstItem="IMC-Rk-m4x" firstAttribute="top" secondItem="6wq-SI-3Vf" secondAttribute="bottom" constant="18" id="jyC-kn-fAx"/>
                             <constraint firstItem="r9O-5P-CN0" firstAttribute="centerY" secondItem="Fe0-Ba-MDc" secondAttribute="centerY" id="kzn-lj-2vy"/>
                             <constraint firstItem="IMC-Rk-m4x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qbY-fM-a1I"/>
                             <constraint firstItem="BMm-D1-224" firstAttribute="centerY" secondItem="IMC-Rk-m4x" secondAttribute="centerY" id="sMq-TY-zro"/>
+                            <constraint firstItem="6wq-SI-3Vf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vFW-i3-01y"/>
                             <constraint firstItem="bcO-fq-Toa" firstAttribute="centerY" secondItem="IMC-Rk-m4x" secondAttribute="centerY" id="wxg-tT-ZIw"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="aDQ-gU-M1d"/>
+                                <exclude reference="Hev-5K-8HS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="broadcastButton" destination="IMC-Rk-m4x" id="ZyO-o3-ISu"/>
                         <outlet property="micButton" destination="r9O-5P-CN0" id="w6T-7D-Brk"/>
                         <outlet property="settingsButton" destination="bcO-fq-Toa" id="Pgr-uR-6lX"/>
                         <outlet property="switchCameraButton" destination="BMm-D1-224" id="wvk-Qo-Ddh"/>
+                        <outlet property="timeLabel" destination="6wq-SI-3Vf" id="ik9-XT-UPK"/>
                         <outlet property="torchButton" destination="Fe0-Ba-MDc" id="wPr-Au-hpI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="88" y="443"/>
+            <point key="canvasLocation" x="244" y="400"/>
         </scene>
     </scenes>
     <resources>

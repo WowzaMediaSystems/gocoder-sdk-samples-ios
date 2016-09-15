@@ -24,6 +24,13 @@
 
 @interface WZH264Encoder : NSObject <WZBroadcastComponent, WZVideoSink>
 
+/*!
+ *  The pixel format for the video frames being encoded. Default is kCVPixelFormatType_32BGRA.
+ *  Clients shouldn't need to modify this property unless they are encoding their own samples
+ *  of a different pixel format.
+ */
+@property (nonatomic, assign) OSType pixelFormat;
+
 // Instance methods
 
 /*!
@@ -40,5 +47,6 @@
  *  @param sink An object conforming to the WZVideoEncoderSink protocol
  */
 - (void) unregisterSink:(nonnull id<WZVideoEncoderSink>)sink;
+
 
 @end

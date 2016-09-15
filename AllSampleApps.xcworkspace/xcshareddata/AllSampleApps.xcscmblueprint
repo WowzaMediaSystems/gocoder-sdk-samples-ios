@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7573794F8C275BBE7B9595BB40FC8DD8313FDA0F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AA52F35BB4080A56914EC93696D50073FED002C6" : 0,
+    "2047C735C089273D370945B1651804F731E52234" : 0,
+    "EBCF2ABE478B8385B7EEDF1516D7944B62D3A720" : 9223372036854775807,
+    "7573794F8C275BBE7B9595BB40FC8DD8313FDA0F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FA65338A-4F87-4CA5-A5EA-D3D7F6B3B47D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AA52F35BB4080A56914EC93696D50073FED002C6" : "gocoder-licensing\/",
+    "2047C735C089273D370945B1651804F731E52234" : "wmstransport-c\/",
+    "EBCF2ABE478B8385B7EEDF1516D7944B62D3A720" : "gocoder-sdk-common\/",
+    "7573794F8C275BBE7B9595BB40FC8DD8313FDA0F" : "gocoder-sdk-ios\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AllSampleApps",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "sample-apps\/AllSampleApps.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/wowza.git.beanstalkapp.com\/wmstransport-c.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2047C735C089273D370945B1651804F731E52234"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/wowza.git.beanstalkapp.com\/gocoder-sdk-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7573794F8C275BBE7B9595BB40FC8DD8313FDA0F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/wowza.git.beanstalkapp.com\/gocoder-licensing.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AA52F35BB4080A56914EC93696D50073FED002C6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/wowza.git.beanstalkapp.com\/gocoder-sdk-common.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EBCF2ABE478B8385B7EEDF1516D7944B62D3A720"
+    }
+  ]
+}

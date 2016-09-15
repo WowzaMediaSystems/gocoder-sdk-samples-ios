@@ -21,12 +21,12 @@ class ViewController: UIViewController, WZStatusCallback {
     
     var loop = false
     
-    var movieURL:NSURL? {
+    var movieURL:URL? {
         get {
             
-            var url:NSURL?
-            if let moviePath = NSBundle.mainBundle().pathForResource(movieTitle, ofType: movieType) {
-                url = NSURL(fileURLWithPath: moviePath)
+            var url:URL?
+            if let moviePath = Bundle.main.path(forResource: movieTitle, ofType: movieType) {
+                url = URL(fileURLWithPath: moviePath)
             }
             return url
         }
@@ -34,7 +34,7 @@ class ViewController: UIViewController, WZStatusCallback {
     
     
     //MARK: - AVAsset variables
-    var reader_queue:dispatch_queue_t = dispatch_queue_create("com.wowza.goCoderReaderQueue", DISPATCH_QUEUE_SERIAL)
+    var reader_queue:DispatchQueue = DispatchQueue(label: "com.wowza.goCoderReaderQueue", attributes: [])
     var videoAsset:AVAsset?
     var videoTrack:AVAssetTrack?
     var readerOutput:AVAssetReaderTrackOutput!
@@ -43,7 +43,7 @@ class ViewController: UIViewController, WZStatusCallback {
     
     //MARK: - GoCoder variables
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
-    let SDKSampleAppLicenseKey = "GSDK-4842-0003-C385-E5FA-F1F1"
+    let SDKSampleAppLicenseKey = "GSDK-A942-0003-5E17-E632-44B7"
     var goCoderConfig:WowzaConfig!
     var goCoderStatus = WZStatus()
     var goCoderRegistrationChecked = false
@@ -65,8 +65,8 @@ class ViewController: UIViewController, WZStatusCallback {
         super.viewDidLoad()
         
         // load/create the Config settings
-        if let savedConfig:NSData = NSUserDefaults.standardUserDefaults().objectForKey(SDKSampleSavedConfigKey) as? NSData {
-            if let wowzaConfig = NSKeyedUnarchiver.unarchiveObjectWithData(savedConfig) as? WowzaConfig {
+        if let savedConfig:Data = UserDefaults.standard.object(forKey: SDKSampleSavedConfigKey) as? Data {
+            if let wowzaConfig = NSKeyedUnarchiver.unarchiveObject(with: savedConfig) as? WowzaConfig {
                 goCoderConfig = wowzaConfig
             }
             else {
@@ -77,7 +77,7 @@ class ViewController: UIViewController, WZStatusCallback {
             goCoderConfig = WowzaConfig()
         }
         
-        goCoderConfig.broadcastVideoOrientation = .AlwaysLandscape
+        goCoderConfig.broadcastVideoOrientation = .alwaysLandscape
         
         if setupAssetReader() {
             goCoderConfig.videoWidth = UInt(videoTrack!.naturalSize.width)
@@ -87,21 +87,21 @@ class ViewController: UIViewController, WZStatusCallback {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let savedConfigData = NSKeyedArchiver.archivedDataWithRootObject(goCoderConfig)
-        NSUserDefaults.standardUserDefaults().setObject(savedConfigData, forKey: SDKSampleSavedConfigKey)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        let savedConfigData = NSKeyedArchiver.archivedData(withRootObject: goCoderConfig)
+        UserDefaults.standard.set(savedConfigData, forKey: SDKSampleSavedConfigKey)
+        UserDefaults.standard.synchronize()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if !goCoderRegistrationChecked {
             goCoderRegistrationChecked = true
             if let goCoderLicensingError = WowzaGoCoder.registerLicenseKey(SDKSampleAppLicenseKey) {
-                self.showAlert("GoCoder SDK Licensing Error", error: goCoderLicensingError)
+                self.showAlert("GoCoder SDK Licensing Error", error: goCoderLicensingError as NSError)
             }
         }
     }
@@ -118,9 +118,9 @@ class ViewController: UIViewController, WZStatusCallback {
             return false
         }
         
-        videoAsset = AVAsset(URL: assetURL)
+        videoAsset = AVAsset(url: assetURL)
         
-        let videoTracks = videoAsset!.tracksWithMediaType(AVMediaTypeVideo)
+        let videoTracks = videoAsset!.tracks(withMediaType: AVMediaTypeVideo)
         
         guard let track = videoTracks.first else {
             return false
@@ -133,36 +133,36 @@ class ViewController: UIViewController, WZStatusCallback {
         
         assetReader = reader
         
-        let options:[String : AnyObject] = [kCVPixelBufferPixelFormatTypeKey as String : NSNumber(unsignedInt: kCVPixelFormatType_32BGRA)]
+        let options:[String : AnyObject] = [kCVPixelBufferPixelFormatTypeKey as String : NSNumber(value: kCVPixelFormatType_32BGRA)]
         
         readerOutput = AVAssetReaderTrackOutput(track: track, outputSettings: options)
-        reader.addOutput(readerOutput)
+        reader.add(readerOutput)
         
         return true
     }
     
     func updateUIControls() {
-        if goCoderStatus.state != .Idle && goCoderStatus.state != .Running {
+        if goCoderStatus.state != .idle && goCoderStatus.state != .running {
             // If a streaming broadcast session is in the process of starting up or shutting down,
             // disable the UI controls
-            self.broadcastButton.enabled    = false
-            self.settingsButton.enabled     = false
+            self.broadcastButton.isEnabled    = false
+            self.settingsButton.isEnabled     = false
         }
         else {
             // Set the UI control state based on the streaming broadcast status, configuration,
             // and device capability
-            self.broadcastButton.enabled    = true
-            let isStreaming                 = self.broadcast.status.state == .Running
-            self.settingsButton.enabled     = !isStreaming
+            self.broadcastButton.isEnabled    = true
+            let isStreaming                 = self.broadcast.status.state == .running
+            self.settingsButton.isEnabled     = !isStreaming
         }
     }
     
     //MARK: - Broadcasting
     
     func startBroadcast() {
-        if broadcast.status.state == .Idle {
+        if broadcast.status.state == .idle {
             if setupAssetReader() {
-                broadcast.startBroadcast(goCoderConfig, statusCallback: self)
+                broadcast.start(goCoderConfig, statusCallback: self)
             }
         }
     }
@@ -170,11 +170,11 @@ class ViewController: UIViewController, WZStatusCallback {
     func renderLoop() {
         if let reader = assetReader {
             
-            dispatch_async(reader_queue) { () -> Void in
+            reader_queue.async { () -> Void in
                 
                 reader.startReading()
                 
-                while reader.status == .Reading && self.broadcast.status.state == .Running {
+                while reader.status == .reading && self.broadcast.status.state == .running {
                     guard let sampleBuffer = self.readerOutput.copyNextSampleBuffer() else {
                         continue
                     }
@@ -188,7 +188,7 @@ class ViewController: UIViewController, WZStatusCallback {
                     
                     // the below is simply here to show the video frame in the iOS UI; it has nothing
                     // to do with broadcasting to Wowza
-                    CVPixelBufferLockBaseAddress(imageBuffer, 0)
+                    CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
                     
                     let rowBytes = CVPixelBufferGetBytesPerRow(imageBuffer)
                     let width = CVPixelBufferGetWidth(imageBuffer)
@@ -197,32 +197,32 @@ class ViewController: UIViewController, WZStatusCallback {
                     let colorSpace = CGColorSpaceCreateDeviceRGB()
                     let data = CVPixelBufferGetBaseAddress(imageBuffer)
                     
-                    let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue | CGBitmapInfo.ByteOrder32Little.rawValue)
+                    let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
                     
-                    let context = CGBitmapContextCreate(data, width, height, 8, rowBytes, colorSpace, bitmapInfo.rawValue)
+                    let context = CGContext(data: data, width: width, height: height, bitsPerComponent: 8, bytesPerRow: rowBytes, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
                     
-                    guard let imageRef = CGBitmapContextCreateImage(context) else {
+                    guard let imageRef = context?.makeImage() else {
                         continue
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.imageView.image = UIImage(CGImage: imageRef)
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        self.imageView.image = UIImage(cgImage: imageRef)
                     })
                     
                     // slow the render loop down to 30 fps
-                    NSThread.sleepForTimeInterval(0.03)
+                    Thread.sleep(forTimeInterval: 0.03)
                 }
                 
                 if self.loop {
-                    let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
-                    dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                         if self.setupAssetReader() {
                             self.renderLoop()
                         }
                     })
                 }
                 else {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    DispatchQueue.main.async(execute: { () -> Void in
                         self.stopBroadcast()
                     })
                 }
@@ -232,52 +232,52 @@ class ViewController: UIViewController, WZStatusCallback {
     }
     
     func stopBroadcast() {
-        if broadcast.status.state != .Idle {
-            broadcast.endBroadcast(self)
+        if broadcast.status.state != .idle {
+            broadcast.end(self)
         }
     }
     
     //MARK: - WZStatusCallback Protocol Instance Methods
     
-    func onWZStatus(status: WZStatus!) {
+    func onWZStatus(_ status: WZStatus!) {
         switch (status.state) {
-        case .Idle:
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                self.broadcastButton.setImage(UIImage(named: "start_button"), forState: .Normal)
+        case .idle:
+            DispatchQueue.main.async { () -> Void in
+                self.broadcastButton.setImage(UIImage(named: "start_button"), for: UIControlState())
                 self.updateUIControls()
             }
             
-        case .Running:
+        case .running:
             renderLoop()
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                self.broadcastButton.setImage(UIImage(named: "stop_button"), forState: .Normal)
+            DispatchQueue.main.async { () -> Void in
+                self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControlState())
                 self.updateUIControls()
             }
             
-        case .Stopping:
+        case .stopping:
             assetReader?.cancelReading()
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.updateUIControls()
             }
             
-        case .Starting:
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        case .starting:
+            DispatchQueue.main.async { () -> Void in
                 self.updateUIControls()
             }
         }
         
     }
     
-    func onWZEvent(status: WZStatus!) {
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    func onWZEvent(_ status: WZStatus!) {
+        DispatchQueue.main.async { () -> Void in
             self.showAlert("Live Streaming Event", status: status)
             self.updateUIControls()
         }
     }
     
-    func onWZError(status: WZStatus!) {
+    func onWZError(_ status: WZStatus!) {
         // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             self.showAlert("Live Streaming Error", status: status)
             self.updateUIControls()
         }
@@ -285,33 +285,33 @@ class ViewController: UIViewController, WZStatusCallback {
 
     //MARK: - Actions
     
-    @IBAction func didTapSettings(sender:AnyObject?) {
-        if let settingsNavigationController = UIStoryboard(name: "GoCoderSettings", bundle: nil).instantiateViewControllerWithIdentifier("settingsNavigationController") as? UINavigationController {
+    @IBAction func didTapSettings(_ sender:AnyObject?) {
+        if let settingsNavigationController = UIStoryboard(name: "GoCoderSettings", bundle: nil).instantiateViewController(withIdentifier: "settingsNavigationController") as? UINavigationController {
             
             if let settingsViewController = settingsNavigationController.topViewController as? SettingsViewController {
-                settingsViewController.addDisplaySection(.Broadcast)
-                settingsViewController.addDisplaySection(.BandwidthThrottling)
+                settingsViewController.addDisplay(.broadcast)
+                settingsViewController.addDisplay(.bandwidthThrottling)
                 
                 let viewModel = SettingsViewModel(sessionConfig: goCoderConfig)
-                settingsViewController.viewModel = viewModel
+                settingsViewController.viewModel = viewModel!
             }
             
-            self.presentViewController(settingsNavigationController, animated: true, completion: nil)
+            self.present(settingsNavigationController, animated: true, completion: nil)
         }
     }
     
-    @IBAction func didTapBroadcast(sender:AnyObject?) {
+    @IBAction func didTapBroadcast(_ sender:AnyObject?) {
         // Ensure the minimum set of configuration settings have been specified necessary to
         // initiate a broadcast streaming session
         if let configError = goCoderConfig.validateForBroadcast() {
-            self.showAlert("Incomplete Streaming Settings", error: configError)
+            self.showAlert("Incomplete Streaming Settings", error: configError as NSError)
         }
         else {
             // Disable the U/I controls
-            broadcastButton.enabled    = false
-            settingsButton.enabled     = false
+            broadcastButton.isEnabled    = false
+            settingsButton.isEnabled     = false
             
-            if broadcast.status.state == .Running {
+            if broadcast.status.state == .running {
                 stopBroadcast()
             }
             else {
@@ -321,32 +321,32 @@ class ViewController: UIViewController, WZStatusCallback {
         }
     }
     
-    @IBAction func didTapLoopButton(sender:AnyObject?) {
+    @IBAction func didTapLoopButton(_ sender:AnyObject?) {
         if let loopButton = sender as? UIButton {
-            loopButton.selected = !loopButton.selected
-            loop = loopButton.selected
-            UIApplication.sharedApplication().idleTimerDisabled = loop
+            loopButton.isSelected = !loopButton.isSelected
+            loop = loopButton.isSelected
+            UIApplication.shared.isIdleTimerDisabled = loop
         }
     }
     
     //MARK: - Alerts
     
-    func showAlert(title:String, status:WZStatus) {
-        let alertController = UIAlertController(title: title, message: status.description, preferredStyle: .Alert)
+    func showAlert(_ title:String, status:WZStatus) {
+        let alertController = UIAlertController(title: title, message: status.description, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func showAlert(title:String, error:NSError) {
-        let alertController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .Alert)
+    func showAlert(_ title:String, error:NSError) {
+        let alertController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }

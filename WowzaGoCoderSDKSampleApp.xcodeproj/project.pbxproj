@@ -142,6 +142,7 @@
 			buildConfigurationList = 1CE9860C1C1BA2D500A883E3 /* Build configuration list for PBXNativeTarget "SDKSampleApp" */;
 			buildPhases = (
 				1CE985F11C1BA2D500A883E3 /* Sources */,
+				1CAC953D1D1D983600D95262 /* Validate SDK */,
 				1CE985F21C1BA2D500A883E3 /* Frameworks */,
 				1CE985F31C1BA2D500A883E3 /* Resources */,
 				1CAFDB8C1C3B04CE00C6C314 /* Embed Frameworks */,
@@ -167,6 +168,8 @@
 				TargetAttributes = {
 					1CE985F41C1BA2D500A883E3 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = VVGYK4HC82;
+						DevelopmentTeamName = "Wowza Media Systems, LLC";
 					};
 				};
 			};
@@ -203,6 +206,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1CAC953D1D1D983600D95262 /* Validate SDK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate SDK";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "my_script=\"./validatesdk.sh\"\nif [ ! -f \"$my_script\" ]\nthen\n    exit 0\nfi\n\nchmod +x $my_script\n\n./$my_script";
+		};
 		1CAFDB8D1C3B058200C6C314 /* Strip Framework Invalid Architectures */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

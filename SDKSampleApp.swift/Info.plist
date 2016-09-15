@@ -34,5 +34,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera will be used to capture video for live streaming</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The microphone will be used to capture live audio for streaming</string>
 </dict>
 </plist>

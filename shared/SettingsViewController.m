@@ -59,6 +59,7 @@
     [self addDisplaySection:SettingsViewSectionBroadcastOrientationMode];
     [self addDisplaySection:SettingsViewSectionBroadcastScaleMode];
     [self addDisplaySection:SettingsViewSectionBandwidthThrottling];
+    [self addDisplaySection:SettingsViewSectionBackgroundMode];
     [self addDisplaySection:SettingsViewSectionVideoEffects];
     [self addDisplaySection:SettingsViewSectionRecordVideoLocally];
 }
@@ -105,6 +106,10 @@
             
         case SettingsViewSectionBandwidthThrottling:
             title = @"Low Bandwidth Throttling";
+            break;
+            
+        case SettingsViewSectionBackgroundMode:
+            title = @"Background Broadcast";
             break;
             
         case SettingsViewSectionVideoEffects:
@@ -154,6 +159,10 @@
             
         case SettingsViewSectionBandwidthThrottling:
             count = SettingsLowBandwidthItemCount;
+            break;
+            
+        case SettingsViewSectionBackgroundMode:
+            count = 1;
             break;
             
         case SettingsViewSectionVideoEffects:
@@ -345,8 +354,25 @@
                 keyPath = @"videoFrameBufferMultiplier";
                 keyboardType = UIKeyboardTypeNumberPad;
                 break;
-                
+
+            case SettingsLowBandwidthItemFrameSkipCount:
+                name = @"Frame Skip Count";
+                keyPath = @"videoFrameSkipCount";
+                keyboardType = UIKeyboardTypeNumberPad;
+                break;
+
         }
+    }
+    else if (settingsSection == SettingsViewSectionBackgroundMode) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+        cell.textLabel.text = @"Background Broadcast Enabled";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        UISwitch *backgroundSwitch = [[UISwitch alloc] init];
+        backgroundSwitch.on = self.viewModel.backgroundBroadcastEnabled;
+        [backgroundSwitch addTarget:self action:@selector(didChangeBackgroundBroadcastSwitch:) forControlEvents:UIControlEventValueChanged];
+        cell.accessoryView = backgroundSwitch;
+        
+        return cell;
     }
     
     else {
@@ -471,6 +497,11 @@
 - (IBAction) didChangeBlackAndWhiteSwitch:(id)sender {
     UISwitch *effectSwitch = (UISwitch *)sender;
     self.viewModel.blackAndWhite = effectSwitch.isOn;
+}
+
+- (IBAction) didChangeBackgroundBroadcastSwitch:(id)sender {
+    UISwitch *backgroundSwitch = (UISwitch *)sender;
+    self.viewModel.backgroundBroadcastEnabled = backgroundSwitch.isOn;
 }
 
 - (IBAction) didChangeRecordVideoLocallySwitch:(id)sender {

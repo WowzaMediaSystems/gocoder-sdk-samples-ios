@@ -242,6 +242,22 @@ NSString * const RecordVideoLocallyKey = @"RecordVideoLocallyKey";
     self.config.videoFrameBufferSizeMultiplier = videoFrameBufferMultiplier.integerValue;
 }
 
+- (NSString *) videoFrameSkipCount {
+    return [NSNumber numberWithInteger:self.config.videoFrameRateLowBandwidthSkipCount].stringValue;
+}
+
+- (void) videoFrameSkipCount:(NSString *)videoFrameSkipCount {
+    self.config.videoFrameRateLowBandwidthSkipCount = videoFrameSkipCount.integerValue;
+}
+
+- (BOOL) backgroundBroadcastEnabled {
+    return self.config.backgroundBroadcastEnabled;
+}
+
+- (void) setBackgroundBroadcastEnabled:(BOOL)backgroundBroadcastEnabled {
+    self.config.backgroundBroadcastEnabled = backgroundBroadcastEnabled;
+}
+
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config {
     if (self = [super init]) {
         _config = config;

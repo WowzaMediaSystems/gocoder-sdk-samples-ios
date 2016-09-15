@@ -192,6 +192,17 @@ typedef NS_ENUM(NSUInteger, WZAudioChannels) {
  */
 @property (nonatomic, assign) NSUInteger videoFrameBufferSizeMultiplier;
 
+/*!
+ *  The number of frames to skip when the encoder cannot keep up with the broadcaster.  
+ *  In low bandwidth conditions the encoder will skip frames to conserve bandwidth but
+ *  still send consistent frames so the encoder can produce smooth playback.
+ *  The maximum number of frames that can be skipped is equal to the key frame interval
+ *  minus one - i.e. setting this to 29 with a key frame interval of 30 will
+ *  produce a key frame only stream, setting to 1 will never skip frames.
+ *  The default is 2 meaning skip 1 of every 2 frames
+ */
+@property (nonatomic, assign) NSUInteger videoFrameRateLowBandwidthSkipCount;
+
 #pragma mark -
 
 /*!
@@ -221,6 +232,18 @@ typedef NS_ENUM(NSUInteger, WZAudioChannels) {
 #pragma mark -
 
 /*!
+ *  Set whether or not broadcasting when the app is in the background is enabled. If enabled, the host
+ *  application must support the audio background mode (this is set in your app target's Capabilities tab,
+ *  in the "Background Modes" section). In this case, the app will continue to record
+ *  and broadcast the live audio stream. Since the camera cannot capture in the background on iOS, a
+ *  blank or frozen video frame will be broadcast while the app is in the background.
+ *  The default value is NO.
+ */
+@property (nonatomic, assign) BOOL backgroundBroadcastEnabled;
+
+#pragma mark -
+
+/*!
  *  The desired number of audio channels
  */
 @property (nonatomic, assign) NSUInteger audioChannels;
@@ -230,7 +253,7 @@ typedef NS_ENUM(NSUInteger, WZAudioChannels) {
  *  The desired audio sample rate. Note that the actual sample rate
  *  might be different from the desired rate. Set this property to 0
  *  to have WowzaGoCoder select the optimal sample rate based on the
- *  current hardware capabilities.
+ *  current hardware capabilities. The default value is 0.
  */
 @property (nonatomic, assign) NSUInteger audioSampleRate;
 

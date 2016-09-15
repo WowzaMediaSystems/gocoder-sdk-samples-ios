@@ -25,7 +25,8 @@
 #define MAX_SMOKE 20.0
 
 static NSString *const SDKSampleSavedConfigKey = @"SDKSampleSavedConfigKey";
-static NSString *const SDKSampleAppLicenseKey = @"GSDK-4642-0003-BD46-A0A4-D178";
+static NSString *const SDKSampleAppLicenseKey = @"GSDK-A942-0003-82C6-A641-9E41";
+
 
 // utility function
 static CGFloat randFloat(CGFloat min, CGFloat max)
@@ -50,18 +51,21 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
 #pragma mark - WowzaGoCoder Properties
 
-@property (nonatomic, strong) WowzaConfig       *config;
-@property (nonatomic, strong) WZBroadcast       *broadcast;
-@property (nonatomic, strong) WZH264Encoder     *encoder;
-@property (nonatomic, strong) WZAudioDevice     *audioRecorder;
-@property (nonatomic, strong) WZAACEncoder      *audioEncoder;
-@property (nonatomic, assign) BOOL              licensed;
-@property (nonatomic, weak) IBOutlet UIButton   *broadcastButton;
-@property (nonatomic, weak) IBOutlet UIButton   *settingsButton;
-@property (nonatomic, weak) IBOutlet UIButton   *micButton;
-@property (nonatomic, strong) dispatch_queue_t  goCoderQueue;
+@property (nonatomic, strong) WowzaConfig           *config;
+@property (nonatomic, strong) WZBroadcast           *broadcast;
+@property (nonatomic, strong) WZH264Encoder         *encoder;
+@property (nonatomic, strong) WZAudioDevice         *audioRecorder;
+@property (nonatomic, strong) WZAACEncoder          *audioEncoder;
+@property (nonatomic, assign) BOOL                  licensed;
+@property (nonatomic, weak) IBOutlet UIButton       *broadcastButton;
+@property (nonatomic, weak) IBOutlet UIButton       *settingsButton;
+@property (nonatomic, weak) IBOutlet UIButton       *micButton;
+@property (nonatomic, strong) dispatch_queue_t      goCoderQueue;
+@property (nonatomic, strong) AVAudioPlayer         *soundtrackPlayer;
 
 @end
+
+
 
 
 #pragma mark -
@@ -195,6 +199,18 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     return _audioEncoder;
 }
 
+- (AVAudioPlayer *) soundtrackPlayer {
+    if (!_soundtrackPlayer) {
+        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                             pathForResource:@"theduel"
+                                             ofType:@"mp3"]];
+        _soundtrackPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        _soundtrackPlayer.numberOfLoops = -1;
+    }
+    
+    return _soundtrackPlayer;
+}
+
 - (dispatch_queue_t) goCoderQueue {
     if (!_goCoderQueue) {
         NSString *goCoderQueueName = @"com.wowza.goCoderQueue";
@@ -271,6 +287,15 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     }
 }
 
+- (void) playSoundtrack:(BOOL) play {
+    if (play) {
+        [self.soundtrackPlayer play];
+    }
+    else {
+        [self.soundtrackPlayer stop];
+    }
+}
+
 // Update the state of the UI controls
 - (void) updateUIControls {
     if (self.broadcast.status.state != WZStateIdle && self.broadcast.status.state != WZStateRunning) {
@@ -326,7 +351,11 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.micButton setImage:[UIImage imageNamed:(self.audioRecorder.paused ? @"mic_off_button" : @"mic_on_button")] forState:UIControlStateNormal];
     });
+            
 }
+
+
+#pragma mark - GoCoder
 
 - (IBAction) didTapMicButton:(id)sender {
     self.audioRecorder.paused = !self.audioRecorder.paused;
@@ -519,6 +548,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(processFrameForGoCoder) userInfo:nil repeats:YES];
     
 #pragma mark -
+    
 }
 
 - (void)setupScene

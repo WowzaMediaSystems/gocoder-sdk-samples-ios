@@ -50,6 +50,17 @@
 @optional
 
 /*!
+ *  Called when an interruption in the active video capture session begins. On iOS, this
+ *  typically happens when the application exits the foreground. When video
+ *  capture is interrupted, broadcasting is suspended; the SDK will attempt to re-start the broadcast
+ *  when interruption ends, unless the client application has stopped the broadcast. Client
+ *  applications should implement the 'applicationWillResignActive' and/or 'applicationDidEnterBackground'
+ *  UIApplicationDelegate methods and stop the broadcast accordingly. iOS does not allow the camera
+ *  to continue capturing frames when the application is in the background.
+ */
+- (void) videoCaptureInterruptionStarted;
+
+/*!
  *  Called when an interruption in the active video capture session ends. On iOS, this
  *  typically happens when the application exits and then re-enters the foreground. When video
  *  capture is interrupted, broadcasting is suspended; the SDK will attempt to re-start the broadcast

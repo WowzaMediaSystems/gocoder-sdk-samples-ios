@@ -22,6 +22,7 @@
 #import "WZStatusCallback.h"
 #import "WZStreamConfig.h"
 #import "WZBroadcastComponent.h"
+#import "WZDataEvent.h"
 
 /*!
  @class WZBroadcast
@@ -81,5 +82,14 @@
  *  @return A WZStatus object
  */
 - (nonnull WZStatus *) endBroadcast:(nullable id<WZStatusCallback>)statusCallback;
+
+/*!
+ *  Send user-defined metadata within the current broadcast stream.
+ *
+ *  @param event A WZDataEvent object containing the event data and the event name.
+ *
+ *  @return A WZStatus object
+ */
+- (nonnull WZStatus *) sendDataEvent:(nonnull WZDataEvent *)event;
 
 @end

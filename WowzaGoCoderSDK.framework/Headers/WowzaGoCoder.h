@@ -18,15 +18,16 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "WowzaConfig.h"
 #import "WZStatusCallback.h"
-#import "WZCameraPreview.h"
 #import "WZVideoSink.h"
 #import "WZAudioSink.h"
 #import "WZVideoEncoderSink.h"
 #import "WZAudioEncoderSink.h"
+#import "WZDataEvent.h"
 
+@class WZCameraPreview;
 
 /*!
  *  @class WowzaGoCoder
@@ -47,6 +48,8 @@ typedef NS_ENUM(NSUInteger, WowzaGoCoderLogLevel) {
     WowzaGoCoderLogLevelDefault,
     WowzaGoCoderLogLevelVerbose
 };
+
+#if ! WGC_TARGET_EXTENSION
 
 /*!
  *  @typedef WowzaGoCoderCapturePermission
@@ -77,6 +80,8 @@ typedef NS_ENUM(NSUInteger, WowzaGoCoderPermissionType) {
  */
 typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
 
+#endif
+
 
 // Class methods
 /*!
@@ -95,6 +100,7 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 + (void) setLogLevel:(WowzaGoCoderLogLevel)level;
 
+#if ! WGC_TARGET_EXTENSION
 
 /*!
  *  Explicitly request permission to use the camera or microphone.
@@ -112,6 +118,8 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 + (WowzaGoCoderCapturePermission) permissionForType:(WowzaGoCoderPermissionType)type;
 
+#endif
+
 /*!
  Get the WowzaGoCoder shared instance
  @result
@@ -126,6 +134,8 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 @property (nonatomic, nonnull, copy) WowzaConfig *config;
 
+
+#if ! WGC_TARGET_EXTENSION
 /*!
  *  The view that the caller wants to use for the camera preview
  */
@@ -136,16 +146,23 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 @property (nonatomic, nullable, readonly) WZCameraPreview *cameraPreview;
 
+#endif
+
 /*!
  @property status
  @discussion Reflects the current live streaming session status
  */
 @property (nonatomic, nonnull, readonly) WZStatus *status;
 
+
+#if ! WGC_TARGET_EXTENSION
+
 /*!
  *  The muted state of the audio encoder
  */
 @property (nonatomic, assign, getter=isAudioMuted) BOOL audioMuted;
+
+#endif
 
 /*!
  *  The AVAudioSessionCategoryOptions to use if streaming with audio. Default is AVAudioSessionCategoryOptionAllowBluetooth.
@@ -198,7 +215,17 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 - (void) endStreaming:(nullable id<WZStatusCallback>)statusCallback;
 
+/*!
+ *  Send user-defined metadata within the current broadcast stream.
+ *
+ *  @param event A WZDataEvent object containing the event data and the event name.
+ *
+ */
+- (void) sendDataEvent:(nonnull WZDataEvent *)event;
+
 #pragma mark -
+
+#if ! WGC_TARGET_EXTENSION
 
 /*!
  *  Registers an object that conforms to the WZVideoSink protocol with WowzaGoCoder.
@@ -264,5 +291,6 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 - (void) unregisterAudioEncoderSink:(nonnull id<WZAudioEncoderSink>)sink;
 
+#endif // #if ! WGC_TARGET_EXTENSION
 
 @end

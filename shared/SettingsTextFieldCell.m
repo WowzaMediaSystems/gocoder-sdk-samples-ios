@@ -47,6 +47,8 @@
 @implementation SettingsTextFieldCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     if (self.textField) {
         self.textField.delegate = self;
         self.textField.inputAccessoryView = [[SettingsTextFieldCellToolbar alloc] initWithTextField:self.textField];

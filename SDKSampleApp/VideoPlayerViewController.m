@@ -14,19 +14,21 @@
 #import "SettingsViewController.h"
 #import "MP4Writer.h"
 
+
 #pragma mark VideoPlayerViewController (GoCoder SDK Sample App) -
 
 static NSString *const SDKSampleSavedConfigKey = @"SDKSampleSavedConfigKey";
-static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC";
+static NSString *const SDKSampleAppLicenseKey = @"GSDK-A942-0003-EE70-2209-7765";
 
 @interface VideoPlayerViewController () <WZStatusCallback, WZVideoSink, WZAudioSink, WZVideoEncoderSink, WZAudioEncoderSink>
 
 #pragma mark - UI Elements
-@property (nonatomic, weak) IBOutlet UIButton   *broadcastButton;
-@property (nonatomic, weak) IBOutlet UIButton   *settingsButton;
-@property (nonatomic, weak) IBOutlet UIButton   *switchCameraButton;
-@property (nonatomic, weak) IBOutlet UIButton   *torchButton;
-@property (nonatomic, weak) IBOutlet UIButton   *micButton;
+@property (nonatomic, weak) IBOutlet UIButton           *broadcastButton;
+@property (nonatomic, weak) IBOutlet UIButton           *settingsButton;
+@property (nonatomic, weak) IBOutlet UIButton           *switchCameraButton;
+@property (nonatomic, weak) IBOutlet UIButton           *torchButton;
+@property (nonatomic, weak) IBOutlet UIButton           *micButton;
+@property (weak, nonatomic) IBOutlet UILabel            *timeLabel;
 
 #pragma mark - GoCoder SDK Components
 @property (nonatomic, strong) WowzaGoCoder      *goCoder;
@@ -37,10 +39,15 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
 @property (nonatomic, strong) NSMutableArray    *receivedGoCoderEventCodes;
 @property (nonatomic, assign) BOOL              blackAndWhiteVideoEffect;
 @property (nonatomic, assign) BOOL              recordVideoLocally;
+@property (nonatomic, assign) CMTime            broadcastStartTime;
 
 #pragma mark - MP4Writing
 @property (nonatomic, strong) MP4Writer         *mp4Writer;
 @property (nonatomic, assign) BOOL              writeMP4;
+@property (nonatomic, strong) dispatch_queue_t  video_capture_queue;
+
+#pragma mark - WZData injection
+@property (nonatomic, assign) long long         broadcastFrameCount;
 
 @end
 
@@ -49,15 +56,20 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
 
 #pragma mark - UIViewController Protocol Instance Methods
 
+
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    
     self.blackAndWhiteVideoEffect = [[NSUserDefaults standardUserDefaults] boolForKey:BlackAndWhiteKey];
     self.recordVideoLocally = [[NSUserDefaults standardUserDefaults] boolForKey:RecordVideoLocallyKey];
+    self.broadcastStartTime = kCMTimeInvalid;
+    self.timeLabel.hidden = YES;
+    
     
     self.receivedGoCoderEventCodes = [NSMutableArray new];
     
-    [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelDefault];
+    [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelVerbose];
     
     // Load or initialization the streaming configuration settings
     NSData *savedConfig = [[NSUserDefaults standardUserDefaults] objectForKey:SDKSampleSavedConfigKey];
@@ -68,6 +80,7 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
         self.goCoderConfig = [WowzaConfig new];
     }
         
+    
     NSLog (@"WowzaGoCoderSDK version =\n major:%lu\n minor:%lu\n revision:%lu\n build:%lu\n short string: %@\n verbose string: %@",
            (unsigned long)[WZVersionInfo majorVersion],
            (unsigned long)[WZVersionInfo minorVersion],
@@ -173,6 +186,7 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
     
     if (self.goCoder.status.state == WZStateRunning) {
         [self.goCoder endStreaming:self];
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
     }
     else {
         [self.receivedGoCoderEventCodes removeAllObjects];
@@ -180,6 +194,7 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.micButton setImage:[UIImage imageNamed:(self.goCoder.isAudioMuted ? @"mic_off_button" : @"mic_on_button")] forState:UIControlStateNormal];
+            [UIApplication sharedApplication].idleTimerDisabled = YES;
         });
     }
 }
@@ -258,15 +273,30 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
     switch (goCoderStatus.state) {
 
         case WZStateIdle:
-            // There is no active streaming broadcast session
+            self.timeLabel.hidden = YES;
+            if (self.writeMP4 && self.mp4Writer.writing) {
+                if (self.video_capture_queue) {
+                    dispatch_async(self.video_capture_queue, ^{
+                        [self.mp4Writer stopWriting];
+                    });
+                }
+                else {
+                    [self.mp4Writer stopWriting];
+                }
+            }
+            self.writeMP4 = NO;
             break;
             
         case WZStateStarting:
             // A streaming broadcast session is starting up
+            self.broadcastStartTime = kCMTimeInvalid;
+            self.timeLabel.text = @"00:00";
+            self.broadcastFrameCount = 0;
             break;
             
         case WZStateRunning:
             // A streaming broadcast session is running
+            self.timeLabel.hidden = NO;
             self.writeMP4 = NO;
             if (self.recordVideoLocally) {
                 self.mp4Writer = [MP4Writer new];
@@ -279,10 +309,6 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
 
         case WZStateStopping:
             // A streaming broadcast session is shutting down
-            if (self.writeMP4) {
-                [self.mp4Writer stopWriting];
-            }
-            self.writeMP4 = NO;
             break;
             
         default:
@@ -305,7 +331,7 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
     dispatch_async(dispatch_get_main_queue(), ^{
         __block BOOL haveSeenAlertForEvent = NO;
         [self.receivedGoCoderEventCodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([((NSNumber *)obj) isEqualToNumber:[NSNumber numberWithInteger:goCoderStatus.event]]) {
+            if ([((NSNumber *)obj) isEqualToNumber:[NSNumber numberWithInteger:goCoderStatus.error.code]]) {
                 haveSeenAlertForEvent = YES;
                 *stop = YES;
             }
@@ -331,6 +357,7 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
 
 #pragma mark - WZVideoSink
 
+#warning Don't implement this protocol unless your application makes use of it
 - (void) videoFrameWasCaptured:(nonnull CVImageBufferRef)imageBuffer framePresentationTime:(CMTime)framePresentationTime frameDuration:(CMTime)frameDuration {
     if (self.goCoder.isStreaming) {
         
@@ -348,18 +375,40 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
     }
 }
 
-- (void) videoCaptureInterruptionEnded {
-    [self.goCoder endStreaming:self];
+- (void) videoCaptureInterruptionStarted {
+    if (!self.goCoderConfig.backgroundBroadcastEnabled) {
+        [self.goCoder endStreaming:self];
+    }
+}
+
+- (void) videoCaptureUsingQueue:(nullable dispatch_queue_t)queue {
+    self.video_capture_queue = queue;
 }
 
 #pragma mark - WZAudioSink
 
+#warning Don't implement this protocol unless your application makes use of it
 - (void) audioLevelDidChange:(float)level {
 //    NSLog(@"%@ %0.2f", @"Audio level did change", level);
 }
 
+#warning Don't implement this protocol unless your application makes use of it
+- (void) audioPCMFrameWasCaptured:(nonnull const AudioStreamBasicDescription *)pcmASBD bufferList:(nonnull const AudioBufferList *)bufferList time:(CMTime)time sampleRate:(Float64)sampleRate {
+    // The commented-out code below simply dampens the amplitude of the audio data.
+    // It is intended as an example of how one would access and modify the audio sample data.
+
+//    int16_t *fdata = bufferList->mBuffers[0].mData;
+//    
+//    for (int i = 0; i < bufferList->mBuffers[0].mDataByteSize/sizeof(*fdata); i++) {
+//        *fdata = (int16_t)(*fdata * 0.1);
+//        fdata++;
+//    }
+}
+
+
 #pragma mark - WZAudioEncoderSink
 
+#warning Don't implement this protocol unless your application makes use of it
 - (void) audioSampleWasEncoded:(nullable CMSampleBufferRef)data {
     if (self.writeMP4) {
         [self.mp4Writer appendAudioSample:data];
@@ -369,9 +418,41 @@ static NSString *const SDKSampleAppLicenseKey = @"GSDK-CA41-0001-E32F-0CF1-93EC"
 
 #pragma mark - WZVideoEncoderSink
 
+#warning Don't implement this protocol unless your application makes use of it
 - (void) videoFrameWasEncoded:(nonnull CMSampleBufferRef)data {
+    
+    // update the broadcast time label
+    if (CMTimeCompare(self.broadcastStartTime, kCMTimeInvalid) == 0) {
+        self.broadcastStartTime = CMSampleBufferGetPresentationTimeStamp(data);
+    }
+    else {
+        CMTime diff = CMTimeSubtract(CMSampleBufferGetPresentationTimeStamp(data), self.broadcastStartTime);
+        Float64 seconds = CMTimeGetSeconds(diff);
+        NSInteger duration = (NSInteger)seconds;
+        
+        NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld", (duration / 60), (duration % 60)];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.timeLabel.text = timeString;
+        });
+        
+    }
+    
     if (self.writeMP4) {
         [self.mp4Writer appendVideoSample:data];
+    }
+    
+    if (self.broadcastFrameCount++ % 60 == 0) {
+        NSString *string = [NSString stringWithFormat:@"My string data at frame %lld", self.broadcastFrameCount];
+        WZDataItem *myStringData = [WZDataItem itemWithString:string];
+        WZDataMap *dataMap = [WZDataMap new];
+        [dataMap setItem:myStringData forKey:@"my_string"];
+        
+        NSLog(@"%@", string);
+        
+        WZDataEvent *event = [[WZDataEvent alloc] initWithName:@"dataEvent" params:dataMap];
+        
+        [self.goCoder sendDataEvent:event];
     }
 }
 

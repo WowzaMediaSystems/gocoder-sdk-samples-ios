@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1A51DD1D70D07F002E5540 /* theduel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A51DC1D70D07F002E5540 /* theduel.mp3 */; };
 		1C7DA8DD1C991B4C009546EE /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */; };
 		1C7DA8DE1C991B60009546EE /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CE623F01C9F53C30060F2C1 /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */; };
@@ -73,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C1A51DC1D70D07F002E5540 /* theduel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = theduel.mp3; sourceTree = "<group>"; };
 		1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
 		1CE623E71C9F53C30060F2C1 /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = shared/CustomFrameSizeViewController.h; sourceTree = SOURCE_ROOT; };
 		1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = shared/CustomFrameSizeViewController.m; sourceTree = SOURCE_ROOT; };
@@ -230,6 +232,7 @@
 		944D9D33190AA6FD00ACBE6F /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				1C1A51DC1D70D07F002E5540 /* theduel.mp3 */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildConfigurationList = 9409C233190A7465008EF25B /* Build configuration list for PBXNativeTarget "WZSceneKit" */;
 			buildPhases = (
 				9409C205190A7465008EF25B /* Sources */,
+				1CAC95411D1D998000D95262 /* Validate SDK */,
 				9409C206190A7465008EF25B /* Frameworks */,
 				9409C207190A7465008EF25B /* Resources */,
 				1CD2B5E51C939C170004C38D /* Embed Frameworks */,
@@ -313,6 +317,12 @@
 			attributes = {
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = apple;
+				TargetAttributes = {
+					9409C208190A7465008EF25B = {
+						DevelopmentTeam = VVGYK4HC82;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 9409C204190A7465008EF25B /* Build configuration list for PBXProject "WowzaGoCoder.SceneKitReel" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -338,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				949BC351193121490022CDEA /* back.jpg in Resources */,
+				1C1A51DD1D70D07F002E5540 /* theduel.mp3 in Resources */,
 				94B916D1190C521B00656AD1 /* cubeTexture.png in Resources */,
 				94D616F3192527FA00D65DDF /* color_envmap.png in Resources */,
 				1CE623F11C9F53C30060F2C1 /* GoCoderSettings.storyboard in Resources */,
@@ -379,6 +390,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CAC95411D1D998000D95262 /* Validate SDK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate SDK";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "my_script=\"./validatesdk.sh\"\nif [ ! -f \"$my_script\" ]\nthen\nexit 0\nfi\n\nchmod +x $my_script\n\n./$my_script";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9409C205190A7465008EF25B /* Sources */ = {
@@ -512,6 +540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VVGYK4HC82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -532,7 +561,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Wowza Media Systems, LLC (VVGYK4HC82)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wowza Media Systems, LLC (VVGYK4HC82)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VVGYK4HC82;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

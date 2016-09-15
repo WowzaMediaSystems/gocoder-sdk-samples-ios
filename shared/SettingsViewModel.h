@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, SettingsAudioItem) {
 typedef NS_ENUM(NSUInteger, SettingsLowBandwidthItem) {
     SettingsLowBandwidthItemBitrateScale = 0,
     SettingsLowBandwidthItemFrameBufferMultiplier,
+    SettingsLowBandwidthItemFrameSkipCount,
     SettingsLowBandwidthItemCount
 };
 
@@ -88,9 +89,13 @@ typedef NS_ENUM(NSUInteger, SettingsCustomVideoItem) {
 // Low bandwidth settings
 @property (nonatomic, strong) NSString *videoBitrateScale;
 @property (nonatomic, strong) NSString *videoFrameBufferMultiplier;
+@property (nonatomic, strong) NSString *videoFrameSkipCount;
 
 // the user-selected local recording mode (on or off)
 @property (nonatomic, assign) BOOL recordVideoLocally;
+
+// the user-selected local background broadcasting mode (on or off)
+@property (nonatomic, assign) BOOL backgroundBroadcastEnabled;
 
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config;
 

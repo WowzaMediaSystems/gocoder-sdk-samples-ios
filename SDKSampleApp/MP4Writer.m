@@ -11,15 +11,34 @@
 
 NSString *const MP4Filename = @"GoCoderMovie.mov";
 
+static BOOL isKeyFrame(CMSampleBufferRef sample) {
+    BOOL isKey = NO;
+    
+    CFArrayRef attachments = CMSampleBufferGetSampleAttachmentsArray(sample, 0);
+    if (CFArrayGetCount(attachments) > 0) {
+        CFBooleanRef value;
+        Boolean notSyncValue = CFDictionaryGetValueIfPresent
+            ((CFDictionaryRef) CFArrayGetValueAtIndex(attachments, 0),
+             kCMSampleAttachmentKey_NotSync,
+             (const void **)(&value));
+        
+        isKey = !notSyncValue || !CFBooleanGetValue(value);
+    }
+    
+    return isKey;
+}
+
 @interface MP4Writer () {
 }
 
+@property (nonatomic, assign, readwrite) BOOL writing;
 @property (nonatomic, strong) AVAssetWriter* writer;
 @property (nonatomic, strong) AVAssetWriterInput *videoWriterInput;
 @property (nonatomic, strong) AVAssetWriterInput *audioWriterInput;
 @property (nonatomic, assign) BOOL startedSession;
+@property (nonatomic, assign) BOOL firstVideoBuffer;
 @property (nonatomic, assign) BOOL firstAudioBuffer;
-@property (nonatomic, assign) BOOL waitForAudioFrame;
+@property (nonatomic, assign) CMTime firstVideoFrameTime;
 
 @end
 
@@ -51,7 +70,7 @@ NSString *const MP4Filename = @"GoCoderMovie.mov";
         
         // audio input will be initialized when first audio frame arrives
         if (config.audioEnabled) {
-            self.waitForAudioFrame = YES;
+            [self prepareAudioWriter];
         }
         
         result = TRUE;
@@ -61,9 +80,23 @@ NSString *const MP4Filename = @"GoCoderMovie.mov";
     return result;
 }
 
-- (void) prepareAudioWriter:(CMAudioFormatDescriptionRef)audioFormatDescription {
+- (CMAudioFormatDescriptionRef) makeAudioFormatDescription {
+    
+    CMAudioFormatDescriptionRef audioFormat = nil;
+    
+    AudioStreamBasicDescription absd = {0};
+    absd.mSampleRate = [[AVAudioSession sharedInstance] sampleRate];
+    absd.mFormatID = kAudioFormatMPEG4AAC;
+    absd.mFormatFlags = kMPEG4Object_AAC_Main;
+    
+    CMAudioFormatDescriptionCreate(NULL, &absd, 0, NULL, 0, NULL, NULL, &audioFormat);
+    
+    return audioFormat;
+}
+
+- (void) prepareAudioWriter {
     if (self.audioWriterInput == nil) {
-        self.audioWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:nil sourceFormatHint:audioFormatDescription];
+        self.audioWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:nil sourceFormatHint:self.makeAudioFormatDescription];
         
         self.audioWriterInput.expectsMediaDataInRealTime = YES;
         [self.writer addInput:self.audioWriterInput];
@@ -71,12 +104,13 @@ NSString *const MP4Filename = @"GoCoderMovie.mov";
 }
 
 - (void) startWriting {
-    if (self.waitForAudioFrame)
-        return;
     
     if (self.writer.status != AVAssetWriterStatusWriting) {
         self.startedSession = NO;
         self.firstAudioBuffer = YES;
+        self.firstVideoBuffer = YES;
+        self.firstVideoFrameTime = kCMTimeInvalid;
+        self.writing = YES;
         
         if (![self.writer startWriting]) {
             NSLog (@"Error in startWriting");
@@ -89,37 +123,72 @@ NSString *const MP4Filename = @"GoCoderMovie.mov";
 }
 
 - (void) stopWriting {
+    self.writing = NO;
     [self.writer finishWritingWithCompletionHandler:^{
-        //
+        NSLog(@"Stopped writing video file");
     }];
 }
 
+- (void) logPresentationTime:(CMSampleBufferRef)sample logPrefix:(NSString *)logPrefix {
+    // Note: uncomment the below if you want to log the time stamp of each audio and video sample that is written
+//    CMTime time = CMSampleBufferGetPresentationTimeStamp(sample);
+//    float seconds = CMTimeGetSeconds(time);
+//    NSLog(@"%@ time: %0.3f", logPrefix, seconds);
+}
+
 - (void) appendVideoSample:(CMSampleBufferRef)videoSample {
+    if (self.firstVideoBuffer && !isKeyFrame(videoSample)) {
+        NSLog(@"MP4Writer:appendVideoSample: first frame not key, discarding");
+        return;
+    }
+    
+    self.firstVideoBuffer = NO;
+    
     if (self.videoWriterInput.readyForMoreMediaData && self.writer.status == AVAssetWriterStatusWriting) {
         if (videoSample != nil) {
             if (!self.startedSession) {
                 CMTime pts = CMSampleBufferGetPresentationTimeStamp(videoSample);
                 [self.writer startSessionAtSourceTime:pts];
                 self.startedSession = YES;
+                NSLog(@"MP4Writer: started session in appendVideoSample");
             }
             BOOL appended = [self.videoWriterInput appendSampleBuffer:videoSample];
             
+            if (CMTimeCompare(kCMTimeInvalid, self.firstVideoFrameTime) == 0) {
+                self.firstVideoFrameTime = CMSampleBufferGetPresentationTimeStamp(videoSample);
+            }
+            
+            [self logPresentationTime:videoSample logPrefix:@"Video Sample"];
+            
             if (!appended) {
                 [self logWriterStatus];
-                
             }
         }
+    }
+    else {
+        NSLog(@"MP4Writer:appendVideoSample - sample not appended;  readyForMoreMediaData = %d, status = %ld", self.audioWriterInput.readyForMoreMediaData, (long)self.writer.status);
     }
 }
 
 
+- (void) primeAudio:(CMSampleBufferRef)audioSample {
+    CMAttachmentMode attachmentMode;
+    CFTypeRef trimDuration = CMGetAttachment(audioSample, kCMSampleBufferAttachmentKey_TrimDurationAtStart, &attachmentMode);
+    
+    if (!trimDuration) {
+        NSLog(@"MP4Writer - Priming audio");
+        CMTime trimTime = CMTimeMakeWithSeconds(0.1, 1000000000);
+        CFDictionaryRef timeDict = CMTimeCopyAsDictionary(trimTime, kCFAllocatorDefault);
+        CMSetAttachment(audioSample, kCMSampleBufferAttachmentKey_TrimDurationAtStart, timeDict, kCMAttachmentMode_ShouldPropagate);
+        CFRelease(timeDict);
+    }
+}
+
 - (void) appendAudioSample:(CMSampleBufferRef)audioSample {
-    if (audioSample != nil && self.waitForAudioFrame) {
-        CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(audioSample);
-        CMAudioFormatDescriptionRef audioFormatDescription = (CMAudioFormatDescriptionRef)formatDescription;
-        [self prepareAudioWriter:audioFormatDescription];
-        self.waitForAudioFrame = NO;
-        [self startWriting];
+    
+    if (CMTimeCompare(kCMTimeInvalid, self.firstVideoFrameTime) == 0 ||
+        CMTimeCompare(self.firstVideoFrameTime, CMSampleBufferGetPresentationTimeStamp(audioSample)) == 1) {
+        return;
     }
     
     if (self.audioWriterInput.readyForMoreMediaData && self.writer.status == AVAssetWriterStatusWriting) {
@@ -128,15 +197,26 @@ NSString *const MP4Filename = @"GoCoderMovie.mov";
                 CMTime pts = CMSampleBufferGetPresentationTimeStamp(audioSample);
                 [self.writer startSessionAtSourceTime:pts];
                 self.startedSession = YES;
+                NSLog(@"MP4Writer: started session in appendAudioSample");
+            }
+            
+            if (_firstAudioBuffer) {
+                _firstAudioBuffer = NO;
+                [self primeAudio:audioSample];
             }
             
             BOOL appended = [self.audioWriterInput appendSampleBuffer:audioSample];
+            
+            [self logPresentationTime:audioSample logPrefix:@"Audio Sample"];
             
             if (!appended) {
                 [self logWriterStatus];
                 
             }
         }
+    }
+    else {
+        NSLog(@"MP4Writer:appendAudioSample - sample not appended;  readyForMoreMediaData = %d, status = %ld", self.audioWriterInput.readyForMoreMediaData, (long)self.writer.status);
     }
 }
 

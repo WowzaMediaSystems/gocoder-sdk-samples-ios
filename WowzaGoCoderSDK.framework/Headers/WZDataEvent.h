@@ -1,5 +1,5 @@
 //
-//  WowzaGoCoderSDK.h
+//  WZDataEvent.h
 //  WowzaGoCoderSDK
 //
 //  Copyright 2007 – 2016, Wowza Media Systems, LLC.  All rights
@@ -18,35 +18,16 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
-#import <UIKit/UIKit.h>
-
-#import "WowzaGoCoder.h"
-#import "WowzaConfig.h"
-#import "WZError.h"
-#import "WZStatus.h"
-#import "WZStatusCallback.h"
-#import "WZVersionInfo.h"
-#import "WZPlatformInfo.h"
-#import "WZVideoSink.h"
-#import "WZAudioSink.h"
-#import "WZBroadcastComponent.h"
-#import "WZH264Encoder.h"
-#import "WZVideoEncoderSink.h"
-#import "WZMediaSink.h"
-#import "WZBroadcast.h"
-#import "WZAudioEncoderSink.h"
-#import "WZAACEncoder.h"
-#import "WZImageUtilities.h"
+#import <Foundation/Foundation.h>
 #import "WZData.h"
-#import "WZDataEvent.h"
 
-#if ! WGC_TARGET_EXTENSION
+typedef void (^WZDataEventCompletion)( WZDataItem * _Nullable result);
 
-#import "WZCamera.h"
-#import "WZCameraPreview.h"
-#import "WZAudioDevice.h"
+@interface WZDataEvent : NSObject
 
-#endif
+@property (nonatomic, strong, nullable) NSString *eventName;
+@property (nonatomic, strong, nullable) WZDataMap *eventParams;
 
+- (nonnull instancetype) initWithName:(nonnull NSString *)name params:(nonnull WZDataMap *)params;
 
+@end
