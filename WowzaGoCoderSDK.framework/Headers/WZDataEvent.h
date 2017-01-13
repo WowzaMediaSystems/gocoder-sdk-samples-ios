@@ -19,15 +19,50 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreMedia/CoreMedia.h>
 #import "WZData.h"
 
-typedef void (^WZDataEventCompletion)( WZDataItem * _Nullable result);
 
+/*!
+ *  @typedef WZDataScope
+ *  @constant WZDataScopeModule Data events sent with a WZDataScopeModule scope will be mapped to an invocation of a public handler method contained within any active server module class having the same name as the event.
+ *  @constant WZDataScopeStream Data events sent with a WZDataScopeStream scope will be delivered to each client subscribed to the stream.
+ *  @discussion Identifiers for the various data scopes to which a data event can be targeted.
+ */
+typedef NS_ENUM(NSUInteger, WZDataScope) {
+    WZDataScopeModule,
+    WZDataScopeStream
+};
+
+
+/*!
+ @class WZDataEvent
+ @discussion The WZDataEvent class provides the top-level interface for encapsulating a list or map of items that represent server metadata that is sent and received by GoCoder.
+ */
 @interface WZDataEvent : NSObject
 
+/*!
+ *  The event name of the WZDataEvent
+ */
 @property (nonatomic, strong, nullable) NSString *eventName;
-@property (nonatomic, strong, nullable) WZDataMap *eventParams;
 
-- (nonnull instancetype) initWithName:(nonnull NSString *)name params:(nonnull WZDataMap *)params;
+/*!
+ *  The WZDataMap that contains the event data. If this value is set, eventListParams should be nil.
+ */
+@property (nonatomic, strong, nullable) WZDataMap *eventMapParams;
+
+
+/*!
+ *  Initialize a new WZDataEvent with a WZDataMap of event data
+ *
+ *  @param name the event name of the WZDataEvent.
+ *  @param mapParams the map of event data to include in the WZDataEvent.
+ *
+ *  @return An instance of WZDataEvent
+ */
+- (nonnull instancetype) initWithName:(nonnull NSString *)name mapParams:(nonnull WZDataMap *)mapParams;
+
 
 @end
+
+

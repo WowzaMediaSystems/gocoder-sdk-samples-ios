@@ -10,6 +10,7 @@
 
 NSString * const BlackAndWhiteKey = @"BlackAndWhiteKey";
 NSString * const RecordVideoLocallyKey = @"RecordVideoLocallyKey";
+NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
 
 @interface SettingsViewModel ()
 
@@ -256,6 +257,16 @@ NSString * const RecordVideoLocallyKey = @"RecordVideoLocallyKey";
 
 - (void) setBackgroundBroadcastEnabled:(BOOL)backgroundBroadcastEnabled {
     self.config.backgroundBroadcastEnabled = backgroundBroadcastEnabled;
+}
+
+- (NSString *) playbackPrerollDuration {
+    float duration =  [[NSUserDefaults standardUserDefaults] floatForKey:PlaybackPrerollKey];
+    return [NSNumber numberWithFloat:duration].stringValue;
+}
+
+- (void) setPlaybackPrerollDuration:(NSString *)playbackPrerollDuration {
+    float duration = playbackPrerollDuration.floatValue;
+    [[NSUserDefaults standardUserDefaults] setFloat:duration forKey:PlaybackPrerollKey];
 }
 
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config {

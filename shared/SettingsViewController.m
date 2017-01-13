@@ -20,6 +20,13 @@
 
 @implementation SettingsViewController
 
++ (void) presentAlert:(NSString *)title message:(NSString *)message presenter:(UIViewController *)presenter {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [presenter presentViewController:alert animated:TRUE completion:nil];
+}
+
 - (NSMutableArray *) sectionsToDisplay {
     if (!_sectionsToDisplay) {
         _sectionsToDisplay = [NSMutableArray new];
@@ -120,6 +127,10 @@
             title = @"Video Recording";
             break;
             
+        case SettingsViewSectionPlayback:
+            title = @"Playback";
+            break;
+            
         default:
             break;
     }
@@ -167,6 +178,7 @@
             
         case SettingsViewSectionVideoEffects:
         case SettingsViewSectionRecordVideoLocally:
+        case SettingsViewSectionPlayback:
             count = 1;
             break;
             
@@ -308,6 +320,16 @@
         recordSwitch.on = self.viewModel.recordVideoLocally;
         [recordSwitch addTarget:self action:@selector(didChangeRecordVideoLocallySwitch:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = recordSwitch;
+        
+        return cell;
+    }
+    
+    else if (settingsSection == SettingsViewSectionPlayback) {
+        SettingsTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"floatingTextFieldCell" forIndexPath:indexPath];
+        cell.viewModel = self.viewModel;
+        cell.label.text = @"Preroll Duration";
+        cell.modelKeyPath = @"playbackPrerollDuration";
+        cell.textField.keyboardType = UIKeyboardTypeDecimalPad;
         
         return cell;
     }

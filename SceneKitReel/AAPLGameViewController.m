@@ -25,7 +25,7 @@
 #define MAX_SMOKE 20.0
 
 static NSString *const SDKSampleSavedConfigKey = @"SDKSampleSavedConfigKey";
-static NSString *const SDKSampleAppLicenseKey = @"GSDK-A942-0003-82C6-A641-9E41";
+static NSString *const SDKSampleAppLicenseKey = @"GSDK-3943-0003-497A-5A63-0CDB";
 
 
 // utility function
@@ -234,8 +234,8 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
                         (__bridge CFDictionaryRef) options,
                         &pxbuffer);
     
-    
-    CVPixelBufferLockBaseAddress(pxbuffer, 0);
+    CVPixelBufferLockFlags flags = (CVPixelBufferLockFlags)0;
+    CVPixelBufferLockBaseAddress(pxbuffer, flags);
     void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
@@ -252,7 +252,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
     
-    CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
+    CVPixelBufferUnlockBaseAddress(pxbuffer, flags);
     
     return pxbuffer;
 }

@@ -1,5 +1,5 @@
 //
-//  WowzaGoCoderSDK.h
+//  WZDataSink.h
 //  WowzaGoCoderSDK
 //
 //  Copyright 2007 – 2016, Wowza Media Systems, LLC.  All rights
@@ -16,39 +16,20 @@
 //  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //  OTHER DEALINGS IN THE SOFTWARE.
-//
 
-
-#import <UIKit/UIKit.h>
-
-#import "WowzaGoCoder.h"
-#import "WowzaConfig.h"
-#import "WZError.h"
-#import "WZStatus.h"
-#import "WZStatusCallback.h"
-#import "WZVersionInfo.h"
-#import "WZPlatformInfo.h"
-#import "WZVideoSink.h"
-#import "WZAudioSink.h"
-#import "WZBroadcastComponent.h"
-#import "WZH264Encoder.h"
-#import "WZVideoEncoderSink.h"
-#import "WZMediaSink.h"
-#import "WZBroadcast.h"
-#import "WZAudioEncoderSink.h"
-#import "WZAACEncoder.h"
-#import "WZImageUtilities.h"
-#import "WZData.h"
+#import <Foundation/Foundation.h>
 #import "WZDataEvent.h"
-#import "WZDataSink.h"
-#import "WZPlayer.h"
 
-#if ! WGC_TARGET_EXTENSION
+/*!
+ @protocol WZDataSink
+ @discussion WZDataSink defines a protocol for callbacks that occur when application-specific data
+ is returned by the Wowza server.
+ */
+@protocol WZDataSink <NSObject>
 
-#import "WZCamera.h"
-#import "WZCameraPreview.h"
-#import "WZAudioDevice.h"
+/*!
+ *  Called when data is received from the streaming session.
+ */
+- (void) onData:(nonnull WZDataEvent *)dataEvent;
 
-#endif
-
-
+@end

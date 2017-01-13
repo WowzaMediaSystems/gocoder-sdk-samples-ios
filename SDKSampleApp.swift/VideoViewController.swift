@@ -15,7 +15,7 @@ class VideoViewController: UIViewController, WZStatusCallback, WZVideoSink, WZAu
     //MARK: - Class Member Variables
     
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
-    let SDKSampleAppLicenseKey = "GSDK-A942-0003-5E17-E632-44B7"
+    let SDKSampleAppLicenseKey = "GSDK-3943-0003-640D-148D-6AF0"
     let BlackAndWhiteEffectKey = "BlackAndWhiteKey"
     
     @IBOutlet weak var broadcastButton:UIButton!
@@ -220,7 +220,7 @@ class VideoViewController: UIViewController, WZStatusCallback, WZVideoSink, WZAu
             // Set the UI control state based on the streaming broadcast status, configuration,
             // and device capability
             self.broadcastButton.isEnabled    = true
-            self.switchCameraButton.isEnabled = (self.goCoder?.cameraPreview?.cameras?.count)! > 1
+            self.switchCameraButton.isEnabled = ((self.goCoder?.cameraPreview?.cameras?.count) ?? 0) > 1
             self.torchButton.isEnabled        = self.goCoder?.cameraPreview?.camera?.hasTorch ?? false
             let isStreaming                 = self.goCoder?.isStreaming ?? false
             self.settingsButton.isEnabled     = !isStreaming
@@ -251,7 +251,11 @@ class VideoViewController: UIViewController, WZStatusCallback, WZVideoSink, WZAu
             DispatchQueue.main.async { () -> Void in
                 self.updateUIControls()
             }
+            
+        case .buffering:
+            break
         }
+        
         
     }
     

@@ -41,17 +41,19 @@ extern NSString * __nonnull const  WZStatusPreviousBitrateKey;
 
 /*!
  *  @typedef WZState
- *  @constant WZStateIdle The broadcasting session is idle; i.e. not broadcasting.
- *  @constant WZStateStarting The broadcasting session is starting up.
- *  @constant WZStateRunning The broadcasting session is broadcasting.
- *  @constant WZStateStopping The broadcasting session is shutting down.
+ *  @constant WZStateIdle The broadcasting or playback session is idle; i.e. not broadcasting.
+ *  @constant WZStateStarting The broadcasting or playback session is starting up.
+ *  @constant WZStateRunning The broadcasting or playback session is broadcasting or playing.
+ *  @constant WZStateStopping The broadcasting or playback session is shutting down.
+ *  @constant WZStateBuffering The playback session is buffering.
  *  @discussion The component state values.
  */
 typedef NS_ENUM(NSUInteger, WZState) {
     WZStateIdle = 0,
     WZStateStarting,
     WZStateRunning,
-    WZStateStopping
+    WZStateStopping,
+    WZStateBuffering
 };
 
 

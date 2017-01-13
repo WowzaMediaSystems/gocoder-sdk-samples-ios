@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C1E77721CD0461F00035039 /* MP4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E77711CD0461F00035039 /* MP4Writer.m */; };
 		1C305F861C99F6E000AD17F9 /* GoCoderSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C305F851C99F6E000AD17F9 /* GoCoderSettings.storyboard */; };
+		1C33021E1D99E23200F57BE5 /* WZPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33021D1D99E23200F57BE5 /* WZPlayerViewController.m */; };
 		1CA059FF1C7CE293003B4AAA /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */; };
 		1CE278FC1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */; };
 		1CE278FD1C990F7400ACE7A5 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -41,6 +42,8 @@
 		1C1E77701CD0461F00035039 /* MP4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Writer.h; sourceTree = "<group>"; };
 		1C1E77711CD0461F00035039 /* MP4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP4Writer.m; sourceTree = "<group>"; };
 		1C305F851C99F6E000AD17F9 /* GoCoderSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GoCoderSettings.storyboard; path = shared/GoCoderSettings.storyboard; sourceTree = SOURCE_ROOT; };
+		1C33021C1D99E23200F57BE5 /* WZPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPlayerViewController.h; sourceTree = "<group>"; };
+		1C33021D1D99E23200F57BE5 /* WZPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPlayerViewController.m; sourceTree = "<group>"; };
 		1CA059FD1C7CE293003B4AAA /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = ../shared/CustomFrameSizeViewController.h; sourceTree = "<group>"; };
 		1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = ../shared/CustomFrameSizeViewController.m; sourceTree = "<group>"; };
 		1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = SOURCE_ROOT; };
@@ -109,6 +112,8 @@
 			children = (
 				1CE985FE1C1BA2D500A883E3 /* VideoPlayerViewController.h */,
 				1CE985FF1C1BA2D500A883E3 /* VideoPlayerViewController.m */,
+				1C33021C1D99E23200F57BE5 /* WZPlayerViewController.h */,
+				1C33021D1D99E23200F57BE5 /* WZPlayerViewController.m */,
 				1CE985FB1C1BA2D500A883E3 /* AppDelegate.h */,
 				1CE985FC1C1BA2D500A883E3 /* AppDelegate.m */,
 				1C1E77701CD0461F00035039 /* MP4Writer.h */,
@@ -163,7 +168,7 @@
 		1CE985ED1C1BA2D500A883E3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Wowza, Inc";
 				TargetAttributes = {
 					1CE985F41C1BA2D500A883E3 = {
@@ -245,6 +250,7 @@
 				1CE986001C1BA2D500A883E3 /* VideoPlayerViewController.m in Sources */,
 				1CE985FD1C1BA2D500A883E3 /* AppDelegate.m in Sources */,
 				1CE985FA1C1BA2D500A883E3 /* main.m in Sources */,
+				1C33021E1D99E23200F57BE5 /* WZPlayerViewController.m in Sources */,
 				1C1E77721CD0461F00035039 /* MP4Writer.m in Sources */,
 				1CF6ED4A1C20B03500DA7C6B /* SettingsTextFieldCell.m in Sources */,
 				1CA059FF1C7CE293003B4AAA /* CustomFrameSizeViewController.m in Sources */,
@@ -287,8 +293,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -331,8 +339,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -367,7 +377,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SDKSampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.sampleapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -385,7 +395,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SDKSampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.sampleapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

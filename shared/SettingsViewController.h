@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, SettingsViewSection) {
     SettingsViewSectionBackgroundMode,
     SettingsViewSectionVideoEffects,
     SettingsViewSectionRecordVideoLocally,
+    SettingsViewSectionPlayback,
     SettingsViewSectionCount
 };
 
@@ -28,8 +29,11 @@ typedef NS_ENUM(NSUInteger, SettingsViewSection) {
 
 @property (nonatomic, strong, nonnull) SettingsViewModel *viewModel;
 
++ (void) presentAlert:(nullable NSString *)title message:(nullable NSString *)message presenter:(nonnull UIViewController *)presenter;
+
 - (void) addDisplaySection:(SettingsViewSection)section;
 - (void) addAllSections;
 - (void) removeDisplaySection:(SettingsViewSection)section;
 
 @end
+

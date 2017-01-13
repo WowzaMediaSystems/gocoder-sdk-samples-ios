@@ -43,7 +43,7 @@ class ViewController: UIViewController, WZStatusCallback {
     
     //MARK: - GoCoder variables
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
-    let SDKSampleAppLicenseKey = "GSDK-A942-0003-5E17-E632-44B7"
+    let SDKSampleAppLicenseKey = "GSDK-3943-0003-640D-148D-6AF0"
     var goCoderConfig:WowzaConfig!
     var goCoderStatus = WZStatus()
     var goCoderRegistrationChecked = false
@@ -264,7 +264,11 @@ class ViewController: UIViewController, WZStatusCallback {
             DispatchQueue.main.async { () -> Void in
                 self.updateUIControls()
             }
+            
+        case .buffering:
+            break
         }
+        
         
     }
     

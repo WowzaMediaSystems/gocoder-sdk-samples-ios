@@ -23,6 +23,7 @@
 #import "WZStreamConfig.h"
 #import "WZBroadcastComponent.h"
 #import "WZDataEvent.h"
+#import "WZDataSink.h"
 
 /*!
  @class WZBroadcast
@@ -62,6 +63,11 @@
  */
 @property (nonatomic, strong, nullable) id<WZBroadcastComponent> audioDevice;
 
+/*!
+ *  The stream metadata for the broadcasted stream
+ */
+@property (nonatomic, readonly, nullable) WZDataMap *metaData;
+
 #pragma mark - Instance Methods
 
 /*!
@@ -86,10 +92,30 @@
 /*!
  *  Send user-defined metadata within the current broadcast stream.
  *
- *  @param event A WZDataEvent object containing the event data and the event name.
+ *  @param scope A WZDataScope defining the scope of the event to be sent.
+ *  @param eventName The name of the event to be sent.
+ *  @param params The parameters for the event to be sent.
+ *  @param callback The callback to be called with the result of a WZDataScopeModule call.
+ *  Should be nil for WZDataScopeStream.
  *
- *  @return A WZStatus object
  */
-- (nonnull WZStatus *) sendDataEvent:(nonnull WZDataEvent *)event;
+- (void) sendDataEvent:(WZDataScope)scope eventName:(nonnull NSString *)eventName params:(nonnull WZDataMap *)params callback:(nullable WZDataCallback)callback;
+
+/*!
+ *  Registers an object that conforms to the WZDataSink protocol.
+ *  The WZDataSink protocol methods will be called when video encoding
+ *  is active and a data event is received from the server.
+ *
+ *  @param sink An object conforming to the WZAudioEncoderSink protocol
+ *  @param eventName The name of the data event the client wishes to listen for
+ */
+- (void) registerDataSink:(nonnull id<WZDataSink>)sink eventName:(nonnull NSString *)eventName;
+
+/*!
+ *  Unregisters an object that conforms to the WZDataSink protocol.
+ *
+ *  @param sink An object conforming to the WZDataSink protocol
+ */
+- (void) unregisterDataSink:(nonnull id<WZDataSink>)sink eventName:(nonnull NSString *)eventName;
 
 @end

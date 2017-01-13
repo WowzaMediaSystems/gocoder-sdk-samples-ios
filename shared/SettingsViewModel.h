@@ -11,6 +11,7 @@
 
 extern NSString * const BlackAndWhiteKey;
 extern NSString * const RecordVideoLocallyKey;
+extern NSString * const PlaybackPrerollKey;
 
 typedef NS_ENUM(NSUInteger, SettingsBroadcastItem) {
     SettingsBroadcastItemHostAddress = 0,
@@ -44,6 +45,11 @@ typedef NS_ENUM(NSUInteger, SettingsCustomVideoItem) {
     SettingsCustomVideoItemKeyFrameInterval,
     SettingsCustomVideoItemCount
     
+};
+
+typedef NS_ENUM(NSUInteger, SettingsPlaybackItem) {
+    SettingsPlaybackItemPrerollDuration = 0,
+    SettingsPlaybackItemCount
 };
 
 @class WowzaConfig;
@@ -96,6 +102,9 @@ typedef NS_ENUM(NSUInteger, SettingsCustomVideoItem) {
 
 // the user-selected local background broadcasting mode (on or off)
 @property (nonatomic, assign) BOOL backgroundBroadcastEnabled;
+
+// the user-selected playback pre-roll duration
+@property (nonatomic, strong) NSString *playbackPrerollDuration;
 
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config;
 

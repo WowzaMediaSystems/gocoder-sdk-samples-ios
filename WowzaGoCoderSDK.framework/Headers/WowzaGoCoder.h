@@ -26,6 +26,7 @@
 #import "WZVideoEncoderSink.h"
 #import "WZAudioEncoderSink.h"
 #import "WZDataEvent.h"
+#import "WZDataSink.h"
 
 @class WZCameraPreview;
 
@@ -175,6 +176,11 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 @property (nonatomic, readonly) BOOL isStreaming;
 
+/*!
+ *  The stream metadata for the broadcasted stream
+ */
+@property (nonatomic, readonly, nullable) WZDataMap *metaData;
+
 // Instance methods
 + (nonnull instancetype) alloc __attribute__((unavailable("alloc not available, call the sharedInstance class method instead")));
 - (nonnull instancetype) init __attribute__((unavailable("init not available, call the sharedInstance class method instead")));
@@ -218,10 +224,14 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
 /*!
  *  Send user-defined metadata within the current broadcast stream.
  *
- *  @param event A WZDataEvent object containing the event data and the event name.
+ *  @param scope A WZDataScope defining the scope of the event to be sent.
+ *  @param eventName The name of the event to be sent.
+ *  @param params The parameters for the event to be sent.
+ *  @param callback The callback to be called with the result of a WZDataScopeModule call.
+ *  Should be nil for WZDataScopeStream.
  *
  */
-- (void) sendDataEvent:(nonnull WZDataEvent *)event;
+- (void) sendDataEvent:(WZDataScope)scope eventName:(nonnull NSString *)eventName params:(nonnull WZDataMap *)params callback:(nullable WZDataCallback)callback;
 
 #pragma mark -
 
@@ -290,6 +300,23 @@ typedef void (^WZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  *  @param sink An object conforming to the WZAudioEncoderSink protocol
  */
 - (void) unregisterAudioEncoderSink:(nonnull id<WZAudioEncoderSink>)sink;
+
+/*!
+ *  Registers an object that conforms to the WZDataSink protocol with WowzaGoCoder.
+ *  The WZDataSink protocol methods will be called when video encoding
+ *  is active and a data event is received from the server.
+ *
+ *  @param sink An object conforming to the WZAudioEncoderSink protocol
+ *  @param eventName The name of the data event the client wishes to listen for
+ */
+- (void) registerDataSink:(nonnull id<WZDataSink>)sink eventName:(nonnull NSString *)eventName;
+
+/*!
+ *  Unregisters an object that conforms to the WZDataSink protocol with WowzaGoCoder.
+ *
+ *  @param sink An object conforming to the WZDataSink protocol
+ */
+- (void) unregisterDataSink:(nonnull id<WZDataSink>)sink eventName:(nonnull NSString *)eventName;
 
 #endif // #if ! WGC_TARGET_EXTENSION
 
