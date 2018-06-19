@@ -4,7 +4,7 @@ This repository contains sample applications that demonstrate the capabilities o
 ## Development Requirements
 1. **GoCoder SDK for iOS v1.0.1.424**  
 
-     _:warning: **PLEASE NOTE:** The GoCoder SDK binaries necessary to build the sample apps are not provided here. To receive a free trial copy of the SDK, please fill out the [GoCoder SDK trial signup form](https://www.wowza.com/products/gocoder/sdk/trial) to be sent a link where you can download the SDK along with a free trial license key._
+     _:warning: **NOTE:** The GoCoder SDK binaries necessary to build the sample apps are not provided here. To receive a free trial copy of the SDK, please fill out the [GoCoder SDK trial signup form](https://www.wowza.com/products/gocoder/sdk/trial) to be sent a link where you can download the SDK along with a free trial license key._
 
 2. iOS SDK 8.01 or later
 3. Xcode 7 or later for debugging
@@ -25,13 +25,13 @@ To facilitate working with the various sample apps, an Xcode workspace named
 listed above.
 
 ## More resources
-[Wowza GoCoder SDK Developer Documentation](https://www.wowza.com/resources/gocodersdk/docs/1.0/)
+[Wowza GoCoder SDK Technical Articles](https://www.wowza.com/docs/wowza-gocoder-sdk)
 
-[Wowza GoCoder SDK for iOS API Reference](https://www.wowza.com/resources/gocodersdk/docs/1.0/api-reference-ios/)
+[Wowza GoCoder SDK for iOS Reference Docs](https://www.wowza.com/resources/gocodersdk/docs/1.0/api-reference-ios/)
 
-[Wowza GoCoder SDK for iOS Release Notes](https://www.wowza.com/resources/gocodersdk/docs/1.0/release-notes-ios/)
+[Wowza GoCoder SDK for iOS Release Notes](https://www.wowza.com/docs/wowza-gocoder-sdk-release-notes-for-ios)
 
-[Wowza GoCoder Product Page](https://www.wowza.com/products/gocoder)
+[Wowza GoCoder Community Forum](https://www.wowza.com/community/spaces/36/wowza-gocoder-sdk.html)
 
 Wowza Media Systems™ provides developers with a platform to create streaming applications and solutions. See [Wowza Developer Tools](https://www.wowza.com/resources/developers) to learn more about our APIs and SDK.
 
