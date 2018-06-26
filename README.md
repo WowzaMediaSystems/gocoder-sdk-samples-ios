@@ -2,7 +2,7 @@
 This repository contains sample applications that demonstrate the capabilities of the [Wowza GoCoder™ SDK for iOS](https://www.wowza.com/products/gocoder/sdk) and is provided for developer educational purposes. To build your own application, you must use the GoCoder SDK.
 
 ## Prerequisites
-- GoCoder SDK for iOS v1.0.5.735
+- GoCoder SDK for iOS v1.5.1.0949
 
      **NOTE:** The GoCoder SDK binaries necessary to build the sample apps aren't provided here. To get free trial of the SDK, complete the [GoCoder SDK trial sign-up form](https://www.wowza.com/products/gocoder/sdk/trial) to receive a link where you can download the SDK along with a free trial license key.
 
