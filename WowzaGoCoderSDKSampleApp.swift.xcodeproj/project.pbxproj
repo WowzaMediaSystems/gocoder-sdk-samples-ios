@@ -15,10 +15,10 @@
 		1C305FDA1C9A26CE00AD17F9 /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C305FD41C9A26CE00AD17F9 /* SettingsTextFieldCell.m */; };
 		1C305FDB1C9A26CE00AD17F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C305FD61C9A26CE00AD17F9 /* SettingsViewController.m */; };
 		1C305FDC1C9A26CE00AD17F9 /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C305FD81C9A26CE00AD17F9 /* SettingsViewModel.m */; };
-		1C305FDF1C9A27A500AD17F9 /* GoCoderSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C305FDE1C9A27A500AD17F9 /* GoCoderSettings.storyboard */; };
 		1C305FE11C9A282200AD17F9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C305FE01C9A282200AD17F9 /* VideoViewController.swift */; };
 		1C8037BF1D526032000E4368 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8037BD1D526028000E4368 /* WowzaGoCoderSDK.framework */; };
 		1C8037C01D526032000E4368 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8037BD1D526028000E4368 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4F384EF1EAFBE6600BD13C6 /* AppSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F384EE1EAFBE6600BD13C6 /* AppSettings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,9 +51,9 @@
 		1C305FD61C9A26CE00AD17F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = shared/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		1C305FD71C9A26CE00AD17F9 /* SettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewModel.h; path = shared/SettingsViewModel.h; sourceTree = SOURCE_ROOT; };
 		1C305FD81C9A26CE00AD17F9 /* SettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewModel.m; path = shared/SettingsViewModel.m; sourceTree = SOURCE_ROOT; };
-		1C305FDE1C9A27A500AD17F9 /* GoCoderSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GoCoderSettings.storyboard; path = shared/GoCoderSettings.storyboard; sourceTree = SOURCE_ROOT; };
 		1C305FE01C9A282200AD17F9 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		1C8037BD1D526028000E4368 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
+		D4F384EE1EAFBE6600BD13C6 /* AppSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AppSettings.storyboard; path = shared/AppSettings.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 		1C305FDD1C9A26DD00AD17F9 /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				1C305FDE1C9A27A500AD17F9 /* GoCoderSettings.storyboard */,
+				D4F384EE1EAFBE6600BD13C6 /* AppSettings.storyboard */,
 				1C305FD11C9A26CE00AD17F9 /* CustomFrameSizeViewController.h */,
 				1C305FD21C9A26CE00AD17F9 /* CustomFrameSizeViewController.m */,
 				1C305FD31C9A26CE00AD17F9 /* SettingsTextFieldCell.h */,
@@ -179,9 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C305FBC1C99F87600AD17F9 /* LaunchScreen.storyboard in Resources */,
-				1C305FDF1C9A27A500AD17F9 /* GoCoderSettings.storyboard in Resources */,
 				1C305FB91C99F87600AD17F9 /* Assets.xcassets in Resources */,
 				1C305FB71C99F87600AD17F9 /* Main.storyboard in Resources */,
+				D4F384EF1EAFBE6600BD13C6 /* AppSettings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

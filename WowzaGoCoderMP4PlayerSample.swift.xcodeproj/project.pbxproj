@@ -17,9 +17,9 @@
 		1CE623BA1C9C83300060F2C1 /* Movie.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 1CE623B91C9C83300060F2C1 /* Movie.m4v */; };
 		1CE623CC1C9CA5D40060F2C1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623C41C9CA5D40060F2C1 /* SettingsViewController.m */; };
 		1CE623CD1C9CA5D40060F2C1 /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623C61C9CA5D40060F2C1 /* CustomFrameSizeViewController.m */; };
-		1CE623CE1C9CA5D40060F2C1 /* GoCoderSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE623C71C9CA5D40060F2C1 /* GoCoderSettings.storyboard */; };
 		1CE623CF1C9CA5D40060F2C1 /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623C91C9CA5D40060F2C1 /* SettingsTextFieldCell.m */; };
 		1CE623D01C9CA5D40060F2C1 /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623CB1C9CA5D40060F2C1 /* SettingsViewModel.m */; };
+		D4F384ED1EAFBE4D00BD13C6 /* AppSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F384EC1EAFBE4D00BD13C6 /* AppSettings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,11 +51,11 @@
 		1CE623C41C9CA5D40060F2C1 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = shared/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		1CE623C51C9CA5D40060F2C1 /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = shared/CustomFrameSizeViewController.h; sourceTree = SOURCE_ROOT; };
 		1CE623C61C9CA5D40060F2C1 /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = shared/CustomFrameSizeViewController.m; sourceTree = SOURCE_ROOT; };
-		1CE623C71C9CA5D40060F2C1 /* GoCoderSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GoCoderSettings.storyboard; path = shared/GoCoderSettings.storyboard; sourceTree = SOURCE_ROOT; };
 		1CE623C81C9CA5D40060F2C1 /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTextFieldCell.h; path = shared/SettingsTextFieldCell.h; sourceTree = SOURCE_ROOT; };
 		1CE623C91C9CA5D40060F2C1 /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTextFieldCell.m; path = shared/SettingsTextFieldCell.m; sourceTree = SOURCE_ROOT; };
 		1CE623CA1C9CA5D40060F2C1 /* SettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewModel.h; path = shared/SettingsViewModel.h; sourceTree = SOURCE_ROOT; };
 		1CE623CB1C9CA5D40060F2C1 /* SettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewModel.m; path = shared/SettingsViewModel.m; sourceTree = SOURCE_ROOT; };
+		D4F384EC1EAFBE4D00BD13C6 /* AppSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AppSettings.storyboard; path = shared/AppSettings.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,11 +114,11 @@
 		1CE623C11C9CA5B60060F2C1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D4F384EC1EAFBE4D00BD13C6 /* AppSettings.storyboard */,
 				1CE623C31C9CA5D40060F2C1 /* SettingsViewController.h */,
 				1CE623C41C9CA5D40060F2C1 /* SettingsViewController.m */,
 				1CE623C51C9CA5D40060F2C1 /* CustomFrameSizeViewController.h */,
 				1CE623C61C9CA5D40060F2C1 /* CustomFrameSizeViewController.m */,
-				1CE623C71C9CA5D40060F2C1 /* GoCoderSettings.storyboard */,
 				1CE623C81C9CA5D40060F2C1 /* SettingsTextFieldCell.h */,
 				1CE623C91C9CA5D40060F2C1 /* SettingsTextFieldCell.m */,
 				1CE623CA1C9CA5D40060F2C1 /* SettingsViewModel.h */,
@@ -190,8 +190,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F384ED1EAFBE4D00BD13C6 /* AppSettings.storyboard in Resources */,
 				1CE623B11C9C80640060F2C1 /* LaunchScreen.storyboard in Resources */,
-				1CE623CE1C9CA5D40060F2C1 /* GoCoderSettings.storyboard in Resources */,
 				1CE623AE1C9C80640060F2C1 /* Assets.xcassets in Resources */,
 				1CE623BA1C9C83300060F2C1 /* Movie.m4v in Resources */,
 				1CE623AC1C9C80640060F2C1 /* Main.storyboard in Resources */,

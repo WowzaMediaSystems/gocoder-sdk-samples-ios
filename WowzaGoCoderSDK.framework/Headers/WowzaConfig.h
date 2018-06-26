@@ -2,7 +2,7 @@
 //  WowzaConfig.h
 //  WowzaGoCoderSDK
 //
-//  Copyright 2007 – 2016, Wowza Media Systems, LLC.  All rights
+//  © 2007 – 2018 Wowza Media Systems, LLC. All rights
 //  reserved.
 //
 //  The above copyright notice and this permission notice shall be
@@ -18,39 +18,39 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "WZStreamConfig.h"
+#import "WOWZStreamConfig.h"
 
 #pragma mark WowzaConfig Class -
 
 /*!
  @class WowzaConfig
- @discussion WowzaConfig is the top level configuration class used by applications to configure the various SDK components.
+ @discussion Applications use the top-level WowzaConfig class to configure various GoCoder SDK components.
  
  @code // Example:
- WowzaConfig *goCoderConfig = [[WowzaConfig alloc] initWithPreset:WZFrameSizePreset1280x720];
+ WowzaConfig *goCoderConfig = [[WowzaConfig alloc] initWithPreset:WOWZFrameSizePreset1280x720];
  goCoderConfig.hostAddress = @"live.streamingserver.com";
  goCoderConfig.applicationName = @"LiveStreamingApp";
  goCoderConfig.capturedVideoRotates = NO;
  */
-@interface WowzaConfig : WZStreamConfig <NSMutableCopying, NSCopying, NSCoding>
+@interface WowzaConfig : WOWZStreamConfig <NSMutableCopying, NSCopying, NSCoding>
 
 #pragma mark - Constructors -
 
 /*!
- *  Initialize a WowzaConfig with a video frame-size preset
+ *  Initializes a WowzaConfig instance with a video frame-size preset.
  *
- *  @param preset a WZFrameSizePreset
+ *  @param preset A WOWZFrameSizePreset.
  *
- *  @return an instance of WowzaConfig
+ *  @return An instance of WowzaConfig.
  */
-- (nonnull instancetype) initWithPreset:(WZFrameSizePreset)preset;
+- (nonnull instancetype) initWithPreset:(WOWZFrameSizePreset)preset;
 
 #pragma mark - Public Instance Methods -
 
 /*!
- *  Copy receiver to given WowzaConfig
+ *  Copies receiver to the specified WowzaConfig.
  *
- *  @param other WowzaConfig object being copied to
+ *  @param other The WowzaConfig object to copy to.
  */
 - (void) copyTo:(nonnull WowzaConfig *)other;
 

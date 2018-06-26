@@ -2,7 +2,7 @@
 //  SettingsViewModel.m
 //  SDKSampleApp
 //
-//  This code and all components (c) Copyright 2015-2016, Wowza Media Systems, LLC. All rights reserved.
+//  This code and all components © 2015 – 2018 Wowza Media Systems, LLC. All rights reserved.
 //  This code is licensed pursuant to the BSD 3-Clause License.
 //
 
@@ -11,10 +11,12 @@
 NSString * const BlackAndWhiteKey = @"BlackAndWhiteKey";
 NSString * const RecordVideoLocallyKey = @"RecordVideoLocallyKey";
 NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
+NSString * const AllowHLSKey = @"AllowHLSKey";
+NSString * const HLSURLKey = @"HLSURLKey";
+NSString * const ConnectionCodeKey = @"ConnectionCodeKey";
 
 @interface SettingsViewModel ()
 
-@property (nonatomic, strong) WowzaConfig *config;
 
 @end
 
@@ -50,7 +52,7 @@ NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
 
 - (void) setSelectedVideoQuality:(NSUInteger)selectedVideoQuality {
     if (selectedVideoQuality < _supportedPresetConfigs.count) {
-        WZMediaConfig *config = _supportedPresetConfigs[selectedVideoQuality];
+        WOWZMediaConfig *config = _supportedPresetConfigs[selectedVideoQuality];
         self.config.videoWidth = config.videoWidth;
         self.config.videoHeight = config.videoHeight;
         self.config.videoBitrate = config.videoBitrate;
@@ -127,19 +129,19 @@ NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
     self.config.videoPreviewRotates = videoPreviewRotates;
 }
 
-- (WZBroadcastOrientation) broadcastVideoOrientation {
+- (WOWZBroadcastOrientation) broadcastVideoOrientation {
     return self.config.broadcastVideoOrientation;
 }
 
-- (void) setBroadcastVideoOrientation:(WZBroadcastOrientation)broadcastVideoOrientation {
+- (void) setBroadcastVideoOrientation:(WOWZBroadcastOrientation)broadcastVideoOrientation {
     self.config.broadcastVideoOrientation = broadcastVideoOrientation;
 }
 
-- (WZBroadcastScaleMode) broadcastScaleMode {
+- (WOWZBroadcastScaleMode) broadcastScaleMode {
     return self.config.broadcastScaleMode;
 }
 
-- (void) setBroadcastScaleMode:(WZBroadcastScaleMode)broadcastScaleMode {
+- (void) setBroadcastScaleMode:(WOWZBroadcastScaleMode)broadcastScaleMode {
     self.config.broadcastScaleMode = broadcastScaleMode;
 }
 
@@ -204,19 +206,21 @@ NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
 }
 
 - (NSString *) audioBitrate {
+    if (self.config.audioBitrate == 0) return nil;
     return [NSNumber numberWithInteger:self.config.audioBitrate].stringValue;
 }
 
 - (void) setAudioBitrate:(NSString *)audioBitrate {
-    self.config.audioBitrate = audioBitrate.integerValue;
+    self.config.audioBitrate = (audioBitrate == nil ? 0 : audioBitrate.integerValue);
 }
 
 - (NSString *) audioSampleRate {
+    if (self.config.audioSampleRate == 0) return nil;
     return [NSNumber numberWithInteger:self.config.audioSampleRate].stringValue;
 }
 
 - (void) setAudioSampleRate:(NSString *)audioSampleRate {
-    self.config.audioSampleRate = audioSampleRate.integerValue;
+    self.config.audioSampleRate = (audioSampleRate == nil ? 0 : audioSampleRate.integerValue);
 }
 
 - (NSString *) audioChannels {
@@ -259,6 +263,34 @@ NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
     self.config.backgroundBroadcastEnabled = backgroundBroadcastEnabled;
 }
 
+- (BOOL) mirrorFrontCamera {
+    return self.config.mirrorFrontCamera;
+}
+
+- (void) setMirrorFrontCamera:(BOOL)mirrorFrontCamera {
+    self.config.mirrorFrontCamera = mirrorFrontCamera;
+}
+
+- (BOOL) allowHLS {
+	return [[NSUserDefaults standardUserDefaults] boolForKey:AllowHLSKey];
+}
+
+- (void) setAllowHLS:(BOOL)allowHLS {
+	self.config.allowHLSPlayback = allowHLS;
+	[[NSUserDefaults standardUserDefaults] setBool:allowHLS forKey:AllowHLSKey];
+}
+
+- (NSString *) hlsURL {
+	NSString *hlsURL = [[NSUserDefaults standardUserDefaults] stringForKey:HLSURLKey];
+	return hlsURL;
+}
+
+- (void) setHlsURL:(NSString *)hlsURL {
+	self.config.hlsURL = hlsURL;
+	[[NSUserDefaults standardUserDefaults] setObject:hlsURL forKey:HLSURLKey];
+}
+
+
 - (NSString *) playbackPrerollDuration {
     float duration =  [[NSUserDefaults standardUserDefaults] floatForKey:PlaybackPrerollKey];
     return [NSNumber numberWithFloat:duration].stringValue;
@@ -267,6 +299,15 @@ NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
 - (void) setPlaybackPrerollDuration:(NSString *)playbackPrerollDuration {
     float duration = playbackPrerollDuration.floatValue;
     [[NSUserDefaults standardUserDefaults] setFloat:duration forKey:PlaybackPrerollKey];
+}
+
+- (NSString *) connectionCode {
+	NSString *connectionCode = [[NSUserDefaults standardUserDefaults] objectForKey:ConnectionCodeKey];
+	return connectionCode;
+}
+
+- (void) setConnectionCode:(NSString *)connectionCode {
+	[[NSUserDefaults standardUserDefaults] setObject:connectionCode forKey:ConnectionCodeKey];
 }
 
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config {

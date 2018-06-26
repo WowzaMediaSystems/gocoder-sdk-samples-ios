@@ -2,7 +2,7 @@
 //  SettingsViewController.m
 //  SDKSampleApp
 //
-//  This code and all components (c) Copyright 2015-2016, Wowza Media Systems, LLC. All rights reserved.
+//  This code and all components © 2015 – 2018 Wowza Media Systems, LLC. All rights reserved.
 //  This code is licensed pursuant to the BSD 3-Clause License.
 //
 
@@ -11,11 +11,10 @@
 #import "SettingsTextFieldCell.h"
 #import "CustomFrameSizeViewController.h"
 
-
 @interface SettingsViewController ()
 
 @property (nonatomic, strong, nonnull) NSMutableArray *sectionsToDisplay;
-
+@property IBOutlet UILabel *versionLabel;
 @end
 
 @implementation SettingsViewController
@@ -37,6 +36,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.versionLabel.text = [NSString stringWithFormat:@"GoCoder SDK %@", [WOWZVersionInfo verboseString]];
+	
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -58,15 +60,17 @@
 
 - (void) addAllSections {
     [self.sectionsToDisplay removeAllObjects];
-    
+		[self addDisplaySection:SettingsViewSectionConnectionCode];
     [self addDisplaySection:SettingsViewSectionVideo];
     [self addDisplaySection:SettingsViewSectionAudio];
     [self addDisplaySection:SettingsViewSectionBroadcast];
+	 [self addDisplaySection:SettingsViewSectionPlayback];
     [self addDisplaySection:SettingsViewSectionCaptureOrientationMode];
     [self addDisplaySection:SettingsViewSectionBroadcastOrientationMode];
     [self addDisplaySection:SettingsViewSectionBroadcastScaleMode];
     [self addDisplaySection:SettingsViewSectionBandwidthThrottling];
     [self addDisplaySection:SettingsViewSectionBackgroundMode];
+    [self addDisplaySection:SettingsViewSectionVideoMirroring];
     [self addDisplaySection:SettingsViewSectionVideoEffects];
     [self addDisplaySection:SettingsViewSectionRecordVideoLocally];
 }
@@ -98,6 +102,9 @@
         case SettingsViewSectionBroadcast:
             title = @"Wowza Broadcast Settings";
             break;
+			case SettingsViewSectionPlaybackSettings:
+				title = @"Wowza Playback Settings";
+				break;
             
         case SettingsViewSectionCaptureOrientationMode:
             title = @"Capture Orientation Settings";
@@ -119,6 +126,10 @@
             title = @"Background Broadcast";
             break;
             
+        case SettingsViewSectionVideoMirroring:
+            title = @"Front Camera Mirroring";
+            break;
+            
         case SettingsViewSectionVideoEffects:
             title = @"Video Effects";
             break;
@@ -130,6 +141,12 @@
         case SettingsViewSectionPlayback:
             title = @"Playback";
             break;
+			case SettingsViewSectionPlaybackHLS:
+				title = @"HLS";
+				break;
+			case SettingsViewSectionConnectionCode:
+				title = @"Connection Code";
+				break;
             
         default:
             break;
@@ -155,6 +172,10 @@
         case SettingsViewSectionBroadcast:
             count = SettingsBroadcastItemCount;
             break;
+				
+				case SettingsViewSectionPlaybackSettings:
+					count = SettingsBroadcastItemCount;
+					break;
             
         case SettingsViewSectionCaptureOrientationMode:
             count = 2;
@@ -176,11 +197,21 @@
             count = 1;
             break;
             
+        case SettingsViewSectionVideoMirroring:
+            count = 1;
+            break;
+            
         case SettingsViewSectionVideoEffects:
         case SettingsViewSectionRecordVideoLocally:
         case SettingsViewSectionPlayback:
             count = 1;
             break;
+			case SettingsViewSectionPlaybackHLS:
+				count = 2;
+				break;
+			case SettingsViewSectionConnectionCode:
+				count = 1;
+				break;
             
         default:
             break;
@@ -248,17 +279,17 @@
         switch (indexPath.row) {
             case 0:
                 title = @"Same as Device";
-                on = self.viewModel.broadcastVideoOrientation == WZBroadcastOrientationSameAsDevice;
+                on = self.viewModel.broadcastVideoOrientation == WOWZBroadcastOrientationSameAsDevice;
                 break;
                 
             case 1:
                 title = @"Always Landscape";
-                on = self.viewModel.broadcastVideoOrientation == WZBroadcastOrientationAlwaysLandscape;
+                on = self.viewModel.broadcastVideoOrientation == WOWZBroadcastOrientationAlwaysLandscape;
                 break;
                 
             case  2:
                 title = @"Always Portrait";
-                on = self.viewModel.broadcastVideoOrientation == WZBroadcastOrientationAlwaysPortrait;
+                on = self.viewModel.broadcastVideoOrientation == WOWZBroadcastOrientationAlwaysPortrait;
                 
             default:
                 break;
@@ -279,12 +310,12 @@
         switch (indexPath.row) {
             case 0:
                 title = @"Aspect Fit";
-                on = self.viewModel.broadcastScaleMode == WZBroadcastScaleModeAspectFit;
+                on = self.viewModel.broadcastScaleMode == WOWZBroadcastScaleModeAspectFit;
                 break;
                 
             case 1:
                 title = @"Aspect Fill";
-                on = self.viewModel.broadcastScaleMode == WZBroadcastScaleModeAspectFill;
+                on = self.viewModel.broadcastScaleMode == WOWZBroadcastScaleModeAspectFill;
                 break;
                 
             default:
@@ -327,16 +358,74 @@
     else if (settingsSection == SettingsViewSectionPlayback) {
         SettingsTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"floatingTextFieldCell" forIndexPath:indexPath];
         cell.viewModel = self.viewModel;
-        cell.label.text = @"Preroll Duration";
+        cell.label.text = @"Preroll Duration(seconds)";
         cell.modelKeyPath = @"playbackPrerollDuration";
         cell.textField.keyboardType = UIKeyboardTypeDecimalPad;
         
         return cell;
     }
+	
+		else if (settingsSection == SettingsViewSectionPlaybackHLS) {
+			/*
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+			cell.textLabel.text = @"HLS Fallback On/Off";
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			UISwitch *effectSwitch = [[UISwitch alloc] init];
+			effectSwitch.on = self.viewModel.allowHLS;
+			[effectSwitch addTarget:self action:@selector(didAllowHLSSwitch:) forControlEvents:UIControlEventValueChanged];
+			cell.accessoryView = effectSwitch;
+			*/
+			
+			switch (indexPath.row) {
+				case 0:{
+					UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+					cell.textLabel.text = @"HLS Fallback On/Off";
+					cell.accessoryType = UITableViewCellAccessoryNone;
+					UISwitch *effectSwitch = [[UISwitch alloc] init];
+					effectSwitch.on = self.viewModel.allowHLS;
+					[effectSwitch addTarget:self action:@selector(didAllowHLSSwitch:) forControlEvents:UIControlEventValueChanged];
+					cell.accessoryView = effectSwitch;
+					return cell;
+					break;
+				}
+				case 1:{
+					SettingsTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"floatingTextFieldCell" forIndexPath:indexPath];
+					cell.viewModel = self.viewModel;
+					cell.label.text = @"HSL URL";
+					cell.modelKeyPath = @"hlsURL";
+					cell.textField.keyboardType = UIKeyboardTypeURL;
+					return cell;
+					break;
+
+				}
+				default:{
+					SettingsTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"floatingTextFieldCell" forIndexPath:indexPath];
+					cell.viewModel = self.viewModel;
+					cell.label.text = @"HSL URL";
+					cell.modelKeyPath = @"hlsURL";
+					cell.textField.keyboardType = UIKeyboardTypeURL;
+					return cell;
+					break;
+
+				}
+			}
+			
+		}
+	
+		else if (settingsSection == SettingsViewSectionConnectionCode) {
+			SettingsTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"floatingTextFieldCell" forIndexPath:indexPath];
+			cell.viewModel = self.viewModel;
+			cell.label.text = @"Connection Code";
+			cell.modelKeyPath = @"connectionCode";
+			cell.textField.keyboardType = UIKeyboardTypeURL;
+			
+			return cell;
+		}
     
     NSString *name = nil;
     NSString *keyPath = nil;
     NSString *cellIdentifier = @"textFieldCell";
+    NSString *placeHolder = nil;
     UIKeyboardType keyboardType = UIKeyboardTypeDefault;
     
     if (settingsSection == SettingsViewSectionAudio) {
@@ -345,12 +434,14 @@
                 name = @"Bitrate";
                 keyPath = @"audioBitrate";
                 keyboardType = UIKeyboardTypeNumberPad;
+                placeHolder = @"(use device default)";
                 break;
                 
             case SettingsAudioItemSampleRate:
                 name = @"Sample rate";
                 keyPath = @"audioSampleRate";
                 keyboardType = UIKeyboardTypeNumberPad;
+                placeHolder = @"(use device default)";
                 break;
                 
             case SettingsAudioItemChannels:
@@ -392,6 +483,18 @@
         UISwitch *backgroundSwitch = [[UISwitch alloc] init];
         backgroundSwitch.on = self.viewModel.backgroundBroadcastEnabled;
         [backgroundSwitch addTarget:self action:@selector(didChangeBackgroundBroadcastSwitch:) forControlEvents:UIControlEventValueChanged];
+        cell.accessoryView = backgroundSwitch;
+        
+        return cell;
+    }
+    
+    else if (settingsSection == SettingsViewSectionVideoMirroring) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+        cell.textLabel.text = @"Front Camera Mirroring";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        UISwitch *backgroundSwitch = [[UISwitch alloc] init];
+        backgroundSwitch.on = self.viewModel.mirrorFrontCamera;
+        [backgroundSwitch addTarget:self action:@selector(didChangeFrontCameraMirroringSwitch:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = backgroundSwitch;
         
         return cell;
@@ -442,7 +545,8 @@
     cell.modelKeyPath = keyPath;
     cell.textField.keyboardType = keyboardType;
     cell.textField.secureTextEntry = (indexPath.row == SettingsBroadcastItemPassword);
-    
+    cell.textField.placeholder = placeHolder;
+
     return cell;
 }
 
@@ -473,15 +577,15 @@
     else if (settingsSection == SettingsViewSectionBroadcastOrientationMode) {
         switch (indexPath.row) {
             case 0:
-                self.viewModel.broadcastVideoOrientation = WZBroadcastOrientationSameAsDevice;
+                self.viewModel.broadcastVideoOrientation = WOWZBroadcastOrientationSameAsDevice;
                 break;
                 
             case 1:
-                self.viewModel.broadcastVideoOrientation = WZBroadcastOrientationAlwaysLandscape;
+                self.viewModel.broadcastVideoOrientation = WOWZBroadcastOrientationAlwaysLandscape;
                 break;
                 
             case 2:
-                self.viewModel.broadcastVideoOrientation = WZBroadcastOrientationAlwaysPortrait;
+                self.viewModel.broadcastVideoOrientation = WOWZBroadcastOrientationAlwaysPortrait;
                 break;
                 
             default:
@@ -494,11 +598,11 @@
     else if (settingsSection == SettingsViewSectionBroadcastScaleMode) {
         switch (indexPath.row) {
             case 0:
-                self.viewModel.broadcastScaleMode = WZBroadcastScaleModeAspectFit;
+                self.viewModel.broadcastScaleMode = WOWZBroadcastScaleModeAspectFit;
                 break;
                 
             case 1:
-                self.viewModel.broadcastScaleMode = WZBroadcastScaleModeAspectFill;
+                self.viewModel.broadcastScaleMode = WOWZBroadcastScaleModeAspectFill;
                 break;
                 
             default:
@@ -507,18 +611,45 @@
         
         [self.tableView reloadData];
     }
+    
 }
 
 
 #pragma mark - Actions
+//auto fill fields with prefilled data
+-(IBAction)stream0Tapped:(id)sender {
+   
+    
+}
+//auto fill fields with prefilled data
+-(IBAction)play1Tapped:(id)sender {
+	
+	
+}
+-(IBAction)play2Tapped:(id)sender {
+	
+}
+-(IBAction)play3Tapped:(id)sender {
+	
+}
+-(IBAction)play4Tapped:(id)sender {
+	
+}
 
 - (IBAction) didTapDoneButton:(id)sender {
+	if ([self validateToken]){
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+	}
 }
 
 - (IBAction) didChangeBlackAndWhiteSwitch:(id)sender {
     UISwitch *effectSwitch = (UISwitch *)sender;
     self.viewModel.blackAndWhite = effectSwitch.isOn;
+}
+
+- (IBAction) didAllowHLSSwitch:(id)sender {
+	UISwitch *effectSwitch = (UISwitch *)sender;
+	self.viewModel.allowHLS = effectSwitch.isOn;
 }
 
 - (IBAction) didChangeBackgroundBroadcastSwitch:(id)sender {
@@ -530,6 +661,44 @@
     UISwitch *recordSwitch = (UISwitch *)sender;
     self.viewModel.recordVideoLocally = recordSwitch.isOn;
 }
+
+- (IBAction) didChangeFrontCameraMirroringSwitch:(id)sender {
+    UISwitch *mirrorSwitch = (UISwitch *)sender;
+    self.viewModel.mirrorFrontCamera = mirrorSwitch.isOn;
+}
+
+// Connection Code logic
+- (BOOL) validateToken {
+	NSString *token = self.viewModel.connectionCode;
+	
+	if ( (token.length == 6 || token.length == 7) && [self validateTokenString:token] ) {
+		WSCTokenProcessor *processor = [[WSCTokenProcessor alloc] init];
+		
+		// This works but I wonder if there is a cleaner way (or a better delegate)
+		//GoCoderAppDelegate *appDelegate = (GoCoderAppDelegate*)[[UIApplication sharedApplication] delegate];
+		//processor.delegate = (GoCoderViewController <WSCTokenProcessorDelegate> *) appDelegate.viewController;
+		
+		[processor populateProfile:self.viewModel.config fromWSCToken:@"connectionCode"];
+		
+		return YES;
+	}
+	else if(token.length <= 0){
+		return YES;
+	}else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Connection Code" message:@"Connection Code must be 6 alphanumeric characters" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		
+		return NO;
+	}
+}
+
+-(BOOL) validateTokenString:(NSString *)checkString {
+	NSString *stricterFilterString = @"[A-Z0-9a-z]*";
+	
+	NSPredicate *stringTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", stricterFilterString];
+	return [stringTest evaluateWithObject:checkString];
+}
+
 
 #pragma mark - Navigation
 

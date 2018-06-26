@@ -11,7 +11,6 @@
 		1C7DA8DD1C991B4C009546EE /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */; };
 		1C7DA8DE1C991B60009546EE /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CE623F01C9F53C30060F2C1 /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */; };
-		1CE623F11C9F53C30060F2C1 /* GoCoderSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE623E91C9F53C30060F2C1 /* GoCoderSettings.storyboard */; };
 		1CE623F21C9F53C30060F2C1 /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623EB1C9F53C30060F2C1 /* SettingsTextFieldCell.m */; };
 		1CE623F31C9F53C30060F2C1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623ED1C9F53C30060F2C1 /* SettingsViewController.m */; };
 		1CE623F41C9F53C30060F2C1 /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623EF1C9F53C30060F2C1 /* SettingsViewModel.m */; };
@@ -57,6 +56,7 @@
 		94F345FA191B9D4F003C1A65 /* wallPaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F345F9191B9D4F003C1A65 /* wallPaper.png */; };
 		B57220DF1BE369DD00F72F71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57220DD1BE369DD00F72F71 /* LaunchScreen.storyboard */; };
 		B57220E21BE36B1200F72F71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57220E01BE36B1200F72F71 /* Main.storyboard */; };
+		D4F384EB1EAFBE3200BD13C6 /* AppSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F384EA1EAFBE3200BD13C6 /* AppSettings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,7 +78,6 @@
 		1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
 		1CE623E71C9F53C30060F2C1 /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = shared/CustomFrameSizeViewController.h; sourceTree = SOURCE_ROOT; };
 		1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = shared/CustomFrameSizeViewController.m; sourceTree = SOURCE_ROOT; };
-		1CE623E91C9F53C30060F2C1 /* GoCoderSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GoCoderSettings.storyboard; path = shared/GoCoderSettings.storyboard; sourceTree = SOURCE_ROOT; };
 		1CE623EA1C9F53C30060F2C1 /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTextFieldCell.h; path = shared/SettingsTextFieldCell.h; sourceTree = SOURCE_ROOT; };
 		1CE623EB1C9F53C30060F2C1 /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTextFieldCell.m; path = shared/SettingsTextFieldCell.m; sourceTree = SOURCE_ROOT; };
 		1CE623EC1C9F53C30060F2C1 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = shared/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
@@ -132,6 +131,7 @@
 		94F345F9191B9D4F003C1A65 /* wallPaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallPaper.png; sourceTree = "<group>"; };
 		B57220DE1BE369DD00F72F71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B57220E11BE36B1200F72F71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4F384EA1EAFBE3200BD13C6 /* AppSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AppSettings.storyboard; path = shared/AppSettings.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,9 +273,9 @@
 		9CF7785A192D11860041C3B0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D4F384EA1EAFBE3200BD13C6 /* AppSettings.storyboard */,
 				1CE623E71C9F53C30060F2C1 /* CustomFrameSizeViewController.h */,
 				1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */,
-				1CE623E91C9F53C30060F2C1 /* GoCoderSettings.storyboard */,
 				1CE623EA1C9F53C30060F2C1 /* SettingsTextFieldCell.h */,
 				1CE623EB1C9F53C30060F2C1 /* SettingsTextFieldCell.m */,
 				1CE623EC1C9F53C30060F2C1 /* SettingsViewController.h */,
@@ -351,7 +351,6 @@
 				1C1A51DD1D70D07F002E5540 /* theduel.mp3 in Resources */,
 				94B916D1190C521B00656AD1 /* cubeTexture.png in Resources */,
 				94D616F3192527FA00D65DDF /* color_envmap.png in Resources */,
-				1CE623F11C9F53C30060F2C1 /* GoCoderSettings.storyboard in Resources */,
 				94EC4F9D192CF091000CEF75 /* splash.png in Resources */,
 				949C6FC3190FFBA5009552ED /* glossy.png in Resources */,
 				944D9CE7190A8ACA00ACBE6F /* baseboard.jpg in Resources */,
@@ -374,6 +373,7 @@
 				944D9CE2190A87E800ACBE6F /* WoodCubeA.jpg in Resources */,
 				B57220DF1BE369DD00F72F71 /* LaunchScreen.storyboard in Resources */,
 				94005C1519311D09003CDBCF /* SceneKit.png in Resources */,
+				D4F384EB1EAFBE3200BD13C6 /* AppSettings.storyboard in Resources */,
 				94AE2D6F190C5E75008A4FAC /* sm_surf.shader in Resources */,
 				94AE2D6E190C5E75008A4FAC /* sm_light.shader in Resources */,
 				945348E019314A5F002C5AC7 /* earth-diffuse.jpg in Resources */,

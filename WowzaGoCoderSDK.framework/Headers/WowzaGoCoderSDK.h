@@ -2,7 +2,7 @@
 //  WowzaGoCoderSDK.h
 //  WowzaGoCoderSDK
 //
-//  Copyright 2007 – 2016, Wowza Media Systems, LLC.  All rights
+//  © 2007 – 2018 Wowza Media Systems, LLC. All rights
 //  reserved.
 //
 //  The above copyright notice and this permission notice shall be
@@ -18,36 +18,36 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
 #import <UIKit/UIKit.h>
 
 #import "WowzaGoCoder.h"
 #import "WowzaConfig.h"
-#import "WZError.h"
-#import "WZStatus.h"
-#import "WZStatusCallback.h"
-#import "WZVersionInfo.h"
-#import "WZPlatformInfo.h"
-#import "WZVideoSink.h"
-#import "WZAudioSink.h"
-#import "WZBroadcastComponent.h"
-#import "WZH264Encoder.h"
-#import "WZVideoEncoderSink.h"
-#import "WZMediaSink.h"
-#import "WZBroadcast.h"
-#import "WZAudioEncoderSink.h"
-#import "WZAACEncoder.h"
-#import "WZImageUtilities.h"
-#import "WZData.h"
-#import "WZDataEvent.h"
-#import "WZDataSink.h"
-#import "WZPlayer.h"
+#import "WOWZError.h"
+#import "WOWZStatus.h"
+#import "WOWZStatusCallback.h"
+#import "WOWZVersionInfo.h"
+#import "WOWZPlatformInfo.h"
+#import "WOWZVideoSink.h"
+#import "WOWZAudioSink.h"
+#import "WOWZBroadcastComponent.h"
+#import "WOWZH264Encoder.h"
+#import "WOWZVideoEncoderSink.h"
+#import "WOWZMediaSink.h"
+#import "WOWZBroadcast.h"
+#import "WOWZAudioEncoderSink.h"
+#import "WOWZAACEncoder.h"
+#import "WOWZImageUtilities.h"
+#import "WOWZData.h"
+#import "WOWZDataEvent.h"
+#import "WOWZDataSink.h"
+#import "WOWZPlayer.h"
+#import "WSCTokenProcessor.h"
 
 #if ! WGC_TARGET_EXTENSION
 
-#import "WZCamera.h"
-#import "WZCameraPreview.h"
-#import "WZAudioDevice.h"
+#import "WOWZCamera.h"
+#import "WOWZCameraPreview.h"
+#import "WOWZAudioDevice.h"
 
 #endif
 

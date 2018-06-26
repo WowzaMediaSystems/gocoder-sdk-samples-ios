@@ -8,20 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		1C1E77721CD0461F00035039 /* MP4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E77711CD0461F00035039 /* MP4Writer.m */; };
-		1C305F861C99F6E000AD17F9 /* GoCoderSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C305F851C99F6E000AD17F9 /* GoCoderSettings.storyboard */; };
-		1C33021E1D99E23200F57BE5 /* WZPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C33021D1D99E23200F57BE5 /* WZPlayerViewController.m */; };
 		1CA059FF1C7CE293003B4AAA /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */; };
 		1CE278FC1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */; };
 		1CE278FD1C990F7400ACE7A5 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CE985FA1C1BA2D500A883E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE985F91C1BA2D500A883E3 /* main.m */; };
 		1CE985FD1C1BA2D500A883E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE985FC1C1BA2D500A883E3 /* AppDelegate.m */; };
-		1CE986001C1BA2D500A883E3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE985FF1C1BA2D500A883E3 /* VideoPlayerViewController.m */; };
-		1CE986031C1BA2D500A883E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE986011C1BA2D500A883E3 /* Main.storyboard */; };
 		1CE986051C1BA2D500A883E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE986041C1BA2D500A883E3 /* Assets.xcassets */; };
 		1CE986081C1BA2D500A883E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE986061C1BA2D500A883E3 /* LaunchScreen.storyboard */; };
 		1CF6ED441C20A29800DA7C6B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6ED431C20A29800DA7C6B /* SettingsViewController.m */; };
 		1CF6ED471C20A2C100DA7C6B /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6ED461C20A2C100DA7C6B /* SettingsViewModel.m */; };
 		1CF6ED4A1C20B03500DA7C6B /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6ED491C20B03500DA7C6B /* SettingsTextFieldCell.m */; };
+		D4EC2C9C1EAFBD260028CAC5 /* AppSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EC2C9B1EAFBD260028CAC5 /* AppSettings.storyboard */; };
+		D4EC2C9F1EAFBD390028CAC5 /* CameraPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EC2C9E1EAFBD390028CAC5 /* CameraPreviewController.m */; };
+		D4EC2CA21EAFBD720028CAC5 /* CameraPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EC2CA01EAFBD720028CAC5 /* CameraPreview.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,9 +40,6 @@
 /* Begin PBXFileReference section */
 		1C1E77701CD0461F00035039 /* MP4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Writer.h; sourceTree = "<group>"; };
 		1C1E77711CD0461F00035039 /* MP4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP4Writer.m; sourceTree = "<group>"; };
-		1C305F851C99F6E000AD17F9 /* GoCoderSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GoCoderSettings.storyboard; path = shared/GoCoderSettings.storyboard; sourceTree = SOURCE_ROOT; };
-		1C33021C1D99E23200F57BE5 /* WZPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZPlayerViewController.h; sourceTree = "<group>"; };
-		1C33021D1D99E23200F57BE5 /* WZPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZPlayerViewController.m; sourceTree = "<group>"; };
 		1CA059FD1C7CE293003B4AAA /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = ../shared/CustomFrameSizeViewController.h; sourceTree = "<group>"; };
 		1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = ../shared/CustomFrameSizeViewController.m; sourceTree = "<group>"; };
 		1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = SOURCE_ROOT; };
@@ -51,9 +47,6 @@
 		1CE985F91C1BA2D500A883E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1CE985FB1C1BA2D500A883E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1CE985FC1C1BA2D500A883E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1CE985FE1C1BA2D500A883E3 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
-		1CE985FF1C1BA2D500A883E3 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
-		1CE986021C1BA2D500A883E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1CE986041C1BA2D500A883E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CE986071C1BA2D500A883E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1CE986091C1BA2D500A883E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +56,10 @@
 		1CF6ED461C20A2C100DA7C6B /* SettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewModel.m; path = ../shared/SettingsViewModel.m; sourceTree = "<group>"; };
 		1CF6ED481C20B03500DA7C6B /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTextFieldCell.h; path = ../shared/SettingsTextFieldCell.h; sourceTree = "<group>"; };
 		1CF6ED491C20B03500DA7C6B /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTextFieldCell.m; path = ../shared/SettingsTextFieldCell.m; sourceTree = "<group>"; };
+		D4EC2C9B1EAFBD260028CAC5 /* AppSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AppSettings.storyboard; path = shared/AppSettings.storyboard; sourceTree = SOURCE_ROOT; };
+		D4EC2C9D1EAFBD390028CAC5 /* CameraPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPreviewController.h; sourceTree = "<group>"; };
+		D4EC2C9E1EAFBD390028CAC5 /* CameraPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPreviewController.m; sourceTree = "<group>"; };
+		D4EC2CA11EAFBD720028CAC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CameraPreview.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +77,9 @@
 		1CE623F81C9F58810060F2C1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1C305F851C99F6E000AD17F9 /* GoCoderSettings.storyboard */,
+				D4EC2C9B1EAFBD260028CAC5 /* AppSettings.storyboard */,
+				1CA059FD1C7CE293003B4AAA /* CustomFrameSizeViewController.h */,
+				1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */,
 				1CF6ED481C20B03500DA7C6B /* SettingsTextFieldCell.h */,
 				1CF6ED491C20B03500DA7C6B /* SettingsTextFieldCell.m */,
 				1CF6ED421C20A29800DA7C6B /* SettingsViewController.h */,
@@ -110,20 +109,16 @@
 		1CE985F71C1BA2D500A883E3 /* SDKSampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				1CE985FE1C1BA2D500A883E3 /* VideoPlayerViewController.h */,
-				1CE985FF1C1BA2D500A883E3 /* VideoPlayerViewController.m */,
-				1C33021C1D99E23200F57BE5 /* WZPlayerViewController.h */,
-				1C33021D1D99E23200F57BE5 /* WZPlayerViewController.m */,
+				D4EC2C9D1EAFBD390028CAC5 /* CameraPreviewController.h */,
+				D4EC2C9E1EAFBD390028CAC5 /* CameraPreviewController.m */,
 				1CE985FB1C1BA2D500A883E3 /* AppDelegate.h */,
 				1CE985FC1C1BA2D500A883E3 /* AppDelegate.m */,
 				1C1E77701CD0461F00035039 /* MP4Writer.h */,
 				1C1E77711CD0461F00035039 /* MP4Writer.m */,
 				1CE986041C1BA2D500A883E3 /* Assets.xcassets */,
-				1CA059FD1C7CE293003B4AAA /* CustomFrameSizeViewController.h */,
-				1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */,
 				1CE986091C1BA2D500A883E3 /* Info.plist */,
+				D4EC2CA01EAFBD720028CAC5 /* CameraPreview.storyboard */,
 				1CE986061C1BA2D500A883E3 /* LaunchScreen.storyboard */,
-				1CE986011C1BA2D500A883E3 /* Main.storyboard */,
 				1CE623F81C9F58810060F2C1 /* Shared */,
 				1CE985F81C1BA2D500A883E3 /* Supporting Files */,
 				1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */,
@@ -168,7 +163,7 @@
 		1CE985ED1C1BA2D500A883E3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Wowza, Inc";
 				TargetAttributes = {
 					1CE985F41C1BA2D500A883E3 = {
@@ -201,10 +196,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4EC2C9C1EAFBD260028CAC5 /* AppSettings.storyboard in Resources */,
+				D4EC2CA21EAFBD720028CAC5 /* CameraPreview.storyboard in Resources */,
 				1CE986081C1BA2D500A883E3 /* LaunchScreen.storyboard in Resources */,
-				1C305F861C99F6E000AD17F9 /* GoCoderSettings.storyboard in Resources */,
 				1CE986051C1BA2D500A883E3 /* Assets.xcassets in Resources */,
-				1CE986031C1BA2D500A883E3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,10 +242,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CF6ED471C20A2C100DA7C6B /* SettingsViewModel.m in Sources */,
-				1CE986001C1BA2D500A883E3 /* VideoPlayerViewController.m in Sources */,
+				D4EC2C9F1EAFBD390028CAC5 /* CameraPreviewController.m in Sources */,
 				1CE985FD1C1BA2D500A883E3 /* AppDelegate.m in Sources */,
 				1CE985FA1C1BA2D500A883E3 /* main.m in Sources */,
-				1C33021E1D99E23200F57BE5 /* WZPlayerViewController.m in Sources */,
 				1C1E77721CD0461F00035039 /* MP4Writer.m in Sources */,
 				1CF6ED4A1C20B03500DA7C6B /* SettingsTextFieldCell.m in Sources */,
 				1CA059FF1C7CE293003B4AAA /* CustomFrameSizeViewController.m in Sources */,
@@ -261,20 +255,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1CE986011C1BA2D500A883E3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1CE986021C1BA2D500A883E3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1CE986061C1BA2D500A883E3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1CE986071C1BA2D500A883E3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D4EC2CA01EAFBD720028CAC5 /* CameraPreview.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4EC2CA11EAFBD720028CAC5 /* Base */,
+			);
+			name = CameraPreview.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -293,10 +287,8 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -339,10 +331,8 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

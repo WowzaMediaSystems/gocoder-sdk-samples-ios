@@ -2,7 +2,7 @@
 //  SettingsViewModel.h
 //  SDKSampleApp
 //
-//  This code and all components (c) Copyright 2015-2016, Wowza Media Systems, LLC. All rights reserved.
+//  This code and all components © 2015 – 2018 Wowza Media Systems, LLC. All rights reserved.
 //  This code is licensed pursuant to the BSD 3-Clause License.
 //
 
@@ -12,6 +12,8 @@
 extern NSString * const BlackAndWhiteKey;
 extern NSString * const RecordVideoLocallyKey;
 extern NSString * const PlaybackPrerollKey;
+extern NSString * const AllowHLSKey;
+extern NSString * const HLSURLKey;
 
 typedef NS_ENUM(NSUInteger, SettingsBroadcastItem) {
     SettingsBroadcastItemHostAddress = 0,
@@ -56,7 +58,7 @@ typedef NS_ENUM(NSUInteger, SettingsPlaybackItem) {
 
 @interface SettingsViewModel : NSObject
 
-@property (nonatomic, strong) NSArray<WZMediaConfig *> *supportedPresetConfigs;
+@property (nonatomic, strong) NSArray<WOWZMediaConfig *> *supportedPresetConfigs;
 @property (nonatomic, readonly) NSArray<NSString *> *videoQualityDisplayNames;
 @property (nonatomic, assign) NSUInteger selectedVideoQuality;
 
@@ -69,14 +71,25 @@ typedef NS_ENUM(NSUInteger, SettingsPlaybackItem) {
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 
+@property (nonatomic, strong) WowzaConfig *config;
+
+
+// the connection code used for quick connection settings setup
+@property (nonatomic, strong) NSString *connectionCode;
+
 // the user-selected orientation mode
 @property (nonatomic, assign) BOOL capturedVideoRotates;
 @property (nonatomic, assign) BOOL videoPreviewRotates;
-@property (nonatomic, assign) WZBroadcastOrientation broadcastVideoOrientation;
-@property (nonatomic, assign) WZBroadcastScaleMode broadcastScaleMode;
+@property (nonatomic, assign) WOWZBroadcastOrientation broadcastVideoOrientation;
+@property (nonatomic, assign) WOWZBroadcastScaleMode broadcastScaleMode;
 
 // the user-selected black-and-white mode (on or off)
 @property (nonatomic, assign) BOOL blackAndWhite;
+
+// the user-selected hls fallback mode (on or off)
+@property (nonatomic, assign) BOOL allowHLS;
+// the url string for HLS
+@property (nonatomic, strong) NSString *hlsURL;
 
 // the user-selected custom frame width and height
 @property (nonatomic, strong) NSString *customFrameWidth;
@@ -103,8 +116,8 @@ typedef NS_ENUM(NSUInteger, SettingsPlaybackItem) {
 // the user-selected local background broadcasting mode (on or off)
 @property (nonatomic, assign) BOOL backgroundBroadcastEnabled;
 
-// the user-selected playback pre-roll duration
-@property (nonatomic, strong) NSString *playbackPrerollDuration;
+// the user-selected video mirroring mode
+@property (nonatomic, assign) BOOL mirrorFrontCamera;
 
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config;
 

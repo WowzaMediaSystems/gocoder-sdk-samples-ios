@@ -5,7 +5,7 @@
       location = "container:"
       name = "Obj-C">
       <FileRef
-         location = "group:WowzaGoCoderSDKSampleApp.xcodeproj">
+         location = "group:WowzaGoCoderSDKSampleAppPlayer.objc.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:WowzaGoCoder.SceneKitReel.xcodeproj">
