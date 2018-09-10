@@ -24,11 +24,11 @@ To facilitate working with the various sample apps, an Xcode workspace called **
 
 ## More Resources
 - [Wowza GoCoder SDK Technical Articles](https://www.wowza.com/docs/wowza-gocoder-sdk)
-- [Wowza GoCoder SDK for iOS Reference Docs](https://www.wowza.com/resources/gocodersdk/docs/1.0/api-reference-ios/)
+- [Wowza GoCoder SDK for iOS Reference Docs](https://www.wowza.com/resources/gocodersdk/docs/api-reference-ios/)
 - [Wowza GoCoder SDK for iOS Release Notes](https://www.wowza.com/docs/wowza-gocoder-sdk-release-notes-for-ios)
 - [Wowza GoCoder SDK Community Forum](https://www.wowza.com/community/spaces/36/wowza-gocoder-sdk.html)
 
-Wowza Media Systems™ provides developers with a platform to create streaming applications and solutions. See [Wowza Developer Tools](https://www.wowza.com/resources/developers) to learn more about our APIs and SDK.
+Wowza Media Systems™ provides developers with a platform to create streaming applications and solutions. See [Wowza Developer Tools](https://www.wowza.com/resources/developers) to learn more about our APIs and SDKs.
 
 ## Contact
 [Wowza Media Systems, LLC](https://www.wowza.com/contact)
