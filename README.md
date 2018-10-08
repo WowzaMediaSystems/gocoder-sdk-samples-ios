@@ -8,6 +8,7 @@ This repository contains sample applications that demonstrate the capabilities o
 
 - iOS SDK 8.01 or later
 - Xcode 7 or later
+- Access to a [Wowza Streaming Engine](https://www.wowza.com/products/streaming-engine)™ media server or a [Wowza Streaming Cloud](https://www.wowza.com/products/streaming-cloud)™ account. You can request a free Wowza Streaming Engine trial by completing the [Wowza Streaming Engine trial sign-up form](https://www.wowza.com/pricing/trial) or sign up for a Wowza Streaming Cloud trial by completing the [Wowza Streaming Cloud free trial form](https://www.wowza.com/pricing/cloud-free-trial).
 
 ## Sample Apps
 | App  | Description  |
