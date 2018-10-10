@@ -1,0 +1,648 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3549B0C32152BE2900696782 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549B0C22152BE2900696782 /* AppDelegate.m */; };
+		3549B0C62152BE2900696782 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549B0C52152BE2900696782 /* ViewController.m */; };
+		3549B0C92152BE2900696782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549B0C72152BE2900696782 /* Main.storyboard */; };
+		3549B0CB2152BE2A00696782 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3549B0CA2152BE2A00696782 /* Assets.xcassets */; };
+		3549B0CE2152BE2A00696782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3549B0CC2152BE2A00696782 /* LaunchScreen.storyboard */; };
+		3549B0D12152BE2A00696782 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549B0D02152BE2A00696782 /* main.m */; };
+		3549B0F72152BEFC00696782 /* MP4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549B0F22152BEFB00696782 /* MP4Writer.m */; };
+		3549B0F82152BEFC00696782 /* WOWZPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549B0F32152BEFB00696782 /* WOWZPlayerViewController.m */; };
+		3549B0F92152BEFC00696782 /* BroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549B0F42152BEFB00696782 /* BroadcastViewController.m */; };
+		3549B10D2152DA4400696782 /* MoviePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3549B10C2152DA4400696782 /* MoviePlayerViewController.swift */; };
+		35C89D68215587340092FB28 /* krStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D40215587330092FB28 /* krStar.png */; };
+		35C89D69215587340092FB28 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D41215587330092FB28 /* icon.png */; };
+		35C89D6A215587340092FB28 /* ball.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D42215587330092FB28 /* ball.jpg */; };
+		35C89D6B215587340092FB28 /* envmap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D43215587330092FB28 /* envmap.jpg */; };
+		35C89D6C215587340092FB28 /* baseboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D44215587330092FB28 /* baseboard.jpg */; };
+		35C89D6D215587340092FB28 /* wallPaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D45215587330092FB28 /* wallPaper.png */; };
+		35C89D6E215587340092FB28 /* wood-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D46215587330092FB28 /* wood-normal.png */; };
+		35C89D6F215587340092FB28 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D48215587330092FB28 /* bottom.jpg */; };
+		35C89D70215587340092FB28 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D49215587330092FB28 /* left.jpg */; };
+		35C89D71215587340092FB28 /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D4A215587330092FB28 /* top.jpg */; };
+		35C89D72215587340092FB28 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D4B215587330092FB28 /* back.jpg */; };
+		35C89D73215587340092FB28 /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D4C215587330092FB28 /* right.jpg */; };
+		35C89D74215587340092FB28 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D4D215587330092FB28 /* front.jpg */; };
+		35C89D75215587340092FB28 /* color_envmap.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D4E215587330092FB28 /* color_envmap.png */; };
+		35C89D76215587340092FB28 /* wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D4F215587330092FB28 /* wood.png */; };
+		35C89D77215587340092FB28 /* wallPaper copy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D50215587330092FB28 /* wallPaper copy.jpg */; };
+		35C89D78215587340092FB28 /* cubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D51215587330092FB28 /* cubeTexture.png */; };
+		35C89D79215587340092FB28 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D52215587330092FB28 /* splash.png */; };
+		35C89D7A215587340092FB28 /* WoodCubeB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D53215587330092FB28 /* WoodCubeB.jpg */; };
+		35C89D7B215587340092FB28 /* earth-specular.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D55215587330092FB28 /* earth-specular.jpg */; };
+		35C89D7C215587340092FB28 /* earth-diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D56215587330092FB28 /* earth-diffuse.jpg */; };
+		35C89D7D215587340092FB28 /* Credit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D57215587330092FB28 /* Credit.txt */; };
+		35C89D7E215587340092FB28 /* WoodCubeC.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D58215587330092FB28 /* WoodCubeC.jpg */; };
+		35C89D7F215587340092FB28 /* glossy.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D59215587330092FB28 /* glossy.png */; };
+		35C89D80215587340092FB28 /* WoodCubeA.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D5A215587330092FB28 /* WoodCubeA.jpg */; };
+		35C89D81215587340092FB28 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D5B215587330092FB28 /* next.png */; };
+		35C89D82215587340092FB28 /* starBurst.skn in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D5C215587330092FB28 /* starBurst.skn */; };
+		35C89D83215587340092FB28 /* SceneKit.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D5D215587330092FB28 /* SceneKit.png */; };
+		35C89D84215587340092FB28 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D5E215587330092FB28 /* back.png */; };
+		35C89D85215587340092FB28 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D5F215587330092FB28 /* launch.png */; };
+		35C89D86215587340092FB28 /* assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D60215587330092FB28 /* assets.scnassets */; };
+		35C89D87215587340092FB28 /* theduel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D62215587330092FB28 /* theduel.mp3 */; };
+		35C89D88215587340092FB28 /* sm_geom.shader in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D64215587330092FB28 /* sm_geom.shader */; };
+		35C89D89215587340092FB28 /* sm_frag.shader in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D65215587330092FB28 /* sm_frag.shader */; };
+		35C89D8A215587340092FB28 /* sm_surf.shader in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D66215587330092FB28 /* sm_surf.shader */; };
+		35C89D8B215587340092FB28 /* sm_light.shader in Resources */ = {isa = PBXBuildFile; fileRef = 35C89D67215587330092FB28 /* sm_light.shader */; };
+		35C89D8E215588800092FB28 /* AAPLGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C89D8C215588800092FB28 /* AAPLGameViewController.m */; };
+		35C89DB6215592050092FB28 /* AppSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C89DA9215592050092FB28 /* AppSettings.storyboard */; };
+		35C89DB7215592050092FB28 /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C89DAA215592050092FB28 /* SettingsTextFieldCell.m */; };
+		35C89DB8215592050092FB28 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C89DAB215592050092FB28 /* SettingsViewController.m */; };
+		35C89DB9215592050092FB28 /* SceneKitMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C89DAC215592050092FB28 /* SceneKitMain.storyboard */; };
+		35C89DBA215592050092FB28 /* GoCoderSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C89DAD215592050092FB28 /* GoCoderSettings.storyboard */; };
+		35C89DBB215592050092FB28 /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C89DB3215592050092FB28 /* SettingsViewModel.m */; };
+		35C89DBD215592050092FB28 /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C89DB5215592050092FB28 /* CustomFrameSizeViewController.m */; };
+		35C89DBF215592200092FB28 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C89DBE2155921F0092FB28 /* WowzaGoCoderSDK.framework */; };
+		35C89DC0215592200092FB28 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35C89DBE2155921F0092FB28 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35EFEC1A2152E7AB006F00B1 /* Movie.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 35EFEC192152E775006F00B1 /* Movie.m4v */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		35C89DA321558F770092FB28 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				35C89DC0215592200092FB28 /* WowzaGoCoderSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3549B0BE2152BE2900696782 /* GoCoder SDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GoCoder SDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3549B0C12152BE2900696782 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3549B0C22152BE2900696782 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3549B0C42152BE2900696782 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3549B0C52152BE2900696782 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3549B0C82152BE2900696782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3549B0CA2152BE2A00696782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3549B0CD2152BE2A00696782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3549B0CF2152BE2A00696782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3549B0D02152BE2A00696782 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3549B0F12152BEFB00696782 /* WOWZPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOWZPlayerViewController.h; sourceTree = "<group>"; };
+		3549B0F22152BEFB00696782 /* MP4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP4Writer.m; sourceTree = "<group>"; };
+		3549B0F32152BEFB00696782 /* WOWZPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOWZPlayerViewController.m; sourceTree = "<group>"; };
+		3549B0F42152BEFB00696782 /* BroadcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastViewController.m; sourceTree = "<group>"; };
+		3549B0F52152BEFC00696782 /* BroadcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastViewController.h; sourceTree = "<group>"; };
+		3549B0F62152BEFC00696782 /* MP4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Writer.h; sourceTree = "<group>"; };
+		3549B10C2152DA4400696782 /* MoviePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerViewController.swift; sourceTree = "<group>"; };
+		3549B10E2152DB3A00696782 /* Gocoder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gocoder-Bridging-Header.h"; sourceTree = "<group>"; };
+		35C89D40215587330092FB28 /* krStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = krStar.png; sourceTree = "<group>"; };
+		35C89D41215587330092FB28 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		35C89D42215587330092FB28 /* ball.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ball.jpg; sourceTree = "<group>"; };
+		35C89D43215587330092FB28 /* envmap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = envmap.jpg; sourceTree = "<group>"; };
+		35C89D44215587330092FB28 /* baseboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = baseboard.jpg; sourceTree = "<group>"; };
+		35C89D45215587330092FB28 /* wallPaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallPaper.png; sourceTree = "<group>"; };
+		35C89D46215587330092FB28 /* wood-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood-normal.png"; sourceTree = "<group>"; };
+		35C89D48215587330092FB28 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
+		35C89D49215587330092FB28 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
+		35C89D4A215587330092FB28 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		35C89D4B215587330092FB28 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		35C89D4C215587330092FB28 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
+		35C89D4D215587330092FB28 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		35C89D4E215587330092FB28 /* color_envmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_envmap.png; sourceTree = "<group>"; };
+		35C89D4F215587330092FB28 /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		35C89D50215587330092FB28 /* wallPaper copy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wallPaper copy.jpg"; sourceTree = "<group>"; };
+		35C89D51215587330092FB28 /* cubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cubeTexture.png; sourceTree = "<group>"; };
+		35C89D52215587330092FB28 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		35C89D53215587330092FB28 /* WoodCubeB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WoodCubeB.jpg; sourceTree = "<group>"; };
+		35C89D55215587330092FB28 /* earth-specular.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "earth-specular.jpg"; sourceTree = "<group>"; };
+		35C89D56215587330092FB28 /* earth-diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "earth-diffuse.jpg"; sourceTree = "<group>"; };
+		35C89D57215587330092FB28 /* Credit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credit.txt; sourceTree = "<group>"; };
+		35C89D58215587330092FB28 /* WoodCubeC.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WoodCubeC.jpg; sourceTree = "<group>"; };
+		35C89D59215587330092FB28 /* glossy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glossy.png; sourceTree = "<group>"; };
+		35C89D5A215587330092FB28 /* WoodCubeA.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WoodCubeA.jpg; sourceTree = "<group>"; };
+		35C89D5B215587330092FB28 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		35C89D5C215587330092FB28 /* starBurst.skn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = starBurst.skn; sourceTree = "<group>"; };
+		35C89D5D215587330092FB28 /* SceneKit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SceneKit.png; sourceTree = "<group>"; };
+		35C89D5E215587330092FB28 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		35C89D5F215587330092FB28 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
+		35C89D60215587330092FB28 /* assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = assets.scnassets; sourceTree = "<group>"; };
+		35C89D62215587330092FB28 /* theduel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = theduel.mp3; sourceTree = "<group>"; };
+		35C89D64215587330092FB28 /* sm_geom.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_geom.shader; sourceTree = "<group>"; };
+		35C89D65215587330092FB28 /* sm_frag.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_frag.shader; sourceTree = "<group>"; };
+		35C89D66215587330092FB28 /* sm_surf.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_surf.shader; sourceTree = "<group>"; };
+		35C89D67215587330092FB28 /* sm_light.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_light.shader; sourceTree = "<group>"; };
+		35C89D8C215588800092FB28 /* AAPLGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLGameViewController.m; sourceTree = "<group>"; };
+		35C89D8D215588800092FB28 /* AAPLGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLGameViewController.h; sourceTree = "<group>"; };
+		35C89DA9215592050092FB28 /* AppSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppSettings.storyboard; sourceTree = "<group>"; };
+		35C89DAA215592050092FB28 /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTextFieldCell.m; sourceTree = "<group>"; };
+		35C89DAB215592050092FB28 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		35C89DAC215592050092FB28 /* SceneKitMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SceneKitMain.storyboard; sourceTree = "<group>"; };
+		35C89DAD215592050092FB28 /* GoCoderSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GoCoderSettings.storyboard; sourceTree = "<group>"; };
+		35C89DAE215592050092FB28 /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFrameSizeViewController.h; sourceTree = "<group>"; };
+		35C89DAF215592050092FB28 /* AAPLGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLGameViewController.h; sourceTree = "<group>"; };
+		35C89DB0215592050092FB28 /* SettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewModel.h; sourceTree = "<group>"; };
+		35C89DB1215592050092FB28 /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTextFieldCell.h; sourceTree = "<group>"; };
+		35C89DB2215592050092FB28 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		35C89DB3215592050092FB28 /* SettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewModel.m; sourceTree = "<group>"; };
+		35C89DB5215592050092FB28 /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFrameSizeViewController.m; sourceTree = "<group>"; };
+		35C89DBE2155921F0092FB28 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
+		35EFEC192152E775006F00B1 /* Movie.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; name = Movie.m4v; path = "GoCoder SDK/Movie.m4v"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3549B0BB2152BE2900696782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35C89DBF215592200092FB28 /* WowzaGoCoderSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3549B0B52152BE2900696782 = {
+			isa = PBXGroup;
+			children = (
+				35C89DBE2155921F0092FB28 /* WowzaGoCoderSDK.framework */,
+				35EFEC192152E775006F00B1 /* Movie.m4v */,
+				3549B0C02152BE2900696782 /* GoCoder SDK */,
+				3549B0BF2152BE2900696782 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3549B0BF2152BE2900696782 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3549B0BE2152BE2900696782 /* GoCoder SDK.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3549B0C02152BE2900696782 /* GoCoder SDK */ = {
+			isa = PBXGroup;
+			children = (
+				35C89DA8215592050092FB28 /* shared */,
+				35C89D3E215587330092FB28 /* Resources */,
+				3549B0C12152BE2900696782 /* AppDelegate.h */,
+				3549B0C22152BE2900696782 /* AppDelegate.m */,
+				3549B0C42152BE2900696782 /* ViewController.h */,
+				3549B0C52152BE2900696782 /* ViewController.m */,
+				3549B10C2152DA4400696782 /* MoviePlayerViewController.swift */,
+				3549B0F52152BEFC00696782 /* BroadcastViewController.h */,
+				3549B0F42152BEFB00696782 /* BroadcastViewController.m */,
+				3549B0F62152BEFC00696782 /* MP4Writer.h */,
+				3549B0F22152BEFB00696782 /* MP4Writer.m */,
+				3549B0F12152BEFB00696782 /* WOWZPlayerViewController.h */,
+				3549B0F32152BEFB00696782 /* WOWZPlayerViewController.m */,
+				3549B0C72152BE2900696782 /* Main.storyboard */,
+				35C89D8D215588800092FB28 /* AAPLGameViewController.h */,
+				35C89D8C215588800092FB28 /* AAPLGameViewController.m */,
+				3549B0CA2152BE2A00696782 /* Assets.xcassets */,
+				3549B10E2152DB3A00696782 /* Gocoder-Bridging-Header.h */,
+				3549B0CC2152BE2A00696782 /* LaunchScreen.storyboard */,
+				3549B0CF2152BE2A00696782 /* Info.plist */,
+				3549B0D02152BE2A00696782 /* main.m */,
+			);
+			path = "GoCoder SDK";
+			sourceTree = "<group>";
+		};
+		35C89D3E215587330092FB28 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				35C89D3F215587330092FB28 /* images */,
+				35C89D60215587330092FB28 /* assets.scnassets */,
+				35C89D61215587330092FB28 /* sounds */,
+				35C89D63215587330092FB28 /* shaders */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		35C89D3F215587330092FB28 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				35C89D40215587330092FB28 /* krStar.png */,
+				35C89D41215587330092FB28 /* icon.png */,
+				35C89D42215587330092FB28 /* ball.jpg */,
+				35C89D43215587330092FB28 /* envmap.jpg */,
+				35C89D44215587330092FB28 /* baseboard.jpg */,
+				35C89D45215587330092FB28 /* wallPaper.png */,
+				35C89D46215587330092FB28 /* wood-normal.png */,
+				35C89D47215587330092FB28 /* cubemap */,
+				35C89D4E215587330092FB28 /* color_envmap.png */,
+				35C89D4F215587330092FB28 /* wood.png */,
+				35C89D50215587330092FB28 /* wallPaper copy.jpg */,
+				35C89D51215587330092FB28 /* cubeTexture.png */,
+				35C89D52215587330092FB28 /* splash.png */,
+				35C89D53215587330092FB28 /* WoodCubeB.jpg */,
+				35C89D54215587330092FB28 /* earth */,
+				35C89D58215587330092FB28 /* WoodCubeC.jpg */,
+				35C89D59215587330092FB28 /* glossy.png */,
+				35C89D5A215587330092FB28 /* WoodCubeA.jpg */,
+				35C89D5B215587330092FB28 /* next.png */,
+				35C89D5C215587330092FB28 /* starBurst.skn */,
+				35C89D5D215587330092FB28 /* SceneKit.png */,
+				35C89D5E215587330092FB28 /* back.png */,
+				35C89D5F215587330092FB28 /* launch.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		35C89D47215587330092FB28 /* cubemap */ = {
+			isa = PBXGroup;
+			children = (
+				35C89D48215587330092FB28 /* bottom.jpg */,
+				35C89D49215587330092FB28 /* left.jpg */,
+				35C89D4A215587330092FB28 /* top.jpg */,
+				35C89D4B215587330092FB28 /* back.jpg */,
+				35C89D4C215587330092FB28 /* right.jpg */,
+				35C89D4D215587330092FB28 /* front.jpg */,
+			);
+			path = cubemap;
+			sourceTree = "<group>";
+		};
+		35C89D54215587330092FB28 /* earth */ = {
+			isa = PBXGroup;
+			children = (
+				35C89D55215587330092FB28 /* earth-specular.jpg */,
+				35C89D56215587330092FB28 /* earth-diffuse.jpg */,
+				35C89D57215587330092FB28 /* Credit.txt */,
+			);
+			path = earth;
+			sourceTree = "<group>";
+		};
+		35C89D61215587330092FB28 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				35C89D62215587330092FB28 /* theduel.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
+		35C89D63215587330092FB28 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				35C89D64215587330092FB28 /* sm_geom.shader */,
+				35C89D65215587330092FB28 /* sm_frag.shader */,
+				35C89D66215587330092FB28 /* sm_surf.shader */,
+				35C89D67215587330092FB28 /* sm_light.shader */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		35C89DA8215592050092FB28 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				35C89DA9215592050092FB28 /* AppSettings.storyboard */,
+				35C89DAA215592050092FB28 /* SettingsTextFieldCell.m */,
+				35C89DAB215592050092FB28 /* SettingsViewController.m */,
+				35C89DAC215592050092FB28 /* SceneKitMain.storyboard */,
+				35C89DAD215592050092FB28 /* GoCoderSettings.storyboard */,
+				35C89DAE215592050092FB28 /* CustomFrameSizeViewController.h */,
+				35C89DAF215592050092FB28 /* AAPLGameViewController.h */,
+				35C89DB0215592050092FB28 /* SettingsViewModel.h */,
+				35C89DB1215592050092FB28 /* SettingsTextFieldCell.h */,
+				35C89DB2215592050092FB28 /* SettingsViewController.h */,
+				35C89DB3215592050092FB28 /* SettingsViewModel.m */,
+				35C89DB5215592050092FB28 /* CustomFrameSizeViewController.m */,
+			);
+			path = shared;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3549B0BD2152BE2900696782 /* GoCoder SDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3549B0D42152BE2A00696782 /* Build configuration list for PBXNativeTarget "GoCoder SDK" */;
+			buildPhases = (
+				3549B0BA2152BE2900696782 /* Sources */,
+				3549B0BB2152BE2900696782 /* Frameworks */,
+				3549B0BC2152BE2900696782 /* Resources */,
+				35C89DA321558F770092FB28 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GoCoder SDK";
+			productName = "GoCoder SDK";
+			productReference = 3549B0BE2152BE2900696782 /* GoCoder SDK.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3549B0B62152BE2900696782 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = Wowza;
+				TargetAttributes = {
+					3549B0BD2152BE2900696782 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 3549B0B92152BE2900696782 /* Build configuration list for PBXProject "All-in-OneSampleApp.objc" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3549B0B52152BE2900696782;
+			productRefGroup = 3549B0BF2152BE2900696782 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3549B0BD2152BE2900696782 /* GoCoder SDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3549B0BC2152BE2900696782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35EFEC1A2152E7AB006F00B1 /* Movie.m4v in Resources */,
+				35C89D87215587340092FB28 /* theduel.mp3 in Resources */,
+				35C89D75215587340092FB28 /* color_envmap.png in Resources */,
+				3549B0CE2152BE2A00696782 /* LaunchScreen.storyboard in Resources */,
+				35C89D70215587340092FB28 /* left.jpg in Resources */,
+				35C89D69215587340092FB28 /* icon.png in Resources */,
+				35C89D72215587340092FB28 /* back.jpg in Resources */,
+				35C89D83215587340092FB28 /* SceneKit.png in Resources */,
+				35C89D76215587340092FB28 /* wood.png in Resources */,
+				35C89D7C215587340092FB28 /* earth-diffuse.jpg in Resources */,
+				35C89D79215587340092FB28 /* splash.png in Resources */,
+				35C89D82215587340092FB28 /* starBurst.skn in Resources */,
+				35C89D68215587340092FB28 /* krStar.png in Resources */,
+				35C89D7B215587340092FB28 /* earth-specular.jpg in Resources */,
+				35C89D85215587340092FB28 /* launch.png in Resources */,
+				35C89D86215587340092FB28 /* assets.scnassets in Resources */,
+				35C89D7F215587340092FB28 /* glossy.png in Resources */,
+				35C89DB9215592050092FB28 /* SceneKitMain.storyboard in Resources */,
+				35C89D81215587340092FB28 /* next.png in Resources */,
+				35C89D7E215587340092FB28 /* WoodCubeC.jpg in Resources */,
+				35C89DB6215592050092FB28 /* AppSettings.storyboard in Resources */,
+				35C89D78215587340092FB28 /* cubeTexture.png in Resources */,
+				35C89D7D215587340092FB28 /* Credit.txt in Resources */,
+				35C89D84215587340092FB28 /* back.png in Resources */,
+				35C89D77215587340092FB28 /* wallPaper copy.jpg in Resources */,
+				35C89D6D215587340092FB28 /* wallPaper.png in Resources */,
+				35C89D88215587340092FB28 /* sm_geom.shader in Resources */,
+				35C89D73215587340092FB28 /* right.jpg in Resources */,
+				35C89D6A215587340092FB28 /* ball.jpg in Resources */,
+				35C89DBA215592050092FB28 /* GoCoderSettings.storyboard in Resources */,
+				35C89D80215587340092FB28 /* WoodCubeA.jpg in Resources */,
+				35C89D6C215587340092FB28 /* baseboard.jpg in Resources */,
+				35C89D6F215587340092FB28 /* bottom.jpg in Resources */,
+				35C89D89215587340092FB28 /* sm_frag.shader in Resources */,
+				35C89D74215587340092FB28 /* front.jpg in Resources */,
+				35C89D6B215587340092FB28 /* envmap.jpg in Resources */,
+				35C89D7A215587340092FB28 /* WoodCubeB.jpg in Resources */,
+				35C89D8A215587340092FB28 /* sm_surf.shader in Resources */,
+				35C89D8B215587340092FB28 /* sm_light.shader in Resources */,
+				3549B0CB2152BE2A00696782 /* Assets.xcassets in Resources */,
+				3549B0C92152BE2900696782 /* Main.storyboard in Resources */,
+				35C89D6E215587340092FB28 /* wood-normal.png in Resources */,
+				35C89D71215587340092FB28 /* top.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3549B0BA2152BE2900696782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3549B0F82152BEFC00696782 /* WOWZPlayerViewController.m in Sources */,
+				35C89DB7215592050092FB28 /* SettingsTextFieldCell.m in Sources */,
+				3549B0C62152BE2900696782 /* ViewController.m in Sources */,
+				3549B10D2152DA4400696782 /* MoviePlayerViewController.swift in Sources */,
+				3549B0F72152BEFC00696782 /* MP4Writer.m in Sources */,
+				3549B0F92152BEFC00696782 /* BroadcastViewController.m in Sources */,
+				35C89DBD215592050092FB28 /* CustomFrameSizeViewController.m in Sources */,
+				3549B0D12152BE2A00696782 /* main.m in Sources */,
+				35C89DB8215592050092FB28 /* SettingsViewController.m in Sources */,
+				35C89DBB215592050092FB28 /* SettingsViewModel.m in Sources */,
+				35C89D8E215588800092FB28 /* AAPLGameViewController.m in Sources */,
+				3549B0C32152BE2900696782 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3549B0C72152BE2900696782 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3549B0C82152BE2900696782 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3549B0CC2152BE2A00696782 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3549B0CD2152BE2A00696782 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3549B0D22152BE2A00696782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3549B0D32152BE2A00696782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3549B0D52152BE2A00696782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "GoCoder SDK/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wowza.sdk.demo.GoCoder-SDK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GoCoder SDK/Gocoder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3549B0D62152BE2A00696782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "GoCoder SDK/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wowza.sdk.demo.GoCoder-SDK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GoCoder SDK/Gocoder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3549B0B92152BE2900696782 /* Build configuration list for PBXProject "All-in-OneSampleApp.objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3549B0D22152BE2A00696782 /* Debug */,
+				3549B0D32152BE2A00696782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3549B0D42152BE2A00696782 /* Build configuration list for PBXNativeTarget "GoCoder SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3549B0D52152BE2A00696782 /* Debug */,
+				3549B0D62152BE2A00696782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3549B0B62152BE2900696782 /* Project object */;
+}

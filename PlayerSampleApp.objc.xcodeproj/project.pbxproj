@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1CA059FF1C7CE293003B4AAA /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */; };
+		1CCA0AF41E4123A00079C295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA0AF01E4123A00079C295 /* LaunchScreen.storyboard */; };
+		1CCA0AF51E4123A00079C295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA0AF21E4123A00079C295 /* Main.storyboard */; };
+		1CCA0AF91E4123E80079C295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA0AF81E4123E80079C295 /* Assets.xcassets */; };
+		1CCA0B021E4124180079C295 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA0AFB1E4124180079C295 /* AppDelegate.m */; };
+		1CCA0B031E4124180079C295 /* MP4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA0AFD1E4124180079C295 /* MP4Writer.m */; };
+		1CCA0B041E4124180079C295 /* BroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA0AFF1E4124180079C295 /* BroadcastViewController.m */; };
+		1CCA0B091E4125C60079C295 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA0B081E4125C60079C295 /* main.m */; };
+		1CE278FC1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */; };
+		1CE278FD1C990F7400ACE7A5 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1CF6ED441C20A29800DA7C6B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6ED431C20A29800DA7C6B /* SettingsViewController.m */; };
+		1CF6ED471C20A2C100DA7C6B /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6ED461C20A2C100DA7C6B /* SettingsViewModel.m */; };
+		1CF6ED4A1C20B03500DA7C6B /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6ED491C20B03500DA7C6B /* SettingsTextFieldCell.m */; };
+		35096A441FCCB8B900E73918 /* WOWZPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35096A431FCCB8B900E73918 /* WOWZPlayerViewController.m */; };
+		358DF3BD1F3D25D500BBEBD4 /* GoCoderSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358DF3BC1F3D25D500BBEBD4 /* GoCoderSettings.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1CAFDB8C1C3B04CE00C6C314 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1CE278FD1C990F7400ACE7A5 /* WowzaGoCoderSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1CA059FD1C7CE293003B4AAA /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = shared/CustomFrameSizeViewController.h; sourceTree = SOURCE_ROOT; };
+		1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = shared/CustomFrameSizeViewController.m; sourceTree = SOURCE_ROOT; };
+		1CCA0AF11E4123A00079C295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SDKSampleApp.objc/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		1CCA0AF31E4123A00079C295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SDKSampleApp.objc/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		1CCA0AF61E4123C40079C295 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SDKSampleApp.objc/Info.plist; sourceTree = SOURCE_ROOT; };
+		1CCA0AF81E4123E80079C295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = SDKSampleApp.objc/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		1CCA0AFA1E4124180079C295 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SDKSampleApp.objc/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		1CCA0AFB1E4124180079C295 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SDKSampleApp.objc/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		1CCA0AFC1E4124180079C295 /* MP4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MP4Writer.h; path = SDKSampleApp.objc/MP4Writer.h; sourceTree = SOURCE_ROOT; };
+		1CCA0AFD1E4124180079C295 /* MP4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MP4Writer.m; path = SDKSampleApp.objc/MP4Writer.m; sourceTree = SOURCE_ROOT; };
+		1CCA0AFE1E4124180079C295 /* BroadcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BroadcastViewController.h; path = SDKSampleApp.objc/BroadcastViewController.h; sourceTree = SOURCE_ROOT; };
+		1CCA0AFF1E4124180079C295 /* BroadcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BroadcastViewController.m; path = SDKSampleApp.objc/BroadcastViewController.m; sourceTree = SOURCE_ROOT; };
+		1CCA0B081E4125C60079C295 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SDKSampleApp.objc/main.m; sourceTree = SOURCE_ROOT; };
+		1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = SOURCE_ROOT; };
+		1CE985F51C1BA2D500A883E3 /* SDKSampleAppPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKSampleAppPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CF6ED421C20A29800DA7C6B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = shared/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
+		1CF6ED431C20A29800DA7C6B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = shared/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
+		1CF6ED451C20A2C100DA7C6B /* SettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewModel.h; path = shared/SettingsViewModel.h; sourceTree = SOURCE_ROOT; };
+		1CF6ED461C20A2C100DA7C6B /* SettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewModel.m; path = shared/SettingsViewModel.m; sourceTree = SOURCE_ROOT; };
+		1CF6ED481C20B03500DA7C6B /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTextFieldCell.h; path = shared/SettingsTextFieldCell.h; sourceTree = SOURCE_ROOT; };
+		1CF6ED491C20B03500DA7C6B /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTextFieldCell.m; path = shared/SettingsTextFieldCell.m; sourceTree = SOURCE_ROOT; };
+		35096A421FCCB8B900E73918 /* WOWZPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOWZPlayerViewController.h; path = SDKSampleApp.objc/WOWZPlayerViewController.h; sourceTree = SOURCE_ROOT; };
+		35096A431FCCB8B900E73918 /* WOWZPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOWZPlayerViewController.m; path = SDKSampleApp.objc/WOWZPlayerViewController.m; sourceTree = SOURCE_ROOT; };
+		358DF3BC1F3D25D500BBEBD4 /* GoCoderSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GoCoderSettings.storyboard; path = shared/GoCoderSettings.storyboard; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1CE985F21C1BA2D500A883E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CE278FC1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CE623F81C9F58810060F2C1 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1CA059FD1C7CE293003B4AAA /* CustomFrameSizeViewController.h */,
+				1CA059FE1C7CE293003B4AAA /* CustomFrameSizeViewController.m */,
+				358DF3BC1F3D25D500BBEBD4 /* GoCoderSettings.storyboard */,
+				1CF6ED481C20B03500DA7C6B /* SettingsTextFieldCell.h */,
+				1CF6ED491C20B03500DA7C6B /* SettingsTextFieldCell.m */,
+				1CF6ED421C20A29800DA7C6B /* SettingsViewController.h */,
+				1CF6ED431C20A29800DA7C6B /* SettingsViewController.m */,
+				1CF6ED451C20A2C100DA7C6B /* SettingsViewModel.h */,
+				1CF6ED461C20A2C100DA7C6B /* SettingsViewModel.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		1CE985EC1C1BA2D500A883E3 = {
+			isa = PBXGroup;
+			children = (
+				1CE985F71C1BA2D500A883E3 /* SDKSampleApp */,
+				1CE985F61C1BA2D500A883E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1CE985F61C1BA2D500A883E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CE985F51C1BA2D500A883E3 /* SDKSampleAppPlayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1CE985F71C1BA2D500A883E3 /* SDKSampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				1CCA0AFA1E4124180079C295 /* AppDelegate.h */,
+				1CCA0AFB1E4124180079C295 /* AppDelegate.m */,
+				1CCA0AFC1E4124180079C295 /* MP4Writer.h */,
+				1CCA0AFD1E4124180079C295 /* MP4Writer.m */,
+				1CCA0AFE1E4124180079C295 /* BroadcastViewController.h */,
+				1CCA0AFF1E4124180079C295 /* BroadcastViewController.m */,
+				35096A421FCCB8B900E73918 /* WOWZPlayerViewController.h */,
+				35096A431FCCB8B900E73918 /* WOWZPlayerViewController.m */,
+				1CCA0AF81E4123E80079C295 /* Assets.xcassets */,
+				1CCA0AF61E4123C40079C295 /* Info.plist */,
+				1CCA0AF01E4123A00079C295 /* LaunchScreen.storyboard */,
+				1CCA0AF21E4123A00079C295 /* Main.storyboard */,
+				1CE623F81C9F58810060F2C1 /* Shared */,
+				1CE985F81C1BA2D500A883E3 /* Supporting Files */,
+				1CE278FB1C990E9F00ACE7A5 /* WowzaGoCoderSDK.framework */,
+			);
+			path = SDKSampleApp;
+			sourceTree = "<group>";
+		};
+		1CE985F81C1BA2D500A883E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1CCA0B081E4125C60079C295 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1CE985F41C1BA2D500A883E3 /* SDKSampleAppPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CE9860C1C1BA2D500A883E3 /* Build configuration list for PBXNativeTarget "SDKSampleAppPlayer" */;
+			buildPhases = (
+				1CE985F11C1BA2D500A883E3 /* Sources */,
+				1CAC953D1D1D983600D95262 /* Validate SDK */,
+				1CE985F21C1BA2D500A883E3 /* Frameworks */,
+				1CE985F31C1BA2D500A883E3 /* Resources */,
+				1CAFDB8C1C3B04CE00C6C314 /* Embed Frameworks */,
+				1CAFDB8D1C3B058200C6C314 /* Strip Framework Invalid Architectures */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDKSampleAppPlayer;
+			productName = SDKSampleApp;
+			productReference = 1CE985F51C1BA2D500A883E3 /* SDKSampleAppPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1CE985ED1C1BA2D500A883E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Wowza, Inc";
+				TargetAttributes = {
+					1CE985F41C1BA2D500A883E3 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = VVGYK4HC82;
+						DevelopmentTeamName = "Wowza Media Systems, LLC";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1CE985F01C1BA2D500A883E3 /* Build configuration list for PBXProject "PlayerSampleApp.objc" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1CE985EC1C1BA2D500A883E3;
+			productRefGroup = 1CE985F61C1BA2D500A883E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1CE985F41C1BA2D500A883E3 /* SDKSampleAppPlayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1CE985F31C1BA2D500A883E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CCA0AF41E4123A00079C295 /* LaunchScreen.storyboard in Resources */,
+				358DF3BD1F3D25D500BBEBD4 /* GoCoderSettings.storyboard in Resources */,
+				1CCA0AF51E4123A00079C295 /* Main.storyboard in Resources */,
+				1CCA0AF91E4123E80079C295 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CAC953D1D1D983600D95262 /* Validate SDK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate SDK";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "my_script=\"./validatesdk.sh\"\nif [ ! -f \"$my_script\" ]\nthen\n    exit 0\nfi\n\nchmod +x $my_script\n\n./$my_script";
+		};
+		1CAFDB8D1C3B058200C6C314 /* Strip Framework Invalid Architectures */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Strip Framework Invalid Architectures";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/WowzaGoCoderSDK.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1CE985F11C1BA2D500A883E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CF6ED471C20A2C100DA7C6B /* SettingsViewModel.m in Sources */,
+				1CCA0B041E4124180079C295 /* BroadcastViewController.m in Sources */,
+				35096A441FCCB8B900E73918 /* WOWZPlayerViewController.m in Sources */,
+				1CCA0B021E4124180079C295 /* AppDelegate.m in Sources */,
+				1CF6ED4A1C20B03500DA7C6B /* SettingsTextFieldCell.m in Sources */,
+				1CA059FF1C7CE293003B4AAA /* CustomFrameSizeViewController.m in Sources */,
+				1CCA0B031E4124180079C295 /* MP4Writer.m in Sources */,
+				1CCA0B091E4125C60079C295 /* main.m in Sources */,
+				1CF6ED441C20A29800DA7C6B /* SettingsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1CCA0AF01E4123A00079C295 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CCA0AF11E4123A00079C295 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1CCA0AF21E4123A00079C295 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CCA0AF31E4123A00079C295 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1CE9860A1C1BA2D500A883E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1CE9860B1C1BA2D500A883E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1CE9860D1C1BA2D500A883E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKSampleApp.objc",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDKSampleApp.objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.bpsampleapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		1CE9860E1C1BA2D500A883E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDKSampleApp.objc",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SDKSampleApp.objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.bpsampleapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1CE985F01C1BA2D500A883E3 /* Build configuration list for PBXProject "PlayerSampleApp.objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CE9860A1C1BA2D500A883E3 /* Debug */,
+				1CE9860B1C1BA2D500A883E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CE9860C1C1BA2D500A883E3 /* Build configuration list for PBXNativeTarget "SDKSampleAppPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CE9860D1C1BA2D500A883E3 /* Debug */,
+				1CE9860E1C1BA2D500A883E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1CE985ED1C1BA2D500A883E3 /* Project object */;
+}

@@ -10,6 +10,7 @@
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 
 extern NSString * const BlackAndWhiteKey;
+extern NSString * const BitmapOverlayKey;
 extern NSString * const RecordVideoLocallyKey;
 extern NSString * const PlaybackPrerollKey;
 extern NSString * const AllowHLSKey;
@@ -85,6 +86,7 @@ typedef NS_ENUM(NSUInteger, SettingsPlaybackItem) {
 
 // the user-selected black-and-white mode (on or off)
 @property (nonatomic, assign) BOOL blackAndWhite;
+@property (nonatomic, assign) BOOL bitmapOverlay;
 
 // the user-selected hls fallback mode (on or off)
 @property (nonatomic, assign) BOOL allowHLS;

@@ -12,7 +12,7 @@
 
 #import "SettingsViewModel.h"
 #import "SettingsViewController.h"
-#import "VideoPlayerViewController.h"
+#import "BroadcastViewController.h"
 
 
 @interface WOWZPlayerViewController () <WOWZStatusCallback, WOWZDataSink>
@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UISlider           *volumeSlider;
 @property (nonatomic, weak) IBOutlet UILabel            *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton           *closeButton;
+@property (weak, nonatomic) IBOutlet UIButton           *aspectButton;
 
 @property (nonatomic, weak) IBOutlet UILabel						*syncOffsetLabel;
 
@@ -72,7 +73,12 @@
     NSError *goCoderLicensingError = [WowzaGoCoder registerLicenseKey:SDKSampleAppLicenseKey];
     if (goCoderLicensingError != nil) {
         // Handle license key registration failure
-        [VideoPlayerViewController showAlertWithTitle:@"GoCoder SDK Licensing Error" error:goCoderLicensingError presenter:self];
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+        [BroadcastViewController showAlertWithTitle:@"GoCoder SDK Licensing Error" error:goCoderLicensingError presenter:self];
+        
+        [self.playbackButton setEnabled:NO];
+        });
     }
     else {
         self.player = [WOWZPlayer new];
@@ -146,6 +152,13 @@
     }
 }
 
+-(IBAction)didTapAspectButton:(id)sender{
+    if(self.player.playerViewGravity == WOWZPlayerViewGravityResizeAspectFill){
+        self.player.playerViewGravity = WOWZPlayerViewGravityResizeAspect;
+    }else{
+        self.player.playerViewGravity = WOWZPlayerViewGravityResizeAspectFill;
+    }
+}
 - (IBAction) didTapSettingsButton:(id)sender {
     UIViewController *settingsNavigationController = [[UIStoryboard storyboardWithName:@"GoCoderSettings" bundle:nil] instantiateViewControllerWithIdentifier:@"settingsNavigationController"];
     
@@ -217,8 +230,8 @@
             self.playbackButton.enabled = NO;
             self.infoLabel.text = @"Starting...";
             self.infoLabel.alpha = 1;
-						self.player.playerView = self.previewView;
-
+            self.player.playerView = self.previewView;
+            self.player.playerViewGravity = WOWZPlayerViewGravityResizeAspect;
             break;
             
         case WOWZStateRunning:

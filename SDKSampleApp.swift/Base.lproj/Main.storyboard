@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E64a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mjt-yW-ku4">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mjt-yW-ku4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Video View Controller-->
@@ -15,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="SLE-NL-cXE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zAl-qo-4rn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arF-WA-9vm">
-                                <rect key="frame" x="263" y="505" width="75" height="75"/>
+                                <rect key="frame" x="150" y="572" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="7U0-lX-hLc"/>
                                     <constraint firstAttribute="height" constant="75" id="fnG-3F-O8U"/>
@@ -30,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndK-WN-j7l">
-                                <rect key="frame" x="535" y="520" width="45" height="45"/>
+                                <rect key="frame" x="314" y="587" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="NZH-AO-Y7H"/>
                                     <constraint firstAttribute="height" constant="45" id="VKq-N5-yxX"/>
@@ -41,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzE-ZV-09Z" userLabel="Switch Camera Button">
-                                <rect key="frame" x="25" y="520" width="45" height="45"/>
+                                <rect key="frame" x="21" y="587" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="8Kc-bq-XDI"/>
                                     <constraint firstAttribute="height" constant="45" id="jVo-sW-iRd"/>
@@ -52,7 +55,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieS-uu-HxI" userLabel="Torch Button">
-                                <rect key="frame" x="25" y="35" width="45" height="45"/>
+                                <rect key="frame" x="21" y="35" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="PIR-BA-euW"/>
                                     <constraint firstAttribute="height" constant="45" id="eZ7-Az-sxm"/>
@@ -63,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B64-AI-CKR" userLabel="Mic Button">
-                                <rect key="frame" x="70" y="35" width="45" height="45"/>
+                                <rect key="frame" x="66" y="35" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="2WP-vM-UaE"/>
                                     <constraint firstAttribute="height" constant="45" id="8YG-sn-mTE"/>
@@ -73,8 +76,12 @@
                                     <action selector="didTapMicButton:" destination="Mjt-yW-ku4" eventType="touchUpInside" id="F8i-q7-NRM"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="wowza" translatesAutoresizingMaskIntoConstraints="NO" id="CBU-cY-gRe">
+                                <rect key="frame" x="117" y="308" width="140" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.36470588240000001" green="0.37647058820000001" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.36470588240000001" green="0.37647058820000001" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kzE-ZV-09Z" firstAttribute="centerY" secondItem="arF-WA-9vm" secondAttribute="centerY" id="8l7-f8-rtS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ndK-WN-j7l" secondAttribute="trailing" id="A22-tV-NTl"/>
@@ -89,6 +96,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bitmapOverlayImgView" destination="CBU-cY-gRe" id="UZ2-L9-vBe"/>
                         <outlet property="broadcastButton" destination="arF-WA-9vm" id="G1H-sK-XEX"/>
                         <outlet property="micButton" destination="B64-AI-CKR" id="yiS-Bk-RMD"/>
                         <outlet property="settingsButton" destination="ndK-WN-j7l" id="8ee-4C-kyH"/>
@@ -107,5 +115,6 @@
         <image name="start_button" width="75" height="75"/>
         <image name="switch_camera_button" width="45" height="45"/>
         <image name="torch_on_button" width="45" height="45"/>
+        <image name="wowza" width="320" height="112"/>
     </resources>
 </document>

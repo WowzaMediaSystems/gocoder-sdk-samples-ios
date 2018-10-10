@@ -15,14 +15,16 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
     //MARK: - Class Member Variables
 
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
-    let SDKSampleAppLicenseKey = "GOSK-6443-0101-701E-EE39-6FBD"
+    let SDKSampleAppLicenseKey = "GOSK-8945-010C-E544-5344-FBAB"
     let BlackAndWhiteEffectKey = "BlackAndWhiteKey"
+    let BitmapOverlayEffectKey = "BitmapOverlayKey"
 
     @IBOutlet weak var broadcastButton:UIButton!
     @IBOutlet weak var settingsButton:UIButton!
     @IBOutlet weak var switchCameraButton:UIButton!
     @IBOutlet weak var torchButton:UIButton!
     @IBOutlet weak var micButton:UIButton!
+    @IBOutlet weak var bitmapOverlayImgView:UIImageView!
 
 
     var goCoder:WowzaGoCoder?
@@ -31,7 +33,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
     var receivedGoCoderEventCodes = Array<WOWZEvent>()
 
     var blackAndWhiteVideoEffect = false
-
+    var bitmapOverlayVideoEffect = false /// Not supported in swift version
     var goCoderRegistrationChecked = false
 
 
@@ -41,6 +43,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
 
         // Reload any saved data
         blackAndWhiteVideoEffect = UserDefaults.standard.bool(forKey: BlackAndWhiteEffectKey)
+        bitmapOverlayVideoEffect = UserDefaults.standard.bool(forKey: BitmapOverlayEffectKey)
         WowzaGoCoder.setLogLevel(.default)
 
         if let savedConfig:Data = UserDefaults.standard.object(forKey: SDKSampleSavedConfigKey) as? Data {
@@ -81,6 +84,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
         if (goCoder != nil) {
             goCoder?.config = goCoderConfig
             blackAndWhiteVideoEffect = UserDefaults.standard.bool(forKey: BlackAndWhiteKey)
+            bitmapOverlayVideoEffect = UserDefaults.standard.bool(forKey: BitmapOverlayKey)
         }
     }
 
@@ -93,11 +97,12 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
         super.viewDidAppear(animated)
 
         if !goCoderRegistrationChecked {
-            goCoderRegistrationChecked = true
             if let goCoderLicensingError = WowzaGoCoder.registerLicenseKey(SDKSampleAppLicenseKey) {
                 self.showAlert("GoCoder SDK Licensing Error", error: goCoderLicensingError as NSError)
             }
             else {
+                goCoderRegistrationChecked = true
+                
                 // Initialize the GoCoder SDK
                 if let goCoder = WowzaGoCoder.sharedInstance() {
                     self.goCoder = goCoder
@@ -123,9 +128,16 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
                 }
 
                 self.updateUIControls()
-
             }
         }
+        else{
+            // Start the camera preview
+            self.goCoder?.cameraPreview?.start()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.goCoder?.cameraPreview?.stop()
     }
 
     override var prefersStatusBarHidden:Bool {
@@ -199,8 +211,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
                 viewModel?.supportedPresetConfigs = goCoder?.cameraPreview?.camera?.supportedPresetConfigs
                 settingsViewController.viewModel = viewModel!
             }
-
-
+            
             self.present(settingsNavigationController, animated: true, completion: nil)
         }
     }
@@ -228,9 +239,42 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
             // in the GoCoder SDK configuration setiings
             self.micButton.isEnabled          = isStreaming && self.goCoderConfig.audioEnabled
             self.micButton.isHidden           = !self.micButton.isEnabled
+            
+            self.bitmapOverlayImgView.isHidden = !self.bitmapOverlayVideoEffect;
+            if(bitmapOverlayVideoEffect){
+                let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleBitmapDragged));
+                bitmapOverlayImgView.addGestureRecognizer(panRecognizer);
+                
+                let pinchRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleBitmapOverlayPinch));
+                self.view.addGestureRecognizer(pinchRecognizer);
+            }
         }
     }
-
+    
+    func handleBitmapOverlayPinch(_ sender:UIPinchGestureRecognizer){
+        let recognizer = sender.view;
+        let state = sender.state;
+        let recognizerView:UIImageView = bitmapOverlayImgView;
+        if (state == UIGestureRecognizerState.began || state == UIGestureRecognizerState.changed)
+        {
+            let scale  = sender.scale;
+            recognizerView.transform = view.transform.scaledBy(x: scale, y: scale);
+            recognizer?.contentScaleFactor = 1.0;
+        }
+        if(state == UIGestureRecognizerState.ended){
+            bitmapOverlayImgView.frame = CGRect(x: recognizerView.frame.origin.x, y: recognizerView.frame.origin.y, width: recognizerView.frame.size.width, height: recognizerView.frame.size.height);
+        }
+    }
+    
+    func handleBitmapDragged(_ sender:UIPanGestureRecognizer){
+        let recognizer:UIImageView = bitmapOverlayImgView;
+        self.view.bringSubview(toFront: recognizer)
+        let translation = sender.translation(in: recognizer)
+        recognizer.center = CGPoint(x: recognizer.center.x + translation.x, y: recognizer.center.y + translation.y)
+        sender.setTranslation(CGPoint.zero, in: recognizer)
+ 
+        bitmapOverlayImgView.frame = CGRect(x: recognizer.frame.origin.x, y: recognizer.frame.origin.y, width: recognizer.frame.size.width, height: recognizer.frame.size.height);
+    }
 
     //MARK: - WOWZStatusCallback Protocol Instance Methods
 
@@ -294,11 +338,37 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
                     let context = CIContext(options: nil)
                     context.render(frameImage, to: imageBuffer)
                 }
-
+            }
+        }
+        
+        if goCoder != nil && goCoder!.isStreaming && bitmapOverlayVideoEffect {
+            let wowzOverlayImg = bitmapOverlayImgView.image?.ciImage;
+            CVPixelBufferLockBaseAddress(imageBuffer, []);
+            let context = CGContext(data: CVPixelBufferGetBaseAddress(imageBuffer),
+                                    width: CVPixelBufferGetWidth(imageBuffer),
+                                    height: CVPixelBufferGetHeight(imageBuffer),
+                                    bitsPerComponent: 8,
+                                    bytesPerRow: CVPixelBufferGetBytesPerRow(imageBuffer),
+                                    space: CGColorSpaceCreateDeviceRGB(),
+                                    bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue );
+            
+            let rect:CGRect = bitmapOverlayImgView.frame;
+            let height = goCoderConfig.videoHeight+100; /// accommodating for header / footer areas
+            let y = CGFloat(height) - rect.origin.y;
+            let newFrame:CGRect = CGRect(x: rect.origin.x, y: y, width: bitmapOverlayImgView.frame.size.width, height: bitmapOverlayImgView.frame.size.height);
+     
+            let cgImage: CGImage? = bitmapOverlayImgView.image?.cgImage;
+            context?.draw(cgImage!, in: newFrame);
+            CVPixelBufferUnlockBaseAddress(imageBuffer, []);
+            
+            if wowzOverlayImg != nil
+            {
+                let contextOverlay = CIContext(options: nil)
+                contextOverlay.render(wowzOverlayImg!, to: imageBuffer)
             }
         }
     }
-
+    
     func videoCaptureInterruptionStarted() {
         goCoder?.endStreaming(self)
     }

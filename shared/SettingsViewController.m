@@ -201,10 +201,12 @@
             count = 1;
             break;
             
-        case SettingsViewSectionVideoEffects:
         case SettingsViewSectionRecordVideoLocally:
         case SettingsViewSectionPlayback:
             count = 1;
+            break;
+        case SettingsViewSectionVideoEffects:
+            count = 2;
             break;
 			case SettingsViewSectionPlaybackHLS:
 				count = 2;
@@ -284,7 +286,7 @@
                 
             case 1:
                 title = @"Always Landscape";
-                on = self.viewModel.broadcastVideoOrientation == WOWZBroadcastOrientationAlwaysLandscape;
+                on = self.viewModel.broadcastVideoOrientation == WOWZBroadcastOrientationAlwaysLandscapeLeft;
                 break;
                 
             case  2:
@@ -332,15 +334,31 @@
     }
     
     else if (settingsSection == SettingsViewSectionVideoEffects) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
-        cell.textLabel.text = @"Black and White";
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        UISwitch *effectSwitch = [[UISwitch alloc] init];
-        effectSwitch.on = self.viewModel.blackAndWhite;
-        [effectSwitch addTarget:self action:@selector(didChangeBlackAndWhiteSwitch:) forControlEvents:UIControlEventValueChanged];
-        cell.accessoryView = effectSwitch;
         
-        return cell;
+        switch (indexPath.row) {
+            case 0:{
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+                cell.textLabel.text = @"Black and White";
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                UISwitch *effectSwitch = [[UISwitch alloc] init];
+                effectSwitch.on = self.viewModel.blackAndWhite;
+                [effectSwitch addTarget:self action:@selector(didChangeBlackAndWhiteSwitch:) forControlEvents:UIControlEventValueChanged];
+                cell.accessoryView = effectSwitch;
+                return cell;
+                break;
+            }
+            case 1:{ 
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+                cell.textLabel.text = @"Bitmap Image Overlay";
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                UISwitch *effectSwitch = [[UISwitch alloc] init];
+                effectSwitch.on = self.viewModel.bitmapOverlay;
+                [effectSwitch addTarget:self action:@selector(didChangeBitmapOverlaySwitch:) forControlEvents:UIControlEventValueChanged];
+                cell.accessoryView = effectSwitch;
+                return cell;
+                break;
+            }
+        }
     }
     
     else if (settingsSection == SettingsViewSectionRecordVideoLocally) {
@@ -581,7 +599,7 @@
                 break;
                 
             case 1:
-                self.viewModel.broadcastVideoOrientation = WOWZBroadcastOrientationAlwaysLandscape;
+                self.viewModel.broadcastVideoOrientation = WOWZBroadcastOrientationAlwaysLandscapeLeft;
                 break;
                 
             case 2:
@@ -642,6 +660,11 @@
 	}
 }
 
+- (IBAction) didChangeBitmapOverlaySwitch:(id)sender {
+    UISwitch *effectSwitch = (UISwitch *)sender;
+    self.viewModel.bitmapOverlay = effectSwitch.isOn;
+}
+
 - (IBAction) didChangeBlackAndWhiteSwitch:(id)sender {
     UISwitch *effectSwitch = (UISwitch *)sender;
     self.viewModel.blackAndWhite = effectSwitch.isOn;
@@ -670,15 +693,27 @@
 // Connection Code logic
 - (BOOL) validateToken {
 	NSString *token = self.viewModel.connectionCode;
-	
-	if ( (token.length == 6 || token.length == 7) && [self validateTokenString:token] ) {
+    
+    NSLog(@"token in validateToken function: %@", token);
+    
+
+    //QA token
+    if ( (token.length == 9 || token.length == 10) && [token hasSuffix:(NSString *)@"-qa"] /*&& [self validateTokenString:token] */) {
+        WSCTokenProcessor *processor = [[WSCTokenProcessor alloc] init];
+        [processor populateProfile:self.viewModel.config fromWSCToken:token];
+        
+        return YES;
+    }
+    
+    //not QA token
+	else if ( (token.length == 6 || token.length == 7) && [self validateTokenString:token] ) {
 		WSCTokenProcessor *processor = [[WSCTokenProcessor alloc] init];
 		
 		// This works but I wonder if there is a cleaner way (or a better delegate)
 		//GoCoderAppDelegate *appDelegate = (GoCoderAppDelegate*)[[UIApplication sharedApplication] delegate];
 		//processor.delegate = (GoCoderViewController <WSCTokenProcessorDelegate> *) appDelegate.viewController;
 		
-		[processor populateProfile:self.viewModel.config fromWSCToken:@"connectionCode"];
+		[processor populateProfile:self.viewModel.config fromWSCToken:token];
 		
 		return YES;
 	}

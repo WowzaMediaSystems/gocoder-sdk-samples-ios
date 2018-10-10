@@ -8,19 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "WowzaConfig.h"
+#import <UIKit/UIKit.h>
 
 
 // Wowza Cloud API Key
 
-#if TESTING
-#define             WSC_API_TRANSCODER_URL          @"https://api-qa.cloud.wowza.com/api/v1/token/transcoders/"
-#define             WSC_API_KEANU_STREAM_TARGET_URL @"https://api-qa.cloud.wowza.com/api/v2/token/stream_targets/"
-#define             WSC_API_KEY                     @"TQ8tzMv7CJxTGtewponWcygMBK99nlQhMgV11mU9I5mlc4Ar0OmJYHLQv8Ab335c"
-#else
+//#if TESTING
+#define             QA_WSC_API_TRANSCODER_URL          @"https://api-qa.cloud.wowza.com/api/v1/token/transcoders/"
+#define             QA_WSC_API_KEANU_STREAM_TARGET_URL @"https://api-qa.cloud.wowza.com/api/v2/token/stream_targets/"
+#define             QA_WSC_API_KEY                     @"TQ8tzMv7CJxTGtewponWcygMBK99nlQhMgV11mU9I5mlc4Ar0OmJYHLQv8Ab335c"
+//#else
 #define             WSC_API_TRANSCODER_URL          @"https://api.cloud.wowza.com/api/v1/token/transcoders/"
 #define             WSC_API_KEANU_STREAM_TARGET_URL @"https://api.cloud.wowza.com/api/v2/token/stream_targets/"
 #define             WSC_API_KEY                     @"AO6vpvI1KAQEcfiQdPtF62uYuiQZqmExYA4LKkNCaJ5ae09B4r9St1DdyHgEQFA8"
-#endif
+//#endif
 
 /*
 host = api.cloud.wowza.com
@@ -50,6 +51,7 @@ api-key = A6vjuplTCyzirY0wQSRn11cIsEeajwi9dBmcxrGWLKQ9QGAHtratPk6H4NLR54Xq
     NSString *shortToken;
     NSString *endpointURL;
     NSMutableData *finalData;
+    bool isQA;
 		WowzaConfig *config;
 }
 
@@ -62,6 +64,7 @@ api-key = A6vjuplTCyzirY0wQSRn11cIsEeajwi9dBmcxrGWLKQ9QGAHtratPk6H4NLR54Xq
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+- (BOOL)isULLStreamTargetEnabled:(NSDictionary*) transcoderData;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftPlaybackSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSN-PS-9mU">
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ujU-QA-Gxu">
+                                <rect key="frame" x="98" y="52" width="179" height="31"/>
+                                <connections>
+                                    <action selector="didChangeVolume:" destination="BYZ-38-t0r" eventType="valueChanged" id="k7a-La-T83"/>
+                                </connections>
+                            </slider>
+                            <button contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0MY-b6-KXH">
+                                <rect key="frame" x="150" y="567" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="fco-Sj-Nj5"/>
+                                    <constraint firstAttribute="width" constant="75" id="lKL-Th-Vvt"/>
+                                </constraints>
+                                <state key="normal" image="playback_button"/>
+                                <connections>
+                                    <action selector="didTapPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vim-Lu-fRv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiZ-gb-uj9">
+                                <rect key="frame" x="20" y="40" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="dt3-Nh-fP8"/>
+                                    <constraint firstAttribute="width" constant="55" id="y56-Jx-Hk8"/>
+                                </constraints>
+                                <state key="normal" image="volume_unmute"/>
+                                <connections>
+                                    <action selector="didTapMuteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kv3-hu-1XR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jN-qW-bP2">
+                                <rect key="frame" x="310" y="582" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="Rqv-Jq-WHZ"/>
+                                    <constraint firstAttribute="height" constant="45" id="u9L-Za-40t"/>
+                                </constraints>
+                                <state key="normal" image="settings_button"/>
+                                <connections>
+                                    <action selector="didTapSettingsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="05z-ur-hsC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLAYBACK SAMPLE SWIFT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tH-nV-LkE">
+                                <rect key="frame" x="83" y="323" width="209" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0MY-b6-KXH" secondAttribute="bottom" constant="25" id="11N-1s-CHW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0jN-qW-bP2" secondAttribute="trailing" constant="20" id="47q-BI-itS"/>
+                            <constraint firstItem="SiZ-gb-uj9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5o0-f7-61H"/>
+                            <constraint firstItem="0MY-b6-KXH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Zb-ta-1iP"/>
+                            <constraint firstItem="uSN-PS-9mU" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Dn0-1n-8g3"/>
+                            <constraint firstItem="uSN-PS-9mU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="JEo-Ad-MsV"/>
+                            <constraint firstItem="4tH-nV-LkE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eNk-aa-CMr"/>
+                            <constraint firstItem="uSN-PS-9mU" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="fPK-mL-rb5"/>
+                            <constraint firstItem="0MY-b6-KXH" firstAttribute="centerY" secondItem="0jN-qW-bP2" secondAttribute="centerY" id="gLs-JV-TsD"/>
+                            <constraint firstItem="ujU-QA-Gxu" firstAttribute="leading" secondItem="SiZ-gb-uj9" secondAttribute="trailing" constant="25" id="it6-su-Qzd"/>
+                            <constraint firstItem="SiZ-gb-uj9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="jnD-cv-E2n"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0jN-qW-bP2" secondAttribute="bottom" constant="40" id="m4D-JV-J01"/>
+                            <constraint firstItem="ujU-QA-Gxu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mWu-Z9-11l"/>
+                            <constraint firstItem="4tH-nV-LkE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rSE-Rs-1i0"/>
+                            <constraint firstItem="uSN-PS-9mU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ylH-dj-N7q"/>
+                            <constraint firstItem="ujU-QA-Gxu" firstAttribute="centerY" secondItem="SiZ-gb-uj9" secondAttribute="centerY" id="zhM-W9-dsi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="4tH-nV-LkE" id="CL3-Oa-98W"/>
+                        <outlet property="muteButton" destination="SiZ-gb-uj9" id="g3L-cQ-a15"/>
+                        <outlet property="playButton" destination="0MY-b6-KXH" id="dTD-tN-2B1"/>
+                        <outlet property="previewView" destination="uSN-PS-9mU" id="o78-um-OKK"/>
+                        <outlet property="settingsButton" destination="0jN-qW-bP2" id="nSV-6e-i4X"/>
+                        <outlet property="volumeSlider" destination="ujU-QA-Gxu" id="nR5-Zc-D1J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="playback_button" width="75" height="75"/>
+        <image name="settings_button" width="45" height="45"/>
+        <image name="volume_unmute" width="55" height="55"/>
+    </resources>
+</document>

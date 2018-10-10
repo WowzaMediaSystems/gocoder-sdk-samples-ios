@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="e9p-MC-8ac">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1R-ob-3B1">
+                                <rect key="frame" x="72" y="608" width="232.5" height="17"/>
+                                <string key="text" base64-UTF8="YES">
+A8KpIDIwMTggV293emEgTWVkaWEgU3lzdGVtcywgTExDA
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="wowza_developer" translatesAutoresizingMaskIntoConstraints="NO" id="KJT-gY-RtQ">
+                                <rect key="frame" x="27.5" y="294" width="320" height="79"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98823529480000005" green="0.43529412150000002" blue="0.019607843829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="KJT-gY-RtQ" firstAttribute="centerX" secondItem="e9p-MC-8ac" secondAttribute="centerX" id="8qL-4b-fnc"/>
+                            <constraint firstItem="u1R-ob-3B1" firstAttribute="centerX" secondItem="e9p-MC-8ac" secondAttribute="centerX" id="GQB-qo-W5E"/>
+                            <constraint firstItem="KJT-gY-RtQ" firstAttribute="leading" secondItem="XX6-G4-kIR" secondAttribute="leading" constant="27.5" id="JMD-Jh-KdV"/>
+                            <constraint firstItem="XX6-G4-kIR" firstAttribute="trailing" secondItem="KJT-gY-RtQ" secondAttribute="trailing" constant="27.5" id="iml-EG-iju"/>
+                            <constraint firstItem="KJT-gY-RtQ" firstAttribute="centerY" secondItem="e9p-MC-8ac" secondAttribute="centerY" id="por-4Z-4Mw"/>
+                            <constraint firstItem="XX6-G4-kIR" firstAttribute="bottom" secondItem="u1R-ob-3B1" secondAttribute="bottom" constant="42" id="qk2-E1-MCw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XX6-G4-kIR"/>
+                    </view>
+                    <connections>
+                        <outlet property="view" destination="e9p-MC-8ac" id="ily-gM-cpU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="wowza_developer" width="320" height="79"/>
+    </resources>
+</document>

@@ -3,22 +3,35 @@
    version = "1.0">
    <Group
       location = "container:"
+      name = "AllInOne">
+      <FileRef
+         location = "group:All-in-OneSampleApp.objc.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
       name = "Obj-C">
       <FileRef
-         location = "group:WowzaGoCoderSDKSampleAppPlayer.objc.xcodeproj">
+         location = "group:SceneKitReelSampleApp.objc.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:WowzaGoCoder.SceneKitReel.xcodeproj">
+         location = "group:PlayerSampleApp.objc.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:MetaDataSampleApp.objc.xcodeproj">
       </FileRef>
    </Group>
    <Group
       location = "container:"
       name = "Swift">
       <FileRef
-         location = "group:WowzaGoCoderSDKSampleApp.swift.xcodeproj">
+         location = "group:StreamMP4SampleApp.swift.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:WowzaGoCoderMP4PlayerSample.swift.xcodeproj">
+         location = "group:PlayerSampleApp.swift.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:LiveStreamSampleApp.swift.xcodeproj">
       </FileRef>
    </Group>
 </Workspace>

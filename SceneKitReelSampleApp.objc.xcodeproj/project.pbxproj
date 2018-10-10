@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C1A51DD1D70D07F002E5540 /* theduel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C1A51DC1D70D07F002E5540 /* theduel.mp3 */; };
+		1C7DA8DD1C991B4C009546EE /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */; };
+		1C7DA8DE1C991B60009546EE /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1CE623F01C9F53C30060F2C1 /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */; };
+		1CE623F21C9F53C30060F2C1 /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623EB1C9F53C30060F2C1 /* SettingsTextFieldCell.m */; };
+		1CE623F31C9F53C30060F2C1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623ED1C9F53C30060F2C1 /* SettingsViewController.m */; };
+		1CE623F41C9F53C30060F2C1 /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623EF1C9F53C30060F2C1 /* SettingsViewModel.m */; };
+		35EFEC1E2152EAEE006F00B1 /* AAPLGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EFEC1B2152EAEE006F00B1 /* AAPLGameViewController.m */; };
+		35EFEC1F2152EAEE006F00B1 /* SceneKitMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35EFEC1D2152EAEE006F00B1 /* SceneKitMain.storyboard */; };
+		94005C05192E6901003CDBCF /* wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 94005C04192E6901003CDBCF /* wood.png */; };
+		94005C08192E69BF003CDBCF /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94005C07192E69BF003CDBCF /* SceneKit.framework */; };
+		94005C0A192E69C3003CDBCF /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94005C09192E69C3003CDBCF /* SpriteKit.framework */; };
+		94005C1519311D09003CDBCF /* SceneKit.png in Resources */ = {isa = PBXBuildFile; fileRef = 94005C1419311D09003CDBCF /* SceneKit.png */; };
+		9403832D190CFE92001C43A1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9403832B190CFE92001C43A1 /* icon.png */; };
+		9403832E190CFE92001C43A1 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9403832C190CFE92001C43A1 /* launch.png */; };
+		9409C210190A7465008EF25B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9409C20E190A7465008EF25B /* InfoPlist.strings */; };
+		9409C212190A7465008EF25B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9409C211190A7465008EF25B /* main.m */; };
+		9409C216190A7465008EF25B /* AAPLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9409C215190A7465008EF25B /* AAPLAppDelegate.m */; };
+		9409C221190A7465008EF25B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9409C220190A7465008EF25B /* Images.xcassets */; };
+		943482DE1932612100E34BF3 /* sm_geom.shader in Resources */ = {isa = PBXBuildFile; fileRef = 943482DD1932612100E34BF3 /* sm_geom.shader */; };
+		944D9CCE190A85CB00ACBE6F /* assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 944D9CCC190A85CB00ACBE6F /* assets.scnassets */; };
+		944D9CDA190A87E800ACBE6F /* ball.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D9CCF190A87E800ACBE6F /* ball.jpg */; };
+		944D9CDE190A87E800ACBE6F /* starBurst.skn in Resources */ = {isa = PBXBuildFile; fileRef = 944D9CD3190A87E800ACBE6F /* starBurst.skn */; };
+		944D9CE2190A87E800ACBE6F /* WoodCubeA.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D9CD7190A87E800ACBE6F /* WoodCubeA.jpg */; };
+		944D9CE3190A87E800ACBE6F /* WoodCubeB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D9CD8190A87E800ACBE6F /* WoodCubeB.jpg */; };
+		944D9CE4190A87E800ACBE6F /* WoodCubeC.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D9CD9190A87E800ACBE6F /* WoodCubeC.jpg */; };
+		944D9CE7190A8ACA00ACBE6F /* baseboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 944D9CE5190A8ACA00ACBE6F /* baseboard.jpg */; };
+		944D9D31190AA65700ACBE6F /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 944D9D2F190AA65700ACBE6F /* next.png */; };
+		945348E019314A5F002C5AC7 /* earth-diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 945348DC19314A5F002C5AC7 /* earth-diffuse.jpg */; };
+		945348E219314A5F002C5AC7 /* earth-specular.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 945348DD19314A5F002C5AC7 /* earth-specular.jpg */; };
+		949BC351193121490022CDEA /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949BC34B193121490022CDEA /* back.jpg */; };
+		949BC353193121490022CDEA /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949BC34C193121490022CDEA /* bottom.jpg */; };
+		949BC355193121490022CDEA /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949BC34D193121490022CDEA /* front.jpg */; };
+		949BC357193121490022CDEA /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949BC34E193121490022CDEA /* left.jpg */; };
+		949BC359193121490022CDEA /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949BC34F193121490022CDEA /* right.jpg */; };
+		949BC35B193121490022CDEA /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 949BC350193121490022CDEA /* top.jpg */; };
+		949C6FC3190FFBA5009552ED /* glossy.png in Resources */ = {isa = PBXBuildFile; fileRef = 949C6FC2190FFBA5009552ED /* glossy.png */; };
+		94AE2D64190C55F9008A4FAC /* wood-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2D63190C55F9008A4FAC /* wood-normal.png */; };
+		94AE2D68190C5E69008A4FAC /* envmap.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2D67190C5E69008A4FAC /* envmap.jpg */; };
+		94AE2D6D190C5E75008A4FAC /* sm_frag.shader in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2D6A190C5E75008A4FAC /* sm_frag.shader */; };
+		94AE2D6E190C5E75008A4FAC /* sm_light.shader in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2D6B190C5E75008A4FAC /* sm_light.shader */; };
+		94AE2D6F190C5E75008A4FAC /* sm_surf.shader in Resources */ = {isa = PBXBuildFile; fileRef = 94AE2D6C190C5E75008A4FAC /* sm_surf.shader */; };
+		94B916D1190C521B00656AD1 /* cubeTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B916D0190C521B00656AD1 /* cubeTexture.png */; };
+		94D616F3192527FA00D65DDF /* color_envmap.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D616F2192527FA00D65DDF /* color_envmap.png */; };
+		94D6170B19263E6400D65DDF /* krStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D6170A19263E6400D65DDF /* krStar.png */; };
+		94E3A77E190D84D4009BFA76 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E3A77D190D84D4009BFA76 /* back.png */; };
+		94EC4F9D192CF091000CEF75 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 94EC4F9C192CF091000CEF75 /* splash.png */; };
+		94F345FA191B9D4F003C1A65 /* wallPaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F345F9191B9D4F003C1A65 /* wallPaper.png */; };
+		B57220DF1BE369DD00F72F71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57220DD1BE369DD00F72F71 /* LaunchScreen.storyboard */; };
+		D4F384EB1EAFBE3200BD13C6 /* AppSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F384EA1EAFBE3200BD13C6 /* AppSettings.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1CD2B5E51C939C170004C38D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1C7DA8DE1C991B60009546EE /* WowzaGoCoderSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1C1A51DC1D70D07F002E5540 /* theduel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = theduel.mp3; sourceTree = "<group>"; };
+		1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
+		1CE623E71C9F53C30060F2C1 /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = shared/CustomFrameSizeViewController.h; sourceTree = SOURCE_ROOT; };
+		1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = shared/CustomFrameSizeViewController.m; sourceTree = SOURCE_ROOT; };
+		1CE623EA1C9F53C30060F2C1 /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTextFieldCell.h; path = shared/SettingsTextFieldCell.h; sourceTree = SOURCE_ROOT; };
+		1CE623EB1C9F53C30060F2C1 /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTextFieldCell.m; path = shared/SettingsTextFieldCell.m; sourceTree = SOURCE_ROOT; };
+		1CE623EC1C9F53C30060F2C1 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = shared/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
+		1CE623ED1C9F53C30060F2C1 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = shared/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
+		1CE623EE1C9F53C30060F2C1 /* SettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewModel.h; path = shared/SettingsViewModel.h; sourceTree = SOURCE_ROOT; };
+		1CE623EF1C9F53C30060F2C1 /* SettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewModel.m; path = shared/SettingsViewModel.m; sourceTree = SOURCE_ROOT; };
+		35EFEC1B2152EAEE006F00B1 /* AAPLGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAPLGameViewController.m; path = shared/AAPLGameViewController.m; sourceTree = SOURCE_ROOT; };
+		35EFEC1C2152EAEE006F00B1 /* AAPLGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAPLGameViewController.h; path = shared/AAPLGameViewController.h; sourceTree = SOURCE_ROOT; };
+		35EFEC1D2152EAEE006F00B1 /* SceneKitMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SceneKitMain.storyboard; path = shared/SceneKitMain.storyboard; sourceTree = SOURCE_ROOT; };
+		94005C04192E6901003CDBCF /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		94005C07192E69BF003CDBCF /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		94005C09192E69C3003CDBCF /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		94005C1419311D09003CDBCF /* SceneKit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SceneKit.png; sourceTree = "<group>"; };
+		9403832B190CFE92001C43A1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		9403832C190CFE92001C43A1 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
+		9409C209190A7465008EF25B /* WZSceneKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WZSceneKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9409C20D190A7465008EF25B /* SceneKitReel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SceneKitReel-Info.plist"; sourceTree = "<group>"; };
+		9409C20F190A7465008EF25B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9409C211190A7465008EF25B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9409C213190A7465008EF25B /* SceneKitReel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SceneKitReel-Prefix.pch"; sourceTree = "<group>"; };
+		9409C214190A7465008EF25B /* AAPLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AAPLAppDelegate.h; path = SceneKitReel/AAPLAppDelegate.h; sourceTree = "<group>"; };
+		9409C215190A7465008EF25B /* AAPLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AAPLAppDelegate.m; path = SceneKitReel/AAPLAppDelegate.m; sourceTree = "<group>"; };
+		9409C220190A7465008EF25B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SceneKitReel/Images.xcassets; sourceTree = "<group>"; };
+		943482DD1932612100E34BF3 /* sm_geom.shader */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = sm_geom.shader; sourceTree = "<group>"; };
+		944D9CCC190A85CB00ACBE6F /* assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = assets.scnassets; sourceTree = "<group>"; };
+		944D9CCF190A87E800ACBE6F /* ball.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ball.jpg; sourceTree = "<group>"; };
+		944D9CD3190A87E800ACBE6F /* starBurst.skn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = starBurst.skn; sourceTree = "<group>"; };
+		944D9CD7190A87E800ACBE6F /* WoodCubeA.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WoodCubeA.jpg; sourceTree = "<group>"; };
+		944D9CD8190A87E800ACBE6F /* WoodCubeB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WoodCubeB.jpg; sourceTree = "<group>"; };
+		944D9CD9190A87E800ACBE6F /* WoodCubeC.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WoodCubeC.jpg; sourceTree = "<group>"; };
+		944D9CE5190A8ACA00ACBE6F /* baseboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = baseboard.jpg; sourceTree = "<group>"; };
+		944D9D2F190AA65700ACBE6F /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		945348DC19314A5F002C5AC7 /* earth-diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "earth-diffuse.jpg"; sourceTree = "<group>"; };
+		945348DD19314A5F002C5AC7 /* earth-specular.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "earth-specular.jpg"; sourceTree = "<group>"; };
+		949BC34B193121490022CDEA /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		949BC34C193121490022CDEA /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
+		949BC34D193121490022CDEA /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		949BC34E193121490022CDEA /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
+		949BC34F193121490022CDEA /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
+		949BC350193121490022CDEA /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		949C6FC2190FFBA5009552ED /* glossy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glossy.png; sourceTree = "<group>"; };
+		94AE2D63190C55F9008A4FAC /* wood-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood-normal.png"; sourceTree = "<group>"; };
+		94AE2D67190C5E69008A4FAC /* envmap.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = envmap.jpg; sourceTree = "<group>"; };
+		94AE2D6A190C5E75008A4FAC /* sm_frag.shader */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = sm_frag.shader; sourceTree = "<group>"; };
+		94AE2D6B190C5E75008A4FAC /* sm_light.shader */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = sm_light.shader; sourceTree = "<group>"; };
+		94AE2D6C190C5E75008A4FAC /* sm_surf.shader */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = sm_surf.shader; sourceTree = "<group>"; };
+		94B916D0190C521B00656AD1 /* cubeTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cubeTexture.png; sourceTree = "<group>"; };
+		94D616F2192527FA00D65DDF /* color_envmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_envmap.png; sourceTree = "<group>"; };
+		94D6170A19263E6400D65DDF /* krStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = krStar.png; sourceTree = "<group>"; };
+		94E3A77D190D84D4009BFA76 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		94EC4F9C192CF091000CEF75 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		94F345F9191B9D4F003C1A65 /* wallPaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallPaper.png; sourceTree = "<group>"; };
+		B57220DE1BE369DD00F72F71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4F384EA1EAFBE3200BD13C6 /* AppSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AppSettings.storyboard; path = shared/AppSettings.storyboard; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9409C206190A7465008EF25B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C7DA8DD1C991B4C009546EE /* WowzaGoCoderSDK.framework in Frameworks */,
+				94005C0A192E69C3003CDBCF /* SpriteKit.framework in Frameworks */,
+				94005C08192E69BF003CDBCF /* SceneKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9409C200190A7465008EF25B = {
+			isa = PBXGroup;
+			children = (
+				9409C214190A7465008EF25B /* AAPLAppDelegate.h */,
+				9409C215190A7465008EF25B /* AAPLAppDelegate.m */,
+				9409C220190A7465008EF25B /* Images.xcassets */,
+				B57220DD1BE369DD00F72F71 /* LaunchScreen.storyboard */,
+				9409C20A190A7465008EF25B /* Products */,
+				944D9CCB190A85CB00ACBE6F /* Resources */,
+				94005C07192E69BF003CDBCF /* SceneKit.framework */,
+				9CF7785A192D11860041C3B0 /* Shared */,
+				94005C09192E69C3003CDBCF /* SpriteKit.framework */,
+				9409C20C190A7465008EF25B /* Supporting Files */,
+				1C7DA8DC1C991B4C009546EE /* WowzaGoCoderSDK.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		9409C20A190A7465008EF25B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9409C209190A7465008EF25B /* WZSceneKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9409C20C190A7465008EF25B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9409C20D190A7465008EF25B /* SceneKitReel-Info.plist */,
+				9409C20E190A7465008EF25B /* InfoPlist.strings */,
+				9409C211190A7465008EF25B /* main.m */,
+				9409C213190A7465008EF25B /* SceneKitReel-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = SceneKitReel;
+			sourceTree = "<group>";
+		};
+		944D9CCB190A85CB00ACBE6F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				944D9CCC190A85CB00ACBE6F /* assets.scnassets */,
+				944D9CCD190A85CB00ACBE6F /* images */,
+				94AE2D69190C5E75008A4FAC /* shaders */,
+				944D9D33190AA6FD00ACBE6F /* sounds */,
+			);
+			name = Resources;
+			path = SceneKitReel/Resources;
+			sourceTree = "<group>";
+		};
+		944D9CCD190A85CB00ACBE6F /* images */ = {
+			isa = PBXGroup;
+			children = (
+				944D9CCF190A87E800ACBE6F /* ball.jpg */,
+				944D9D2F190AA65700ACBE6F /* next.png */,
+				94EC4F9C192CF091000CEF75 /* splash.png */,
+				94E3A77D190D84D4009BFA76 /* back.png */,
+				949BC34A193121490022CDEA /* cubemap */,
+				94F345F9191B9D4F003C1A65 /* wallPaper.png */,
+				944D9CE5190A8ACA00ACBE6F /* baseboard.jpg */,
+				94AE2D67190C5E69008A4FAC /* envmap.jpg */,
+				944D9CD3190A87E800ACBE6F /* starBurst.skn */,
+				94D6170A19263E6400D65DDF /* krStar.png */,
+				94B916D0190C521B00656AD1 /* cubeTexture.png */,
+				9403832B190CFE92001C43A1 /* icon.png */,
+				9403832C190CFE92001C43A1 /* launch.png */,
+				94005C1419311D09003CDBCF /* SceneKit.png */,
+				94D616F2192527FA00D65DDF /* color_envmap.png */,
+				949C6FC2190FFBA5009552ED /* glossy.png */,
+				94AE2D63190C55F9008A4FAC /* wood-normal.png */,
+				945348DA19314A5F002C5AC7 /* earth */,
+				944D9CD7190A87E800ACBE6F /* WoodCubeA.jpg */,
+				944D9CD8190A87E800ACBE6F /* WoodCubeB.jpg */,
+				944D9CD9190A87E800ACBE6F /* WoodCubeC.jpg */,
+				94005C04192E6901003CDBCF /* wood.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		944D9D33190AA6FD00ACBE6F /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				1C1A51DC1D70D07F002E5540 /* theduel.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
+		945348DA19314A5F002C5AC7 /* earth */ = {
+			isa = PBXGroup;
+			children = (
+				945348DC19314A5F002C5AC7 /* earth-diffuse.jpg */,
+				945348DD19314A5F002C5AC7 /* earth-specular.jpg */,
+			);
+			path = earth;
+			sourceTree = "<group>";
+		};
+		949BC34A193121490022CDEA /* cubemap */ = {
+			isa = PBXGroup;
+			children = (
+				949BC34B193121490022CDEA /* back.jpg */,
+				949BC34C193121490022CDEA /* bottom.jpg */,
+				949BC34D193121490022CDEA /* front.jpg */,
+				949BC34E193121490022CDEA /* left.jpg */,
+				949BC34F193121490022CDEA /* right.jpg */,
+				949BC350193121490022CDEA /* top.jpg */,
+			);
+			path = cubemap;
+			sourceTree = "<group>";
+		};
+		94AE2D69190C5E75008A4FAC /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				943482DD1932612100E34BF3 /* sm_geom.shader */,
+				94AE2D6A190C5E75008A4FAC /* sm_frag.shader */,
+				94AE2D6B190C5E75008A4FAC /* sm_light.shader */,
+				94AE2D6C190C5E75008A4FAC /* sm_surf.shader */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		9CF7785A192D11860041C3B0 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				35EFEC1C2152EAEE006F00B1 /* AAPLGameViewController.h */,
+				35EFEC1B2152EAEE006F00B1 /* AAPLGameViewController.m */,
+				35EFEC1D2152EAEE006F00B1 /* SceneKitMain.storyboard */,
+				D4F384EA1EAFBE3200BD13C6 /* AppSettings.storyboard */,
+				1CE623E71C9F53C30060F2C1 /* CustomFrameSizeViewController.h */,
+				1CE623E81C9F53C30060F2C1 /* CustomFrameSizeViewController.m */,
+				1CE623EA1C9F53C30060F2C1 /* SettingsTextFieldCell.h */,
+				1CE623EB1C9F53C30060F2C1 /* SettingsTextFieldCell.m */,
+				1CE623EC1C9F53C30060F2C1 /* SettingsViewController.h */,
+				1CE623ED1C9F53C30060F2C1 /* SettingsViewController.m */,
+				1CE623EE1C9F53C30060F2C1 /* SettingsViewModel.h */,
+				1CE623EF1C9F53C30060F2C1 /* SettingsViewModel.m */,
+			);
+			name = Shared;
+			path = SceneKitReel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9409C208190A7465008EF25B /* WZSceneKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9409C233190A7465008EF25B /* Build configuration list for PBXNativeTarget "WZSceneKit" */;
+			buildPhases = (
+				9409C205190A7465008EF25B /* Sources */,
+				1CAC95411D1D998000D95262 /* Validate SDK */,
+				9409C206190A7465008EF25B /* Frameworks */,
+				9409C207190A7465008EF25B /* Resources */,
+				1CD2B5E51C939C170004C38D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WZSceneKit;
+			productName = SceneKitReel;
+			productReference = 9409C209190A7465008EF25B /* WZSceneKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9409C201190A7465008EF25B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = apple;
+				TargetAttributes = {
+					9409C208190A7465008EF25B = {
+						DevelopmentTeam = VVGYK4HC82;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9409C204190A7465008EF25B /* Build configuration list for PBXProject "SceneKitReelSampleApp.objc" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9409C200190A7465008EF25B;
+			productRefGroup = 9409C20A190A7465008EF25B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9409C208190A7465008EF25B /* WZSceneKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9409C207190A7465008EF25B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				949BC351193121490022CDEA /* back.jpg in Resources */,
+				1C1A51DD1D70D07F002E5540 /* theduel.mp3 in Resources */,
+				94B916D1190C521B00656AD1 /* cubeTexture.png in Resources */,
+				94D616F3192527FA00D65DDF /* color_envmap.png in Resources */,
+				94EC4F9D192CF091000CEF75 /* splash.png in Resources */,
+				949C6FC3190FFBA5009552ED /* glossy.png in Resources */,
+				944D9CE7190A8ACA00ACBE6F /* baseboard.jpg in Resources */,
+				94D6170B19263E6400D65DDF /* krStar.png in Resources */,
+				949BC35B193121490022CDEA /* top.jpg in Resources */,
+				944D9CCE190A85CB00ACBE6F /* assets.scnassets in Resources */,
+				944D9CDE190A87E800ACBE6F /* starBurst.skn in Resources */,
+				94F345FA191B9D4F003C1A65 /* wallPaper.png in Resources */,
+				944D9CE4190A87E800ACBE6F /* WoodCubeC.jpg in Resources */,
+				94AE2D64190C55F9008A4FAC /* wood-normal.png in Resources */,
+				949BC353193121490022CDEA /* bottom.jpg in Resources */,
+				9409C221190A7465008EF25B /* Images.xcassets in Resources */,
+				943482DE1932612100E34BF3 /* sm_geom.shader in Resources */,
+				9403832E190CFE92001C43A1 /* launch.png in Resources */,
+				945348E219314A5F002C5AC7 /* earth-specular.jpg in Resources */,
+				94AE2D6D190C5E75008A4FAC /* sm_frag.shader in Resources */,
+				944D9CE3190A87E800ACBE6F /* WoodCubeB.jpg in Resources */,
+				949BC359193121490022CDEA /* right.jpg in Resources */,
+				94AE2D68190C5E69008A4FAC /* envmap.jpg in Resources */,
+				35EFEC1F2152EAEE006F00B1 /* SceneKitMain.storyboard in Resources */,
+				944D9CE2190A87E800ACBE6F /* WoodCubeA.jpg in Resources */,
+				B57220DF1BE369DD00F72F71 /* LaunchScreen.storyboard in Resources */,
+				94005C1519311D09003CDBCF /* SceneKit.png in Resources */,
+				D4F384EB1EAFBE3200BD13C6 /* AppSettings.storyboard in Resources */,
+				94AE2D6F190C5E75008A4FAC /* sm_surf.shader in Resources */,
+				94AE2D6E190C5E75008A4FAC /* sm_light.shader in Resources */,
+				945348E019314A5F002C5AC7 /* earth-diffuse.jpg in Resources */,
+				949BC355193121490022CDEA /* front.jpg in Resources */,
+				944D9D31190AA65700ACBE6F /* next.png in Resources */,
+				949BC357193121490022CDEA /* left.jpg in Resources */,
+				94005C05192E6901003CDBCF /* wood.png in Resources */,
+				94E3A77E190D84D4009BFA76 /* back.png in Resources */,
+				9403832D190CFE92001C43A1 /* icon.png in Resources */,
+				944D9CDA190A87E800ACBE6F /* ball.jpg in Resources */,
+				9409C210190A7465008EF25B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CAC95411D1D998000D95262 /* Validate SDK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate SDK";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "my_script=\"./validatesdk.sh\"\nif [ ! -f \"$my_script\" ]\nthen\nexit 0\nfi\n\nchmod +x $my_script\n\n./$my_script";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9409C205190A7465008EF25B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9409C216190A7465008EF25B /* AAPLAppDelegate.m in Sources */,
+				1CE623F21C9F53C30060F2C1 /* SettingsTextFieldCell.m in Sources */,
+				1CE623F41C9F53C30060F2C1 /* SettingsViewModel.m in Sources */,
+				1CE623F31C9F53C30060F2C1 /* SettingsViewController.m in Sources */,
+				1CE623F01C9F53C30060F2C1 /* CustomFrameSizeViewController.m in Sources */,
+				35EFEC1E2152EAEE006F00B1 /* AAPLGameViewController.m in Sources */,
+				9409C212190A7465008EF25B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9409C20E190A7465008EF25B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9409C20F190A7465008EF25B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B57220DD1BE369DD00F72F71 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B57220DE1BE369DD00F72F71 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = SceneKitReel;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9409C231190A7465008EF25B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				AXLE_ENABLE_DEBUG_INFO = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos.internal;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TOOLCHAINS = default;
+			};
+			name = Debug;
+		};
+		9409C232190A7465008EF25B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				AXLE_ENABLE_DEBUG_INFO = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = iphoneos.internal;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TOOLCHAINS = default;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9409C234190A7465008EF25B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SceneKitReel/SceneKitReel-Prefix.pch";
+				INFOPLIST_FILE = "SceneKitReel/SceneKitReel-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.scenekitsampleapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9409C235190A7465008EF25B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wowza Media Systems, LLC (VVGYK4HC82)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SceneKitReel/SceneKitReel-Prefix.pch";
+				INFOPLIST_FILE = "SceneKitReel/SceneKitReel-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.scenekitsampleapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9409C204190A7465008EF25B /* Build configuration list for PBXProject "SceneKitReelSampleApp.objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9409C231190A7465008EF25B /* Debug */,
+				9409C232190A7465008EF25B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9409C233190A7465008EF25B /* Build configuration list for PBXNativeTarget "WZSceneKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9409C234190A7465008EF25B /* Debug */,
+				9409C235190A7465008EF25B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9409C201190A7465008EF25B /* Project object */;
+}

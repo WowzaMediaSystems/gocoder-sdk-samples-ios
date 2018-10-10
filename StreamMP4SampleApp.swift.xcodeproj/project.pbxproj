@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C2B1C9C1D00E2F70044B56D /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C2B1C9A1D00E2E60044B56D /* WowzaGoCoderSDK.framework */; };
+		1C2B1C9D1D00E2F70044B56D /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C2B1C9A1D00E2E60044B56D /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1CE623A71C9C80640060F2C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623A61C9C80640060F2C1 /* AppDelegate.swift */; };
+		1CE623AC1C9C80640060F2C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE623AA1C9C80640060F2C1 /* Main.storyboard */; };
+		1CE623AE1C9C80640060F2C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE623AD1C9C80640060F2C1 /* Assets.xcassets */; };
+		1CE623B11C9C80640060F2C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CE623AF1C9C80640060F2C1 /* LaunchScreen.storyboard */; };
+		1CE623BA1C9C83300060F2C1 /* Movie.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 1CE623B91C9C83300060F2C1 /* Movie.m4v */; };
+		1CE623CC1C9CA5D40060F2C1 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623C41C9CA5D40060F2C1 /* SettingsViewController.m */; };
+		1CE623CD1C9CA5D40060F2C1 /* CustomFrameSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623C61C9CA5D40060F2C1 /* CustomFrameSizeViewController.m */; };
+		1CE623CF1C9CA5D40060F2C1 /* SettingsTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623C91C9CA5D40060F2C1 /* SettingsTextFieldCell.m */; };
+		1CE623D01C9CA5D40060F2C1 /* SettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE623CB1C9CA5D40060F2C1 /* SettingsViewModel.m */; };
+		35EFEC142152E072006F00B1 /* MP4PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EFEC132152E072006F00B1 /* MP4PlayerViewController.swift */; };
+		D4F384ED1EAFBE4D00BD13C6 /* AppSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F384EC1EAFBE4D00BD13C6 /* AppSettings.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1CE623C01C9C9B7F0060F2C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1C2B1C9D1D00E2F70044B56D /* WowzaGoCoderSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1C2B1C9A1D00E2E60044B56D /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WowzaGoCoderSDK.framework; sourceTree = SOURCE_ROOT; };
+		1CE623A31C9C80640060F2C1 /* MP4Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MP4Player.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CE623A61C9C80640060F2C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1CE623AB1C9C80640060F2C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1CE623AD1C9C80640060F2C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1CE623B01C9C80640060F2C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1CE623B21C9C80640060F2C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CE623B91C9C83300060F2C1 /* Movie.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie.m4v; sourceTree = "<group>"; };
+		1CE623C21C9CA5D30060F2C1 /* MP4Player-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MP4Player-Bridging-Header.h"; path = "../GoCoder SDK/GoCoder SDK/MP4Player-Bridging-Header.h"; sourceTree = "<group>"; };
+		1CE623C31C9CA5D40060F2C1 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = shared/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
+		1CE623C41C9CA5D40060F2C1 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = shared/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
+		1CE623C51C9CA5D40060F2C1 /* CustomFrameSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomFrameSizeViewController.h; path = shared/CustomFrameSizeViewController.h; sourceTree = SOURCE_ROOT; };
+		1CE623C61C9CA5D40060F2C1 /* CustomFrameSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomFrameSizeViewController.m; path = shared/CustomFrameSizeViewController.m; sourceTree = SOURCE_ROOT; };
+		1CE623C81C9CA5D40060F2C1 /* SettingsTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTextFieldCell.h; path = shared/SettingsTextFieldCell.h; sourceTree = SOURCE_ROOT; };
+		1CE623C91C9CA5D40060F2C1 /* SettingsTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTextFieldCell.m; path = shared/SettingsTextFieldCell.m; sourceTree = SOURCE_ROOT; };
+		1CE623CA1C9CA5D40060F2C1 /* SettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewModel.h; path = shared/SettingsViewModel.h; sourceTree = SOURCE_ROOT; };
+		1CE623CB1C9CA5D40060F2C1 /* SettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewModel.m; path = shared/SettingsViewModel.m; sourceTree = SOURCE_ROOT; };
+		35EFEC132152E072006F00B1 /* MP4PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4PlayerViewController.swift; sourceTree = "<group>"; };
+		D4F384EC1EAFBE4D00BD13C6 /* AppSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AppSettings.storyboard; path = shared/AppSettings.storyboard; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1CE623A01C9C80640060F2C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C2B1C9C1D00E2F70044B56D /* WowzaGoCoderSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CE6239A1C9C80640060F2C1 = {
+			isa = PBXGroup;
+			children = (
+				1CE623A41C9C80640060F2C1 /* Products */,
+				1CE623A51C9C80640060F2C1 /* WowzaGoCoderMP4PlayerSample.swift */,
+			);
+			sourceTree = "<group>";
+		};
+		1CE623A41C9C80640060F2C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CE623A31C9C80640060F2C1 /* MP4Player.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1CE623A51C9C80640060F2C1 /* WowzaGoCoderMP4PlayerSample.swift */ = {
+			isa = PBXGroup;
+			children = (
+				35EFEC132152E072006F00B1 /* MP4PlayerViewController.swift */,
+				1C2B1C9A1D00E2E60044B56D /* WowzaGoCoderSDK.framework */,
+				1CE623A61C9C80640060F2C1 /* AppDelegate.swift */,
+				1CE623AD1C9C80640060F2C1 /* Assets.xcassets */,
+				1CE623B21C9C80640060F2C1 /* Info.plist */,
+				1CE623AF1C9C80640060F2C1 /* LaunchScreen.storyboard */,
+				1CE623AA1C9C80640060F2C1 /* Main.storyboard */,
+				1CE623C21C9CA5D30060F2C1 /* MP4Player-Bridging-Header.h */,
+				1CE623B81C9C82E60060F2C1 /* Resources */,
+				1CE623C11C9CA5B60060F2C1 /* Shared */,
+			);
+			path = WowzaGoCoderMP4PlayerSample.swift;
+			sourceTree = "<group>";
+		};
+		1CE623B81C9C82E60060F2C1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1CE623B91C9C83300060F2C1 /* Movie.m4v */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1CE623C11C9CA5B60060F2C1 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D4F384EC1EAFBE4D00BD13C6 /* AppSettings.storyboard */,
+				1CE623C31C9CA5D40060F2C1 /* SettingsViewController.h */,
+				1CE623C41C9CA5D40060F2C1 /* SettingsViewController.m */,
+				1CE623C51C9CA5D40060F2C1 /* CustomFrameSizeViewController.h */,
+				1CE623C61C9CA5D40060F2C1 /* CustomFrameSizeViewController.m */,
+				1CE623C81C9CA5D40060F2C1 /* SettingsTextFieldCell.h */,
+				1CE623C91C9CA5D40060F2C1 /* SettingsTextFieldCell.m */,
+				1CE623CA1C9CA5D40060F2C1 /* SettingsViewModel.h */,
+				1CE623CB1C9CA5D40060F2C1 /* SettingsViewModel.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1CE623A21C9C80640060F2C1 /* MP4Player */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CE623B51C9C80640060F2C1 /* Build configuration list for PBXNativeTarget "MP4Player" */;
+			buildPhases = (
+				1CE6239F1C9C80640060F2C1 /* Sources */,
+				1CAC95431D1D99B200D95262 /* Validate SDK */,
+				1CE623A01C9C80640060F2C1 /* Frameworks */,
+				1CE623A11C9C80640060F2C1 /* Resources */,
+				1CE623C01C9C9B7F0060F2C1 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MP4Player;
+			productName = WowzaGoCoderMP4PlayerSample.swift;
+			productReference = 1CE623A31C9C80640060F2C1 /* MP4Player.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1CE6239B1C9C80640060F2C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Wowza, Inc";
+				TargetAttributes = {
+					1CE623A21C9C80640060F2C1 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = VVGYK4HC82;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1CE6239E1C9C80640060F2C1 /* Build configuration list for PBXProject "StreamMP4SampleApp.swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1CE6239A1C9C80640060F2C1;
+			productRefGroup = 1CE623A41C9C80640060F2C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1CE623A21C9C80640060F2C1 /* MP4Player */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1CE623A11C9C80640060F2C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4F384ED1EAFBE4D00BD13C6 /* AppSettings.storyboard in Resources */,
+				1CE623B11C9C80640060F2C1 /* LaunchScreen.storyboard in Resources */,
+				1CE623AE1C9C80640060F2C1 /* Assets.xcassets in Resources */,
+				1CE623BA1C9C83300060F2C1 /* Movie.m4v in Resources */,
+				1CE623AC1C9C80640060F2C1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CAC95431D1D99B200D95262 /* Validate SDK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate SDK";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "my_script=\"./validatesdk.sh\"\nif [ ! -f \"$my_script\" ]\nthen\nexit 0\nfi\n\nchmod +x $my_script\n\n./$my_script";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1CE6239F1C9C80640060F2C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CE623CC1C9CA5D40060F2C1 /* SettingsViewController.m in Sources */,
+				35EFEC142152E072006F00B1 /* MP4PlayerViewController.swift in Sources */,
+				1CE623D01C9CA5D40060F2C1 /* SettingsViewModel.m in Sources */,
+				1CE623CF1C9CA5D40060F2C1 /* SettingsTextFieldCell.m in Sources */,
+				1CE623CD1C9CA5D40060F2C1 /* CustomFrameSizeViewController.m in Sources */,
+				1CE623A71C9C80640060F2C1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1CE623AA1C9C80640060F2C1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CE623AB1C9C80640060F2C1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1CE623AF1C9C80640060F2C1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CE623B01C9C80640060F2C1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1CE623B31C9C80640060F2C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1CE623B41C9C80640060F2C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1CE623B61C9C80640060F2C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/WowzaGoCoderMP4PlayerSample.swift",
+				);
+				INFOPLIST_FILE = WowzaGoCoderMP4PlayerSample.swift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.mp4playersampleapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WowzaGoCoderMP4PlayerSample.swift/MP4Player-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1CE623B71C9C80640060F2C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wowza Media Systems, LLC (VVGYK4HC82)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = VVGYK4HC82;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/WowzaGoCoderMP4PlayerSample.swift",
+				);
+				INFOPLIST_FILE = WowzaGoCoderMP4PlayerSample.swift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wowza.gocoder.sdk.mp4playersampleapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WowzaGoCoderMP4PlayerSample.swift/MP4Player-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1CE6239E1C9C80640060F2C1 /* Build configuration list for PBXProject "StreamMP4SampleApp.swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CE623B31C9C80640060F2C1 /* Debug */,
+				1CE623B41C9C80640060F2C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CE623B51C9C80640060F2C1 /* Build configuration list for PBXNativeTarget "MP4Player" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CE623B61C9C80640060F2C1 /* Debug */,
+				1CE623B71C9C80640060F2C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1CE6239B1C9C80640060F2C1 /* Project object */;
+}

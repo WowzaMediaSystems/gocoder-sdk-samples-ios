@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n3p-KN-MuK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n3p-KN-MuK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="-175" y="84"/>
         </scene>
-        <!--Video Player View Controller-->
+        <!--Broadcast View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="VideoPlayerViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="BroadcastViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -176,6 +175,10 @@
                                     <action selector="frameChangeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zwo-vT-lY5"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wowza" translatesAutoresizingMaskIntoConstraints="NO" id="xLF-36-Q7H">
+                                <rect key="frame" x="66" y="236" width="237" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.36470588235294116" green="0.37647058823529411" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -210,6 +213,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="bitmapOverlayImgView" destination="xLF-36-Q7H" id="lEL-HJ-jTZ"/>
                         <outlet property="broadcastButton" destination="IMC-Rk-m4x" id="ZyO-o3-ISu"/>
                         <outlet property="closeButton" destination="TN5-Ee-nq5" id="xe1-tK-6s3"/>
                         <outlet property="micButton" destination="r9O-5P-CN0" id="w6T-7D-Brk"/>
@@ -240,6 +244,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gv4-pf-uZW" userLabel="Aspect">
+                                <rect key="frame" x="34" y="594.5" width="49" height="30"/>
+                                <state key="normal" title="Aspect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapAspectButton:" destination="nIe-I7-rXB" eventType="touchUpInside" id="905-oY-QW9"/>
+                                </connections>
+                            </button>
                             <button contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ke6-tf-MDs">
                                 <rect key="frame" x="150" y="572" width="75" height="75"/>
                                 <constraints>
@@ -287,7 +300,7 @@
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="W1k-rV-rxe">
-                                <rect key="frame" x="114" y="52" width="227" height="31"/>
+                                <rect key="frame" x="114" y="52.5" width="227" height="31"/>
                                 <connections>
                                     <action selector="didChangeVolume:" destination="nIe-I7-rXB" eventType="valueChanged" id="ePc-A9-Cda"/>
                                 </connections>
@@ -317,7 +330,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qe-Ks-ai0">
-                                <rect key="frame" x="187" y="333.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187.5" y="333.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -333,6 +346,7 @@
                             <constraint firstItem="ke6-tf-MDs" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="F6I-rU-R1Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r65-cb-pZB" secondAttribute="trailing" constant="20" id="JeO-zS-w5R"/>
                             <constraint firstItem="XiZ-In-SEl" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" id="KmE-da-BUk"/>
+                            <constraint firstItem="gv4-pf-uZW" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" constant="18" id="Li1-k9-jAZ"/>
                             <constraint firstItem="ke6-tf-MDs" firstAttribute="top" secondItem="XiZ-In-SEl" secondAttribute="bottom" constant="17" id="LnE-er-sQg"/>
                             <constraint firstItem="2Q3-D4-pIH" firstAttribute="top" secondItem="Cmq-oU-zHc" secondAttribute="bottom" constant="20" id="MAm-nw-mqt"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Hcy-pO-x8D" secondAttribute="leading" id="NFL-yM-syA"/>
@@ -342,6 +356,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="W1k-rV-rxe" secondAttribute="trailing" constant="20" id="Sfs-DI-Pzm"/>
                             <constraint firstItem="0qe-Ks-ai0" firstAttribute="centerY" secondItem="FVX-Qn-3vt" secondAttribute="centerY" id="T0y-RZ-TIN"/>
                             <constraint firstItem="W1k-rV-rxe" firstAttribute="leading" secondItem="2Q3-D4-pIH" secondAttribute="trailing" constant="25" id="ZWx-aY-h7c"/>
+                            <constraint firstItem="gv4-pf-uZW" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="dMt-BO-X12"/>
                             <constraint firstItem="cDf-Bn-BjP" firstAttribute="leading" secondItem="XiZ-In-SEl" secondAttribute="leading" id="fIl-O9-hZS"/>
                             <constraint firstItem="r65-cb-pZB" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="kwK-Lc-AJo"/>
                             <constraint firstItem="2Q3-D4-pIH" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" constant="20" id="nRC-aU-QXk"/>
@@ -354,6 +369,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="aspectButton" destination="gv4-pf-uZW" id="tAD-9Y-Zol"/>
                         <outlet property="infoLabel" destination="0qe-Ks-ai0" id="naf-TN-K9f"/>
                         <outlet property="muteButton" destination="2Q3-D4-pIH" id="grV-ff-J4n"/>
                         <outlet property="playbackButton" destination="ke6-tf-MDs" id="zH9-I1-UEo"/>
@@ -364,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gU6-ue-NTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="840.5" y="753.5"/>
+            <point key="canvasLocation" x="839.20000000000005" y="753.37331334332839"/>
         </scene>
     </scenes>
     <resources>
@@ -375,5 +391,6 @@
         <image name="switch_camera_button" width="45" height="45"/>
         <image name="torch_on_button" width="45" height="45"/>
         <image name="volume_unmute" width="55" height="55"/>
+        <image name="wowza" width="320" height="112"/>
     </resources>
 </document>

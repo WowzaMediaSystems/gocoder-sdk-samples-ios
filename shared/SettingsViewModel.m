@@ -8,6 +8,7 @@
 
 #import "SettingsViewModel.h"
 
+NSString * const BitmapOverlayKey = @"BitmapOverlayKey";
 NSString * const BlackAndWhiteKey = @"BlackAndWhiteKey";
 NSString * const RecordVideoLocallyKey = @"RecordVideoLocallyKey";
 NSString * const PlaybackPrerollKey = @"PlaybackPrerollKey";
@@ -143,6 +144,14 @@ NSString * const ConnectionCodeKey = @"ConnectionCodeKey";
 
 - (void) setBroadcastScaleMode:(WOWZBroadcastScaleMode)broadcastScaleMode {
     self.config.broadcastScaleMode = broadcastScaleMode;
+}
+
+- (BOOL) bitmapOverlay {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:BitmapOverlayKey];
+}
+
+- (void) setBitmapOverlay:(BOOL)bitmapOverlay {
+    [[NSUserDefaults standardUserDefaults] setBool:bitmapOverlay forKey:BitmapOverlayKey];
 }
 
 - (BOOL) blackAndWhite {

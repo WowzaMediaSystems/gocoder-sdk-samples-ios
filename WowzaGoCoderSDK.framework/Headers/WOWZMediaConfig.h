@@ -57,8 +57,10 @@ typedef NS_ENUM(NSUInteger, WOWZFrameSizePreset) {
  */
 typedef NS_ENUM(NSUInteger, WOWZBroadcastOrientation) {
     WOWZBroadcastOrientationSameAsDevice,
-    WOWZBroadcastOrientationAlwaysLandscape,
-    WOWZBroadcastOrientationAlwaysPortrait
+    WOWZBroadcastOrientationAlwaysLandscapeLeft,
+    WOWZBroadcastOrientationAlwaysPortrait,
+    WOWZBroadcastOrientationAlwaysLandscapeRight,
+    WOWZBroadcastOrientationAlwaysPortraitUpsideDown
 };
 
 /*!

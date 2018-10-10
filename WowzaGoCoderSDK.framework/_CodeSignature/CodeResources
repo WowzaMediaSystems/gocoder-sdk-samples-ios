@@ -62,7 +62,7 @@
 		</data>
 		<key>Headers/WOWZMediaConfig.h</key>
 		<data>
-		MUBQS/31EaUeAPZbww9qx26Q4q8=
+		N/i574UrtdGZf5D44oLmwMHlNhY=
 		</data>
 		<key>Headers/WOWZMediaSink.h</key>
 		<data>
@@ -102,7 +102,7 @@
 		</data>
 		<key>Headers/WSCTokenProcessor.h</key>
 		<data>
-		CTIudS7mvN6vwBiGrwg/fciiAwE=
+		QiUXfm99Z6oAqT4rNCF5wu9LYKU=
 		</data>
 		<key>Headers/WowzaConfig.h</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		djuj7jVblyzniP96ueQoh9CYQuM=
+		bhpUrz35xBqH9IXqSS7cy+y6kvM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -289,11 +289,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			MUBQS/31EaUeAPZbww9qx26Q4q8=
+			N/i574UrtdGZf5D44oLmwMHlNhY=
 			</data>
 			<key>hash2</key>
 			<data>
-			IH14E4Cozh0ACLGzC5l6ByE/ihmqFbNEqzo/YW3/H0k=
+			XaqpS/FEXEpMhEHAhASuzPPcex01zyoDwdmCDxt0j6I=
 			</data>
 		</dict>
 		<key>Headers/WOWZMediaSink.h</key>
@@ -399,11 +399,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			CTIudS7mvN6vwBiGrwg/fciiAwE=
+			QiUXfm99Z6oAqT4rNCF5wu9LYKU=
 			</data>
 			<key>hash2</key>
 			<data>
-			LHioJNYGwFZWrTGHISDM5RufkUNzt41Za0gGml21Syc=
+			jkZhEOc/GtXQmFbOefR2Lh6aXub0JcHoahKVyFKMw5I=
 			</data>
 		</dict>
 		<key>Headers/WowzaConfig.h</key>
