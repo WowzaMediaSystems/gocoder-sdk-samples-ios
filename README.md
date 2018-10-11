@@ -2,7 +2,7 @@
 This repository contains sample applications that demonstrate the capabilities of the [Wowza GoCoder™ SDK for iOS](https://www.wowza.com/products/gocoder/sdk) and is provided for developer educational purposes. To build your own application, you must use the GoCoder SDK (now free!).
 
 ## Prerequisites
-- GoCoder SDK for iOS v1.5.1.949
+- GoCoder SDK for iOS v1.6.0.1027
 
      **NOTE:** The GoCoder SDK binaries necessary to build the sample apps aren't provided here. To get the free SDK, complete the [GoCoder SDK sign-up form](https://www.wowza.com/products/gocoder/sdk/license) to receive a link where you can download the SDK along with a license key. If you already have a license key, you can download the current SDK release [here](https://www.wowza.com/pricing/installer#gocodersdk-downloads).
 
@@ -11,13 +11,11 @@ This repository contains sample applications that demonstrate the capabilities o
 - Access to a [Wowza Streaming Engine](https://www.wowza.com/products/streaming-engine)™ media server or a [Wowza Streaming Cloud](https://www.wowza.com/products/streaming-cloud)™ account. You can request a free Wowza Streaming Engine trial by completing the [Wowza Streaming Engine trial sign-up form](https://www.wowza.com/pricing/trial) or sign up for a Wowza Streaming Cloud trial by completing the [Wowza Streaming Cloud free trial form](https://www.wowza.com/pricing/cloud-free-trial).
 
 ## Sample Apps
-| App  | Description  |
-| ------------- | ------------- |
-| WowzaGoCoderSDKSampleApp.xcodeproj  | This Objective-C application demonstrates how to use the GoCoder SDK to capture and broadcast video using internal cameras on a device. Use the Settings screen in the app to modify various video, audio, capture, and broadcast settings.  |
-| WowzaGoCoderSDKSampleApp.swift.xcodeproj  | This Swift application demonstrates how to use the SDK. It shares the same functionality as the Objective-C application (WowzaGoCoderSDKSampleApp.xcodeproj) described above.  |
-| WowzaGoCoderSDKSampleAppPlayer.objc.xcodeproj  | An Objective-C application that demonstrates how to use the SDK to play a live stream, including an ultra low latency stream from the Wowza Streaming Cloud™ service. This application uses **WOWZBroadcast** and **WOWZPlayer**, which decompresses audio and video, and supports HLS fallback when the primary connection fails.  |
-| WowzaGoCoder.SceneKitReel.xcodeproj  | This SceneKitReel sample application from Apple is modified to support broadcasting the SceneKit app's frame buffer to Wowza media servers. Most of the code in this app is Apple's. To see the Wowza GoCoder-related code, look for the following comment:<pre>#pragma mark - WowzaGoCoder</pre>This example uses the **WOWZBroadcast**, **WOWZBroadcastComponent**, and related classes and protocols, which provide lower-level access to the various components involved in a Wowza streaming broadcast.  |
-| WowzaGoCoderMP4PlayerSample.swift.xcodeproj  | This Swift application demonstrates how to broadcast the frames from a local MP4 file using the **WOWZBroadcast**, **WOWZBroadcastComponent**, **WOWZPlayer**, and related classes and protocols, which provide lower-level access to the various components involved in a Wowza streaming broadcast.  |
+The sample apps include an all-in-one app, **All-in-OneSampleApp.objc.xcodeproj**, that demonstrates all of the individual sample apps in one app. The individual sample apps demonstrate the features of the GoCoder SDK, including:
+
+- **LiveStreamSampleApp.swift.xcodeproj**, which demonstrates how to use the GoCoder SDK to capture and broadcast video using internal cameras on a device
+- **MetaDataSampleApp.objc.xcodeproj**, which uses the GoCoder SDK to inject timed metadata into a live stream
+- **PlayerSampleApp.objc.xcodeproj**, which shows how to use the SDK to play a live stream, including an ultra low latency stream from the Wowza Streaming Cloud™ service
 
 In all of the sample apps, the relevant GoCoder-related sources are the first files (.h and .m) or file (.swift) listed in the Project Navigator.
 
