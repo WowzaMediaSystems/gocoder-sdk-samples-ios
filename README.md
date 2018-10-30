@@ -8,7 +8,7 @@ This repository contains sample applications that demonstrate the capabilities o
 
 - iOS SDK 8.01 or later
 - Xcode 7 or later
-- Access to a [Wowza Streaming Engine](https://www.wowza.com/products/streaming-engine)™ media server or a [Wowza Streaming Cloud](https://www.wowza.com/products/streaming-cloud)™ account. You can request a free Wowza Streaming Engine trial by completing the [Wowza Streaming Engine trial sign-up form](https://www.wowza.com/pricing/trial) or sign up for a Wowza Streaming Cloud trial by completing the [Wowza Streaming Cloud free trial form](https://www.wowza.com/pricing/cloud-free-trial).
+- Access to a [Wowza Streaming Engine](https://www.wowza.com/products/streaming-engine)™ media server or a [Wowza Streaming Cloud](https://www.wowza.com/products/streaming-cloud)™ account. You can request a free 180-day Wowza Streaming Engine developer license by completing the [Wowza Streaming Engine Developer License form](https://www.wowza.com/media-server/developers/license) or sign up for a Wowza Streaming Cloud trial by completing the [Wowza Streaming Cloud free trial form](https://www.wowza.com/pricing/cloud-free-trial).
 
 ## Sample Apps
 The sample apps include an all-in-one app, **All-in-OneSampleApp.objc.xcodeproj**, that demonstrates all of the individual sample apps in one app. The individual sample apps demonstrate the features of the GoCoder SDK, including:
