@@ -2,7 +2,7 @@
 //  WOWZPlayer.h
 //  WOWZPlayer
 //
-//  © 2007 – 2018 Wowza Media Systems, LLC. All rights
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
 //  reserved.
 //
 //  The above copyright notice and this permission notice shall be
@@ -54,9 +54,10 @@ typedef NS_ENUM(NSUInteger, WOWZPlayerViewGravity) {
 @property (nonatomic, unsafe_unretained, nonnull) UIView *playerView;
 
 /*!
- *  The playing state of the WOWZPlayer instance.
- */
-@property (nonatomic, assign, readonly) BOOL playing;
+A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnterBackgroundNotification notifications. The default value is YES. If set to YES, WOWZPlayer handles the notification and in response automatically stops the playback stream. If set to NO, WOWZPlayer does not handle UIApplicationDidEnterBackgroundNotification notifications. This lets the developer control stoppage of the playback stream in another way. IMPORTANT: If the value is set to NO and the developer does not control stoppage of the playback stream in another way, the playing state is likely to enter an undesirable condition at some point.
+*/
+@property (nonatomic, assign) BOOL shouldHandleBackgroundNotificationAndStopPlayer;
+
 
 /*!
  *  The volume to play the audio. Specify a value between 0.0 (silent) and 1.0 (full volume);
@@ -93,11 +94,34 @@ typedef NS_ENUM(NSUInteger, WOWZPlayerViewGravity) {
  */
 @property (nonatomic, readonly) CMTime currentTime;
 
+
+/*!
+ *  The incoming bitrate during playback this is a combination of time of play calculated against length of total buffers incoming.
+ */
+@property (nonatomic, assign) Float32 currentInjestBitrate;
+
+
 /*!
  *  Play an Apple HLS stream as a fallback if the primary WOWZ-based conection is unsuccessful.
  *  Can be used with ultra low latency streams from Wowza Streaming Cloud; note, however, that Apple HLS streams experience greater latency than WebSocket streams.
  */
 @property (nonatomic, assign) BOOL useHLSFallback;
+
+//HLS
+/*!
+ *  The hlsPlayerItem.
+ */
+@property (nonatomic, strong) AVPlayerItem *hlsPlayerItem;
+
+/*!
+ *  The hls AVPlayer from Apple.
+ */
+@property (nonatomic, strong) AVPlayer *hlsPlayer;
+
+/*!
+ *  The hls AVPlayerLayer from Apple.
+ */
+@property (nonatomic, strong) AVPlayerLayer *hlsVideoPlayerLayer;
 
 /*!
  *
@@ -107,6 +131,11 @@ typedef NS_ENUM(NSUInteger, WOWZPlayerViewGravity) {
 
 @property (nonatomic, unsafe_unretained) NSObject<WOWZStatusCallback> *clientCallback;
 
+
+/*!
+ *  Get the current playing state of the WOWZPlayer instance. 
+ */
+- (WOWZState) currentPlayState;
 
 /*!
  *  Starts playing the stream.
@@ -149,6 +178,11 @@ typedef NS_ENUM(NSUInteger, WOWZPlayerViewGravity) {
  * Resets the playback error count to zero.
  */
 -(void)resetPlaybackErrorCount;
+
+/*!
+ * Gets the current playback error count - used for HLS fallback (2 errors is default then fallback).
+ */
+-(NSUInteger) currentPlaybackErrorCount;
 
 
 /*!

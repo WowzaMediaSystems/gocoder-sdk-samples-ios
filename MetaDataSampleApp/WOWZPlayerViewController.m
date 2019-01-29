@@ -3,7 +3,7 @@
 //  PrivateSDKSampleApp
 //
 //  Created by Mike Leavy on 9/25/16.
-//  © 2016 – 2018 Wowza Media Systems, LLC. All rights reserved.
+//  © 2016 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 
 #import "WOWZPlayerViewController.h"
@@ -127,7 +127,7 @@
 
 - (IBAction) didTapPlaybackButton:(id)sender {
     
-    if (!self.player.playing) {
+    if ([self.player currentPlayState] == WOWZStateIdle) {
         self.infoLabel.text = @"Connecting...";
         
         self.infoLabel.hidden = NO;
@@ -175,7 +175,7 @@
 }
 
 - (IBAction) didTapCloseButton:(id)sender {
-		if(self.player.playing == YES){
+        if([self.player currentPlayState] == WOWZStateRunning || [self.player currentPlayState] == WOWZStateBuffering){
 			[self.player stop];
 		}
     [self.player unregisterDataSink:self eventName:@"onTextData"];

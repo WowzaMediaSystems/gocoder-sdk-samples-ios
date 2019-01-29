@@ -2,7 +2,7 @@
 //  WOWZBroadcastComponent.h
 //  WowzaGoCoderSDK
 //
-//  © 2007 – 2018 Wowza Media Systems, LLC. All rights
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
 //  reserved.
 //
 //  The above copyright notice and this permission notice shall be

@@ -3,7 +3,7 @@
 //  GoCoder
 //
 //  Created by Barry Owen on 2/9/15.
-//  © 2015 – 2018 Wowza Media Systems, LLC. All rights reserved.
+//  © 2015 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

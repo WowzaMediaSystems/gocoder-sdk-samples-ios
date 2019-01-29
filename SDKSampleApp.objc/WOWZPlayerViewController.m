@@ -3,7 +3,7 @@
 //  PrivateSDKSampleApp
 //
 //  Created by Mike Leavy on 9/25/16.
-//  © 2016 – 2018 Wowza Media Systems, LLC. All rights reserved.
+//  © 2016 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 
 #import "WOWZPlayerViewController.h"
@@ -15,7 +15,7 @@
 #import "BroadcastViewController.h"
 
 
-@interface WOWZPlayerViewController () <WOWZStatusCallback, WOWZDataSink>
+@interface WOWZPlayerViewController () <WOWZStatusCallback, WOWZDataSink, UICollectionViewDelegate, UICollectionViewDataSource>
 
 #pragma mark - UI Elements
 @property (nonatomic, weak) IBOutlet UIButton           *playbackButton;
@@ -26,9 +26,13 @@
 @property (weak, nonatomic) IBOutlet UIButton           *closeButton;
 @property (weak, nonatomic) IBOutlet UIButton           *aspectButton;
 
+@property IBOutlet UILabel *bitrateLabel;
+
 @property (nonatomic, weak) IBOutlet UILabel						*syncOffsetLabel;
 
 @property IBOutlet UIView *previewView;
+
+@property IBOutlet UICollectionView *collectionView;
 
 #pragma mark - GoCoder SDK Components
 @property (nonatomic, strong) WowzaConfig               *goCoderConfig;
@@ -41,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelDefault];
+    [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelVerbose];
     
     // Load or initialization the streaming configuration settings
     NSData *savedConfig = [[NSUserDefaults standardUserDefaults] objectForKey:SDKSampleSavedConfigKey];
@@ -56,6 +60,8 @@
     self.goCoderConfig.audioEnabled = YES;
     self.goCoderConfig.videoEnabled = YES;
 	
+    
+    
 	//dont let the app sleep from idle timer while watching clips.
 	[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
@@ -83,6 +89,8 @@
     else {
         self.player = [WOWZPlayer new];
 			
+        //self.player.shouldAutoStopPlayerOnAppBackground = NO;
+        
         self.volumeSlider.value = self.player.volume;
 				// Set default preroll buffer duration
         self.player.prerollDuration = [[NSUserDefaults standardUserDefaults] floatForKey:PlaybackPrerollKey];
@@ -90,6 +98,10 @@
 				// Optionally set up data sink to handle in stream events
         [self.player registerDataSink:self eventName:@"onTextData"];
     }
+    
+    //register for bitrate
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBitrateLabel) name:@"WOWZBitrateUpdate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hlsPlaybackStarted) name:@"HLSPlaybackStarted" object:nil];
 }
 
 - (BOOL)shouldAutorotate {
@@ -111,12 +123,12 @@
     [[NSUserDefaults standardUserDefaults] setObject:savedConfigData forKey:SDKSampleSavedConfigKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 	
-		//because of the custom SettingsViewModel we constructed we pull the hls value from NSUserDefaults
+    //because of the custom SettingsViewModel we constructed we pull the hls value from NSUserDefaults
     self.goCoderConfig.allowHLSPlayback = [[NSUserDefaults standardUserDefaults] boolForKey:AllowHLSKey];
-		self.goCoderConfig.hlsURL = [[NSUserDefaults standardUserDefaults] stringForKey:HLSURLKey];
-		//setup the player with the preroll duration (seconds)
-		self.player.prerollDuration = [[NSUserDefaults standardUserDefaults] floatForKey:PlaybackPrerollKey];
-	
+    self.goCoderConfig.hlsURL = [[NSUserDefaults standardUserDefaults] stringForKey:HLSURLKey];
+    //setup the player with the preroll duration (seconds)
+    self.player.prerollDuration = [[NSUserDefaults standardUserDefaults] floatForKey:PlaybackPrerollKey];
+    //self.goCoderConfig.allowHLSPlayback = YES;
 	[self.player resetPlaybackErrorCount];
 	
 	NSError *error;// = nil;
@@ -129,12 +141,51 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)updateBitrateLabel{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bitrateLabel.text = [NSString stringWithFormat:@"%.02f kbps", self.player.currentInjestBitrate];
+    });
+}
+
+-(void)hlsPlaybackStarted{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.playbackButton setImage:[UIImage imageNamed:(@"stop_playback_button")] forState:UIControlStateNormal];
+        self.playbackButton.enabled = YES;
+        self.infoLabel.text = @"Playing";
+        {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.infoLabel.alpha = 0;
+            }];
+        }
+    });
+}
+
+
 #pragma mark - UI Action Methods
+-(IBAction) didTapStopPlayButton:(id)sender{
+    [self.player resetPlaybackErrorCount];
+    [self.player stop];
+    
+    
+    self.infoLabel.text = @"Connecting...";
+    
+    self.infoLabel.hidden = NO;
+    self.infoLabel.alpha = 1;
+    
+    self.playbackButton.enabled = NO;
+    
+    [self.player play:self.goCoderConfig callback:self];
+}
 
 - (IBAction) didTapPlaybackButton:(id)sender {
     
-    if (!self.player.playing) {
-        self.infoLabel.text = @"Connecting...";
+    if ([self.player currentPlayState] == WOWZStateIdle && self.player.hlsPlayer.timeControlStatus != AVPlayerTimeControlStatusPlaying) {
+        if([self.player currentPlaybackErrorCount] > 2){
+            self.infoLabel.text = @"Connecting to HLS fallback...";
+        }else{
+            self.infoLabel.text = @"Connecting...";
+        }
+        
         
         self.infoLabel.hidden = NO;
         self.infoLabel.alpha = 1;
@@ -147,7 +198,7 @@
        
     }
     else {
-				[self.player resetPlaybackErrorCount];
+        [self.player resetPlaybackErrorCount];
         [self.player stop];
     }
 }
@@ -188,9 +239,11 @@
 }
 
 - (IBAction) didTapCloseButton:(id)sender {
-		if(self.player.playing == YES){
+		if([self.player currentPlayState] == WOWZStateRunning || [self.player currentPlayState] == WOWZStateBuffering){
 			[self.player stop];
-		}
+        }else{
+            
+        }
     [self.player unregisterDataSink:self eventName:@"onTextData"];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -215,6 +268,7 @@
             self.settingsButton.hidden = NO;
             self.closeButton.hidden = NO;
             self.playbackButton.enabled = YES;
+            
             [self.playbackButton setImage:[UIImage imageNamed:(@"playback_button")] forState:UIControlStateNormal];
             {
                 [UIView animateWithDuration:0.25 animations:^{
@@ -267,6 +321,9 @@
 - (void) onWOWZError:(WOWZStatus *) goCoderStatus {
     // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
     [WOWZPlayerViewController showAlertWithTitle:@"Playback Error" status:goCoderStatus presenter:self];
+    self.infoLabel.text = @"";
+    self.playbackButton.enabled = YES;
+    
 }
 
 
@@ -290,5 +347,59 @@
 }
 
 
+#pragma mark - UICOLLECITONVIEW DATASOURCE
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MyCell" forIndexPath:indexPath];
+    // cell customization
+    return cell;
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 15;
+}
+
+//- (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
+//    <#code#>
+//}
+//
+//- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+//    <#code#>
+//}
+//
+//- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+//    <#code#>
+//}
+//
+//- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
+//    <#code#>
+//}
+//
+//- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+//    <#code#>
+//}
+//
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+//    <#code#>
+//}
+//
+//- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+//    <#code#>
+//}
+//
+//- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
+//    <#code#>
+//}
+//
+//- (void)setNeedsFocusUpdate {
+//    <#code#>
+//}
+//
+//- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
+//    <#code#>
+//}
+//
+//- (void)updateFocusIfNeeded {
+//    <#code#>
+//}
 
 @end

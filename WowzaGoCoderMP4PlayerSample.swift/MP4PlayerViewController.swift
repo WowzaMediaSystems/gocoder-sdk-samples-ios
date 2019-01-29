@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  WowzaGoCoderMP4PlayerSample.swift
 //
-//  This code and all components © 2015 – 2018 Wowza Media Systems, LLC. All rights reserved.
+//  This code and all components © 2015 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //  This code is licensed pursuant to the BSD 3-Clause License.
 //
 
@@ -217,7 +217,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
                 if self.loop {
                     let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        if self.setupAssetReader() {
+                        if self.setupAssetReader() &&  self.broadcast.status.state == .running {
                             self.renderLoop()
                         }
                     })

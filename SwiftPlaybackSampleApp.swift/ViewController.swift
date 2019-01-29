@@ -3,7 +3,7 @@
 //  SwiftPlaybackSampleApp
 //
 //  Created by Benji Brown on 7/2/18.
-//  Copyright © 2018 Wowza. All rights reserved.
+//  Copyright © 2019 Wowza. All rights reserved.
 //
 
 import UIKit
@@ -100,7 +100,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
     }
     
     @IBAction func didTapPlayButton(_ sender:AnyObject?) {
-        if(!self.player.playing){
+        if(self.player.currentPlayState() == WOWZState.idle){
             self.infoLabel.text = "Connecting..."
             
             self.infoLabel.isHidden = false;

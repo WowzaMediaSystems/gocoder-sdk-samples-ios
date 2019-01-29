@@ -2,7 +2,7 @@
 //  WowzaGoCoder.h
 //  WowzaGoCoderSDK
 //
-//  © 2007 – 2018 Wowza Media Systems, LLC. All rights
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
 //  reserved.
 //
 //  The above copyright notice and this permission notice shall be
@@ -275,6 +275,14 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  *  @param bitrate The bitrate the broadcast should use under normal network conditions.
  * */
 - (void) updateEncoderTargetBitrate:(NSInteger)bitrate;
+
+/*!
+ *  The current broadcasting actual bitrate across the socket.
+ * This value is also available for listening to with NSNotifcationCenter.
+ * notification name:WOWZBroadcastBitrateNetworkThroughputUpdate
+ * , note.userInfo key: broadcastThroughputBitrate, value is Float64
+ * */
+- (Float64) getCurrentBroadcastingNetworkBitrateThroughput;
 
 #pragma mark -
 

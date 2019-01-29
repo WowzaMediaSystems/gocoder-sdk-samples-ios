@@ -2,7 +2,7 @@
 //  VideoPlayerViewController.m
 //  SDKSampleApp
 //
-//  This code and all components © 2015 – 2018 Wowza Media Systems, LLC. All rights reserved.
+//  This code and all components © 2015 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //  This code is licensed pursuant to the BSD 3-Clause License.
 //
 
@@ -37,6 +37,8 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
 @property (weak, nonatomic) IBOutlet UILabel            *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton           *pingButton;
 @property (weak, nonatomic) IBOutlet UIButton           *metaDataButton;
+@property (weak, nonatomic) IBOutlet UILabel            *bitrateLabel;
+
 
 #pragma mark - GoCoder SDK Components
 @property (nonatomic, strong) WowzaGoCoder      *goCoder;
@@ -151,6 +153,8 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(broadcastBitrateUpdated:) name:@"WOWZBroadcastBitrateNetworkThroughputUpdate" object:nil];
 
 }
 
@@ -212,6 +216,8 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
     if (self.goCoder.status.state == WOWZStateRunning) {
         [self.goCoder endStreaming:self];
         [UIApplication sharedApplication].idleTimerDisabled = NO;
+        self.bitrateLabel.text = @"0.0 kbps";
+
     }
     else {
         [self.receivedGoCoderEventCodes removeAllObjects];
@@ -347,6 +353,19 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
 
 #pragma mark - Notifications
 
+-(void) broadcastBitrateUpdated:(NSNotification *)note {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bitrateLabel.text = [NSString stringWithFormat:@"%.02f kbps", [note.userInfo[@"broadcastThroughputBitrate"] floatValue]];
+        
+        //or you could just check against the self.gocoder
+        self.bitrateLabel.text = [NSString stringWithFormat:@"%.02f kbps", [self.goCoder getCurrentBroadcastingNetworkBitrateThroughput]];
+    });
+}
+
+- (void)setImageToCenter
+{
+    _bitmapOverlayImgView.center=self.view.center;
+}
 - (void) orientationChanged:(NSNotification *)notification {
     
     /*
@@ -379,6 +398,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
         default:
             break;
     };
+    [self setImageToCenter];
     
     if (params.data.count > 0) {
         [self.goCoder sendDataEvent:WOWZDataScopeStream eventName:@"onDeviceOrientation" params:params callback:nil];
@@ -595,14 +615,29 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
                                                          kCGBitmapByteOrder32Little |
                                                          kCGImageAlphaPremultipliedFirst);
             
-            
+            /*
+             Reposition the element to include the width/height
+             of the image itself.
+             */
             CGRect rect = _bitmapOverlayImgView.frame;
-            float height = self.goCoder.config.videoHeight+100; /// accommodating for header / footer areas
+            float addedY = 0;
+            float addedX = 0;
+            
+            if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+            {
+                addedY = _bitmapOverlayImgView.frame.size.height;
+                addedX += _bitmapOverlayImgView.frame.size.width;
+            }
+            else{
+                addedX = _bitmapOverlayImgView.frame.size.height;
+                addedY += _bitmapOverlayImgView.frame.size.width;
+            }
+            
+            float height = self.goCoder.config.videoHeight+addedY; /// accommodating for header / footer areas
             float y = height - rect.origin.y;
-            CGRect newFrame = CGRectMake(rect.origin.x, y, _bitmapOverlayImgView.frame.size.width, _bitmapOverlayImgView.frame.size.height);
-            
+            float x = rect.origin.x-addedX;
+            CGRect newFrame = CGRectMake(x, y, _bitmapOverlayImgView.frame.size.width, _bitmapOverlayImgView.frame.size.height);
             CGContextDrawImage(context, newFrame, [_bitmapOverlayImgView.image CGImage]);
-            
             CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
             
             CIContext * contextOverlay = [CIContext contextWithOptions:nil];

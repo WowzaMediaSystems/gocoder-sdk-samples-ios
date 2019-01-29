@@ -3,7 +3,7 @@
 //  PrivateSDKSampleApp
 //
 //  Created by Mike Leavy on 9/25/16.
-//  © 2016 – 2018 Wowza Media Systems, LLC. All rights reserved.
+//  © 2016 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 
 #import "WOWZPlayerViewController.h"
@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton           *closeButton;
 
 @property (nonatomic, weak) IBOutlet UILabel						*syncOffsetLabel;
+@property IBOutlet UILabel *bitrateLabel;
+
 
 @property IBOutlet UIView *previewView;
 
@@ -84,6 +86,10 @@
 				// Optionally set up data sink to handle in stream events
         [self.player registerDataSink:self eventName:@"onScreenPress"];
     }
+    
+    //register for bitrate
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBitrateLabel) name:@"WOWZBitrateUpdate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hlsPlaybackStarted) name:@"HLSPlaybackStarted" object:nil];
 }
 
 - (BOOL)shouldAutorotate {
@@ -111,6 +117,8 @@
 		//setup the player with the preroll duration (seconds)
 		self.player.prerollDuration = [[NSUserDefaults standardUserDefaults] floatForKey:PlaybackPrerollKey];
 	
+    //this is a number that if stream fails and you have hls fallback this count will be the measuring on whether or not
+    //hls fallback triggers.
 	[self.player resetPlaybackErrorCount];
 	
 	NSError *error;// = nil;
@@ -121,6 +129,25 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)updateBitrateLabel{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bitrateLabel.text = [NSString stringWithFormat:@"%.02f kbps", self.player.currentInjestBitrate];
+    });
+}
+
+-(void)hlsPlaybackStarted{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.playbackButton setImage:[UIImage imageNamed:(@"stop_playback_button")] forState:UIControlStateNormal];
+        self.playbackButton.enabled = YES;
+        self.infoLabel.text = @"Playing";
+        {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.infoLabel.alpha = 0;
+            }];
+        }
+    });
 }
 
 #pragma mark - UI Action Methods
@@ -135,8 +162,12 @@
 
 - (IBAction) didTapPlaybackButton:(id)sender {
     
-    if (!self.player.playing) {
-        self.infoLabel.text = @"Connecting...";
+    if ([self.player currentPlayState] == WOWZStateIdle && self.player.hlsPlayer.timeControlStatus != AVPlayerTimeControlStatusPlaying) {
+        if([self.player currentPlaybackErrorCount] > 2){
+            self.infoLabel.text = @"Connecting to HLS fallback...";
+        }else{
+            self.infoLabel.text = @"Connecting...";
+        }
         
         self.infoLabel.hidden = NO;
         self.infoLabel.alpha = 1;
@@ -149,7 +180,7 @@
        
     }
     else {
-				[self.player resetPlaybackErrorCount];
+        [self.player resetPlaybackErrorCount];
         [self.player stop];
     }
 }
@@ -183,7 +214,7 @@
 }
 
 - (IBAction) didTapCloseButton:(id)sender {
-		if(self.player.playing == YES){
+		if([self.player currentPlayState] == WOWZStateRunning || [self.player currentPlayState] == WOWZStateBuffering){
 			[self.player stop];
 		}
     [self.player unregisterDataSink:self eventName:@"onTextData"];
@@ -262,6 +293,8 @@
 - (void) onWOWZError:(WOWZStatus *) goCoderStatus {
     // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
     [WOWZPlayerViewController showAlertWithTitle:@"Playback Error" status:goCoderStatus presenter:self];
+    self.infoLabel.text = @"";
+    self.playbackButton.enabled = YES;
 }
 
 

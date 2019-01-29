@@ -6,119 +6,119 @@
 	<dict>
 		<key>Headers/WOWZAACEncoder.h</key>
 		<data>
-		yoLuMiHrhSBgRlWhgChR9rsHqLk=
+		dZd2mt5h3K/fo91nG00rHzM8Gzg=
 		</data>
 		<key>Headers/WOWZAudioDevice.h</key>
 		<data>
-		1FQOsFH8lt0T1Gze90jNKTdZMKk=
+		v90hX9Y4VUJFbkP+3AEAw9FWSlQ=
 		</data>
 		<key>Headers/WOWZAudioEncoderSink.h</key>
 		<data>
-		ma996sXT9SI8GuujdlU+mE97BNQ=
+		z+xBTzmOu4J2ouQWbSdO1Uh1r1Y=
 		</data>
 		<key>Headers/WOWZAudioSink.h</key>
 		<data>
-		QKrxmVH3Osah9I/E3WzB1jYsO9A=
+		zz+d5ozy/hH0Vo35zwVxH+yN0WI=
 		</data>
 		<key>Headers/WOWZBroadcast.h</key>
 		<data>
-		iLInHe4pFAiTndVzdoFBNbSWvBs=
+		7pKP4drpGIzxx/9ZeqA5wCOdc8g=
 		</data>
 		<key>Headers/WOWZBroadcastComponent.h</key>
 		<data>
-		5JVX5VVVbblssf7uBzsRfF0TSLA=
+		WCCnl49S1S8H58WXRixE3qyyOKg=
 		</data>
 		<key>Headers/WOWZCamera.h</key>
 		<data>
-		aiFCQvcqGMqwsklXS2w8aV783tU=
+		vb6sFQujtNLfTnkRKoMX8GQj3No=
 		</data>
 		<key>Headers/WOWZCameraPreview.h</key>
 		<data>
-		SSK4s/TB3E94pLtrwPBghwO4xBI=
+		X7A44WlTwCFQpMhaIViuXcgaIbw=
 		</data>
 		<key>Headers/WOWZData.h</key>
 		<data>
-		CG0DngzgF+JtxtihBgEuaiMda9c=
+		K4dO6Y4aNFabFc5OMa9OFIxKM1o=
 		</data>
 		<key>Headers/WOWZDataEvent.h</key>
 		<data>
-		RzTmk5Q+8RGsyOuiznBs+EsDPHc=
+		GDxSEsldbpAC6xQwUcaIS/uevC0=
 		</data>
 		<key>Headers/WOWZDataSink.h</key>
 		<data>
-		35ZRM4mGNUmQx+pkR2ZQaU97CmA=
+		atauLk0QQo/HvhSylrTmykBj58A=
 		</data>
 		<key>Headers/WOWZError.h</key>
 		<data>
-		VxCuuuuYsZ7a8OqaYxbCW3Ns+ac=
+		cjedas9EW4K3hyzybusDUoJrhF0=
 		</data>
 		<key>Headers/WOWZH264Encoder.h</key>
 		<data>
-		ihmkqkgroYXdaT+Keny3Vhj5TdA=
+		9r3qe5iWqCqHXQqf+0Ia6YpC7PU=
 		</data>
 		<key>Headers/WOWZImageUtilities.h</key>
 		<data>
-		iD4XkC5M7L0mdtMY2kP7WYKnmTc=
+		OJs7eQQ2OSxy9ILRqcRNaiQ1jX4=
 		</data>
 		<key>Headers/WOWZMediaConfig.h</key>
 		<data>
-		N/i574UrtdGZf5D44oLmwMHlNhY=
+		cVYRaeVNW3nJ38n4JyQdjZuTOP8=
 		</data>
 		<key>Headers/WOWZMediaSink.h</key>
 		<data>
-		p1m31CPGTImjtUxBjtRNnXJ13xw=
+		YidF+NPNaHvy0gH341CQagiALg8=
 		</data>
 		<key>Headers/WOWZPlatformInfo.h</key>
 		<data>
-		kHk8Jf2ZeFiK5EBw8xRgmknhSvM=
+		EH7BQPQYWbLEgf7GeuZTBSsRBtk=
 		</data>
 		<key>Headers/WOWZPlayer.h</key>
 		<data>
-		DAPPfCLZgRSzpu7VcRJi/YL4HAo=
+		Z70LNI0QkLth5mqJ0DNjud5RGPI=
 		</data>
 		<key>Headers/WOWZStatus.h</key>
 		<data>
-		f3bFs711Klgv7Db/erTioLDRpuE=
+		VuvEXQU5wsa/oaWBq+Q7b9vgQiU=
 		</data>
 		<key>Headers/WOWZStatusCallback.h</key>
 		<data>
-		Wizu2/TXzDOBgQkOu0LE0fXgjQI=
+		yhPayrttN2jmMgdSyo1kxhXuS4U=
 		</data>
 		<key>Headers/WOWZStreamConfig.h</key>
 		<data>
-		BRSddxzTtNDVEPTKxZnfuFyEX08=
+		iGO7RR2OY3Rk5Vl4Vv2PNVMgdJ0=
 		</data>
 		<key>Headers/WOWZVersionInfo.h</key>
 		<data>
-		WW/WXOpGo1HCE2w06w1m6ckLXwY=
+		FATm+qyl22ijUSfVjObOcViyu4Q=
 		</data>
 		<key>Headers/WOWZVideoEncoderSink.h</key>
 		<data>
-		9uX++GZ09FBYnQR2mhxGvuLpDxE=
+		ewHJabeddXfppVDtbbgFzyG7ns0=
 		</data>
 		<key>Headers/WOWZVideoSink.h</key>
 		<data>
-		3Mpi+pV5PENBE4v3WRdwglPtbz0=
+		2tZPcta0dd9oRxMf0CHbcicUldk=
 		</data>
 		<key>Headers/WSCTokenProcessor.h</key>
 		<data>
-		QiUXfm99Z6oAqT4rNCF5wu9LYKU=
+		HY8vbbQVqv9a5Rrr9kcCUz054zk=
 		</data>
 		<key>Headers/WowzaConfig.h</key>
 		<data>
-		ahMW5ZvgX+1Tn4iGysc7N6fCiuc=
+		xsgfhm96ShXB+d1kdn8r36k587I=
 		</data>
 		<key>Headers/WowzaGoCoder.h</key>
 		<data>
-		bnJUGGUQCwVhAFGwX+GoCdlT5OI=
+		nhjU7I040wHWbER+qgel+cZ9rsU=
 		</data>
 		<key>Headers/WowzaGoCoderSDK.h</key>
 		<data>
-		m+cn12LfNcys5wKmH1CSENTtnec=
+		EWmm9JGwaO8CjSbBig8Ev/hiMa4=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		bhpUrz35xBqH9IXqSS7cy+y6kvM=
+		KWNIaSf35HL5aAqXwr8L5y7U5A4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -135,308 +135,308 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			yoLuMiHrhSBgRlWhgChR9rsHqLk=
+			dZd2mt5h3K/fo91nG00rHzM8Gzg=
 			</data>
 			<key>hash2</key>
 			<data>
-			w2aapyjgxJt+x1X46eA44vRY89K3HEYtXjdrXOlpZKY=
+			s04Rl9IhXwS0klajXyFAC45MZNqbriM690yS62aaBzw=
 			</data>
 		</dict>
 		<key>Headers/WOWZAudioDevice.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			1FQOsFH8lt0T1Gze90jNKTdZMKk=
+			v90hX9Y4VUJFbkP+3AEAw9FWSlQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			hjYfUZn40gv7iO32GgP8mnoCsGiNc7tKprvTHVU3HDI=
+			1YrUa3uHnQf1gar8AVkH9ZiaI0fGWYuak+dDMymsSnc=
 			</data>
 		</dict>
 		<key>Headers/WOWZAudioEncoderSink.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ma996sXT9SI8GuujdlU+mE97BNQ=
+			z+xBTzmOu4J2ouQWbSdO1Uh1r1Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			FFTh+/KiqKJSkIBN/KMkDKxqgeJo0QjpVeR5+9MVTzk=
+			+ty76M01C+CHcug0cDNwmcyvoh5qFE+MbAEjZgO4EQk=
 			</data>
 		</dict>
 		<key>Headers/WOWZAudioSink.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			QKrxmVH3Osah9I/E3WzB1jYsO9A=
+			zz+d5ozy/hH0Vo35zwVxH+yN0WI=
 			</data>
 			<key>hash2</key>
 			<data>
-			YjP8yomjJpi4RwDcFaijxPgr9j+X9Yl9YW8+jQZbA0s=
+			R/sI7VjnyRVkRzHYsupcib24uSOsirXS8kAx2rTavUg=
 			</data>
 		</dict>
 		<key>Headers/WOWZBroadcast.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			iLInHe4pFAiTndVzdoFBNbSWvBs=
+			7pKP4drpGIzxx/9ZeqA5wCOdc8g=
 			</data>
 			<key>hash2</key>
 			<data>
-			wH/vAhyp7GK7zJ0SfeQn4KLAUH8LsKJYL+/wC/Qydyo=
+			2JNiDvgIFH5DEBuvb5rjQ616edumV8kXRx20dgW0kDA=
 			</data>
 		</dict>
 		<key>Headers/WOWZBroadcastComponent.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5JVX5VVVbblssf7uBzsRfF0TSLA=
+			WCCnl49S1S8H58WXRixE3qyyOKg=
 			</data>
 			<key>hash2</key>
 			<data>
-			NNCf1zIvTIZy6Ibt2tMhwGq5zB8fdEcxoQxUcEHvNAM=
+			w0tKoOC1/whD4Y0NqJtkZ/7QMbcOFJ18q829pjq8o1E=
 			</data>
 		</dict>
 		<key>Headers/WOWZCamera.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			aiFCQvcqGMqwsklXS2w8aV783tU=
+			vb6sFQujtNLfTnkRKoMX8GQj3No=
 			</data>
 			<key>hash2</key>
 			<data>
-			+heQWIp5EVg/THV1kam6hwvd1sFQJSmPp4Z9d6lFgjE=
+			ta2AltE06KWJrbWBW4eVCsrn+p8ZJkfhjWp4IhNAjKI=
 			</data>
 		</dict>
 		<key>Headers/WOWZCameraPreview.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			SSK4s/TB3E94pLtrwPBghwO4xBI=
+			X7A44WlTwCFQpMhaIViuXcgaIbw=
 			</data>
 			<key>hash2</key>
 			<data>
-			bY/Zro1Jeq6UfFBhEuU/Qi7ndvk9L337ooYUJBzVE4s=
+			y4WP/e83hVAsgWYG6L1Vs1o/44lpshHUWU7DLtX9F2s=
 			</data>
 		</dict>
 		<key>Headers/WOWZData.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CG0DngzgF+JtxtihBgEuaiMda9c=
+			K4dO6Y4aNFabFc5OMa9OFIxKM1o=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZdUrNPMTDvfjwhsJs/HNw6ERDRgmBRHFhBwZaOUMfmQ=
+			hhhCsFg3QqUFjJprt50XX54+2UpAVHJBP0zoxTnC9mA=
 			</data>
 		</dict>
 		<key>Headers/WOWZDataEvent.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			RzTmk5Q+8RGsyOuiznBs+EsDPHc=
+			GDxSEsldbpAC6xQwUcaIS/uevC0=
 			</data>
 			<key>hash2</key>
 			<data>
-			uY09XCJ1Mg4Z/kcubDuFs4jYrml9CuUbc6ZLH7ECLHg=
+			cBqVkzNsLRnpl2k8yh3VtfKl6Psd69Xfd8t4tObl4So=
 			</data>
 		</dict>
 		<key>Headers/WOWZDataSink.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			35ZRM4mGNUmQx+pkR2ZQaU97CmA=
+			atauLk0QQo/HvhSylrTmykBj58A=
 			</data>
 			<key>hash2</key>
 			<data>
-			2zAoHZC57NjjuhFMEx4cnXnAWMb8WwYeW4IoUkZLH54=
+			Q5Gs8iYNvq1wz1/fucFoukLESgxHt/TYP8W9RXrnIHY=
 			</data>
 		</dict>
 		<key>Headers/WOWZError.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VxCuuuuYsZ7a8OqaYxbCW3Ns+ac=
+			cjedas9EW4K3hyzybusDUoJrhF0=
 			</data>
 			<key>hash2</key>
 			<data>
-			vu1+QsDKY2HYwqfENm4Q/FefxAO58hhaO2qhhSVK0x0=
+			3j9erTmQc/HIXjVhGrp1EXaiPH5CpmYnnaRxfE6s6b8=
 			</data>
 		</dict>
 		<key>Headers/WOWZH264Encoder.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ihmkqkgroYXdaT+Keny3Vhj5TdA=
+			9r3qe5iWqCqHXQqf+0Ia6YpC7PU=
 			</data>
 			<key>hash2</key>
 			<data>
-			1SWTE3CBDiBaneCkZ0dtrbVHX8kFbrGbs5xJtbD2Ri4=
+			4yBpWeke5MibAk73WsS2Yt9rBoHXMclDVwJQXRp6ndU=
 			</data>
 		</dict>
 		<key>Headers/WOWZImageUtilities.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			iD4XkC5M7L0mdtMY2kP7WYKnmTc=
+			OJs7eQQ2OSxy9ILRqcRNaiQ1jX4=
 			</data>
 			<key>hash2</key>
 			<data>
-			E2KiPeKK1t83/P41D0pFjfI6+6ZY2OQ4qe+eTaONzj8=
+			EksBbIu2IOSRJO0sHNps3GyKLUIDoOEjY/v6OMxiTsM=
 			</data>
 		</dict>
 		<key>Headers/WOWZMediaConfig.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			N/i574UrtdGZf5D44oLmwMHlNhY=
+			cVYRaeVNW3nJ38n4JyQdjZuTOP8=
 			</data>
 			<key>hash2</key>
 			<data>
-			XaqpS/FEXEpMhEHAhASuzPPcex01zyoDwdmCDxt0j6I=
+			np50nnID02kwH/CJlEPhAdoxCs7eRCgAEHXwz7u+R7E=
 			</data>
 		</dict>
 		<key>Headers/WOWZMediaSink.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			p1m31CPGTImjtUxBjtRNnXJ13xw=
+			YidF+NPNaHvy0gH341CQagiALg8=
 			</data>
 			<key>hash2</key>
 			<data>
-			q2BYgGRXBXP55pFnadD5DYUs5IJB7utndf3gBL7aBbI=
+			te5X5i3dNuRTaByBSA3SiflrFTDmbGGxzQ6utXbGJL8=
 			</data>
 		</dict>
 		<key>Headers/WOWZPlatformInfo.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kHk8Jf2ZeFiK5EBw8xRgmknhSvM=
+			EH7BQPQYWbLEgf7GeuZTBSsRBtk=
 			</data>
 			<key>hash2</key>
 			<data>
-			D1PrjOj7Z2Kile71qXtN7J6T9WjYLN6BbklvhNJlQlE=
+			cIrRmOehce2o5h/J+kUagCxKN8P2dpUoUdwZ7o3XNsI=
 			</data>
 		</dict>
 		<key>Headers/WOWZPlayer.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			DAPPfCLZgRSzpu7VcRJi/YL4HAo=
+			Z70LNI0QkLth5mqJ0DNjud5RGPI=
 			</data>
 			<key>hash2</key>
 			<data>
-			HhxdCWmDO0E774nMjlAGiRejjWWmzdNxoTcbOOHkf6Q=
+			QRjofyLw0S5Ec5B/hKR5EtG11yTw5aHs4Tyh4tFY5YI=
 			</data>
 		</dict>
 		<key>Headers/WOWZStatus.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			f3bFs711Klgv7Db/erTioLDRpuE=
+			VuvEXQU5wsa/oaWBq+Q7b9vgQiU=
 			</data>
 			<key>hash2</key>
 			<data>
-			ysWx61QQWMuTRfCtmD40KmKmYGQ/uRkXWyyow6SiqJw=
+			Ap1F6WCbucUu+Lr81MufVrxKIWh9ezYQWAMm1c6qpUE=
 			</data>
 		</dict>
 		<key>Headers/WOWZStatusCallback.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Wizu2/TXzDOBgQkOu0LE0fXgjQI=
+			yhPayrttN2jmMgdSyo1kxhXuS4U=
 			</data>
 			<key>hash2</key>
 			<data>
-			vS27/BA4cC4Io3bfE+LhFLKu8Vug8Bi4TPMJg9pO77c=
+			Heyc3VXO9vNPZIOeX8YdOGDfnW9dwxoWLdkqKBjVUCU=
 			</data>
 		</dict>
 		<key>Headers/WOWZStreamConfig.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			BRSddxzTtNDVEPTKxZnfuFyEX08=
+			iGO7RR2OY3Rk5Vl4Vv2PNVMgdJ0=
 			</data>
 			<key>hash2</key>
 			<data>
-			KcFRHl8q1BRZ61CEjksqfPhMsYHzIUG0IWSJrqII1o0=
+			E7shZOz2/YFuJ05KdVmOd9bnVXYM35xKLdtKwB56DWY=
 			</data>
 		</dict>
 		<key>Headers/WOWZVersionInfo.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			WW/WXOpGo1HCE2w06w1m6ckLXwY=
+			FATm+qyl22ijUSfVjObOcViyu4Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			1FYrctkG4GJatFcQzPt4SGzb31M3rRyoZeP7NmzALIQ=
+			ci1oZ103/hlXYkWbmXSvzAWfeNiUrqMaaczOna23JQk=
 			</data>
 		</dict>
 		<key>Headers/WOWZVideoEncoderSink.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			9uX++GZ09FBYnQR2mhxGvuLpDxE=
+			ewHJabeddXfppVDtbbgFzyG7ns0=
 			</data>
 			<key>hash2</key>
 			<data>
-			fQn4w0OxVPuMkNkPxpfG737JjXf2Ei9SrrhLdkBHnsk=
+			UdgHINtZ/mIdAQah8xvfVPFqgc1ZDRjN3lm+FecEcA0=
 			</data>
 		</dict>
 		<key>Headers/WOWZVideoSink.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			3Mpi+pV5PENBE4v3WRdwglPtbz0=
+			2tZPcta0dd9oRxMf0CHbcicUldk=
 			</data>
 			<key>hash2</key>
 			<data>
-			xJ7EQ/CGnrLDY/Nnsz6ZEh1XrPJB2l8Z6jX+Otp0IJM=
+			YxOzC61CCmsc3/mmdqg6qZmyEFVjJdzOBnYv5o14LVo=
 			</data>
 		</dict>
 		<key>Headers/WSCTokenProcessor.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			QiUXfm99Z6oAqT4rNCF5wu9LYKU=
+			HY8vbbQVqv9a5Rrr9kcCUz054zk=
 			</data>
 			<key>hash2</key>
 			<data>
-			jkZhEOc/GtXQmFbOefR2Lh6aXub0JcHoahKVyFKMw5I=
+			6lUrzr8j2wvspa2E2+PYTZWvFP0EFXsY58MRDd+KNjs=
 			</data>
 		</dict>
 		<key>Headers/WowzaConfig.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ahMW5ZvgX+1Tn4iGysc7N6fCiuc=
+			xsgfhm96ShXB+d1kdn8r36k587I=
 			</data>
 			<key>hash2</key>
 			<data>
-			hXc2g8fqtmUfQSQK1qVgmeRbor7HkhieSwYvoL+1jyg=
+			iknI5iwbFj/d5QW9lu08balrcsL5fWCPgDcbM9dKuZA=
 			</data>
 		</dict>
 		<key>Headers/WowzaGoCoder.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			bnJUGGUQCwVhAFGwX+GoCdlT5OI=
+			nhjU7I040wHWbER+qgel+cZ9rsU=
 			</data>
 			<key>hash2</key>
 			<data>
-			x/ruW8A7E5tHE5z0RaHMwwaBfs8PdbmWIojadRfow0E=
+			du+jBN4xSRMR95L/b9in6+oDRO3h9Zn4SxTQhVomJw8=
 			</data>
 		</dict>
 		<key>Headers/WowzaGoCoderSDK.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			m+cn12LfNcys5wKmH1CSENTtnec=
+			EWmm9JGwaO8CjSbBig8Ev/hiMa4=
 			</data>
 			<key>hash2</key>
 			<data>
-			QRYFIE60So5BPJ7EfRRagatM5saCdY1Wyry9KsKWq4M=
+			ftrHuIcgr8SWAI1MrmG7wMe3hsuxY99rFZIbSMjc0LI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -464,7 +464,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^</key>
+		<key>^.*</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -495,24 +495,12 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
-		<key>^</key>
-		<dict>
-			<key>weight</key>
-			<real>20</real>
-		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		</dict>
-		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -548,13 +536,6 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
-		</dict>
-		<key>^[^/]+$</key>
-		<dict>
-			<key>nested</key>
-			<true/>
-			<key>weight</key>
-			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

@@ -588,6 +588,12 @@
                                     <action selector="didTapCloseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cxe-HZ-ycD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 kbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMh-f8-Xxu" userLabel="bitrate label">
+                                <rect key="frame" x="285.5" y="493" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRC-go-5w7">
                                 <rect key="frame" x="29" y="523" width="32" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -633,6 +639,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.36470588235294116" green="0.37647058823529411" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="inm-RM-tXu" firstAttribute="top" secondItem="fMh-f8-Xxu" secondAttribute="bottom" constant="9" id="0Di-0Y-eOb"/>
                             <constraint firstItem="720-q5-G0n" firstAttribute="top" secondItem="TN5-Ee-nq5" secondAttribute="bottom" constant="45.5" id="2PE-MN-lX4"/>
                             <constraint firstAttribute="trailing" secondItem="qbX-Mz-Gvi" secondAttribute="trailing" id="2Xl-an-W44"/>
                             <constraint firstItem="TN5-Ee-nq5" firstAttribute="centerY" secondItem="r9O-5P-CN0" secondAttribute="centerY" id="3BP-EN-aYX"/>
@@ -655,6 +662,7 @@
                             <constraint firstItem="r9O-5P-CN0" firstAttribute="centerY" secondItem="Fe0-Ba-MDc" secondAttribute="centerY" id="kzn-lj-2vy"/>
                             <constraint firstItem="IMC-Rk-m4x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qbY-fM-a1I"/>
                             <constraint firstItem="BMm-D1-224" firstAttribute="centerY" secondItem="IMC-Rk-m4x" secondAttribute="centerY" id="sMq-TY-zro"/>
+                            <constraint firstItem="fMh-f8-Xxu" firstAttribute="centerX" secondItem="inm-RM-tXu" secondAttribute="centerX" id="sQ8-tu-rJb"/>
                             <constraint firstItem="6wq-SI-3Vf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vFW-i3-01y"/>
                             <constraint firstItem="bcO-fq-Toa" firstAttribute="centerY" secondItem="IMC-Rk-m4x" secondAttribute="centerY" id="wxg-tT-ZIw"/>
                         </constraints>
@@ -667,6 +675,7 @@
                     </view>
                     <connections>
                         <outlet property="bitmapOverlayImgView" destination="5fq-t1-STv" id="5cl-Gw-r4y"/>
+                        <outlet property="bitrateLabel" destination="fMh-f8-Xxu" id="Go6-Sy-vE5"/>
                         <outlet property="broadcastButton" destination="IMC-Rk-m4x" id="ZyO-o3-ISu"/>
                         <outlet property="closeButton" destination="TN5-Ee-nq5" id="xe1-tK-6s3"/>
                         <outlet property="metaDataButton" destination="inm-RM-tXu" id="qbv-9j-6Yc"/>
@@ -679,6 +688,17 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pn-PG-CmL">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40002985670000002" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="LVq-SU-4ml"/>
+                        <constraint firstAttribute="height" constant="30" id="irR-pb-C97"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </objects>
             <point key="canvasLocation" x="765.60000000000002" y="-384.55772113943033"/>
         </scene>
@@ -794,6 +814,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 kbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kad-zr-ZPS" userLabel="bitrate label">
+                                <rect key="frame" x="289" y="496.5" width="66" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -803,6 +829,7 @@
                             <constraint firstItem="0qe-Ks-ai0" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="42e-VK-She"/>
                             <constraint firstItem="QfA-eZ-JnV" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="5BW-bl-egu"/>
                             <constraint firstItem="cDf-Bn-BjP" firstAttribute="top" secondItem="XiZ-In-SEl" secondAttribute="bottom" constant="-3" id="Cab-qk-4Nk"/>
+                            <constraint firstItem="kad-zr-ZPS" firstAttribute="centerY" secondItem="Hcy-pO-x8D" secondAttribute="centerY" id="DVw-Cv-Ks2"/>
                             <constraint firstItem="ke6-tf-MDs" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="F6I-rU-R1Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r65-cb-pZB" secondAttribute="trailing" constant="20" id="JeO-zS-w5R"/>
                             <constraint firstItem="XiZ-In-SEl" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" id="KmE-da-BUk"/>
@@ -814,6 +841,7 @@
                             <constraint firstItem="XiZ-In-SEl" firstAttribute="trailing" secondItem="FVX-Qn-3vt" secondAttribute="trailingMargin" id="Qau-Q7-jaS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="W1k-rV-rxe" secondAttribute="trailing" constant="20" id="Sfs-DI-Pzm"/>
                             <constraint firstItem="0qe-Ks-ai0" firstAttribute="centerY" secondItem="FVX-Qn-3vt" secondAttribute="centerY" id="T0y-RZ-TIN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kad-zr-ZPS" secondAttribute="trailing" constant="4" id="WGx-dx-yZC"/>
                             <constraint firstItem="W1k-rV-rxe" firstAttribute="leading" secondItem="2Q3-D4-pIH" secondAttribute="trailing" constant="25" id="ZWx-aY-h7c"/>
                             <constraint firstItem="cDf-Bn-BjP" firstAttribute="leading" secondItem="XiZ-In-SEl" secondAttribute="leading" id="fIl-O9-hZS"/>
                             <constraint firstItem="r65-cb-pZB" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="kwK-Lc-AJo"/>
@@ -827,6 +855,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bitrateLabel" destination="kad-zr-ZPS" id="wX4-DR-NeL"/>
                         <outlet property="infoLabel" destination="0qe-Ks-ai0" id="naf-TN-K9f"/>
                         <outlet property="muteButton" destination="2Q3-D4-pIH" id="grV-ff-J4n"/>
                         <outlet property="playbackButton" destination="ke6-tf-MDs" id="zH9-I1-UEo"/>
@@ -837,7 +866,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gU6-ue-NTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="284"/>
+            <point key="canvasLocation" x="765.60000000000002" y="283.80809595202402"/>
         </scene>
         <!--Movie Player View Controller-->
         <scene sceneID="SiB-FI-y5t">

@@ -3,7 +3,7 @@
 //  MetaDataSampleApp
 //
 //  Created by Benji Brown on 7/11/18.
-//  Copyright © 2018 Wowza. All rights reserved.
+//  Copyright © 2019 Wowza. All rights reserved.
 //
 
 #import "AppDelegate.h"

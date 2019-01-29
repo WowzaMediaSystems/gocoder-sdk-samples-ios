@@ -2,7 +2,7 @@
 //  WOWZMediaConfig.h
 //  WowzaGoCoderSDK
 //
-//  © 2007 – 2018 Wowza Media Systems, LLC. All rights
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
 //  reserved.
 //
 //  The above copyright notice and this permission notice shall be
@@ -50,9 +50,11 @@ typedef NS_ENUM(NSUInteger, WOWZFrameSizePreset) {
 
 /*!
  *  @typedef WOWZBroadcastOrientation
- *  @constant WOWZBroadcastOrientationAlwaysLandscape Always broadcast in landscape orientation.
- *  @constant WOWZBroadcastOrientationAlwaysPortrait Always broadcast in portrait orientation.
  *  @constant WOWZBroadcastOrientationSameAsDevice Use the orientation of the device when the broadcast starts.
+ *  @constant WOWZBroadcastOrientationAlwaysLandscapeLeft Always broadcast in landscape left orientation (this maintains a left orientation for the person viewing the video on the device as the device is rotated).
+ *  @constant WOWZBroadcastOrientationAlwaysPortrait Always broadcast in portrait orientation.
+ *  @constant WOWZBroadcastOrientationAlwaysLandscapeRight Always broadcast in landscape right orientation.
+ *  @constant WOWZBroadcastOrientationPortraitUpsideDown Always broadcast in portrait orientation and rotated 180 degrees.
  *  @discussion Orientation options for the broadcasted video.
  */
 typedef NS_ENUM(NSUInteger, WOWZBroadcastOrientation) {

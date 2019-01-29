@@ -828,7 +828,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
     SCNNode *emitter = [_shipNode childNodeWithName:@"emitter" recursively:YES];
     SCNParticleSystem *ps = [SCNParticleSystem particleSystemNamed:@"reactor.scnp" inDirectory:@"assets.scnassets/particles"];
-    [emitter addParticleSystem:ps];
+    //[emitter addParticleSystem:ps];
     _shipHandle.position = SCNVector3Make(_shipHandle.position.x, _shipHandle.position.y, _shipHandle.position.z-50);
 
     [_scene.rootNode addChildNode:_introNodeGroup];
@@ -1247,11 +1247,11 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     ps = [SCNParticleSystem particleSystemNamed:@"fire.scnp" inDirectory:@"assets.scnassets/particles/"];
     _smoke = [SCNParticleSystem particleSystemNamed:@"smoke.scnp" inDirectory:@"assets.scnassets/particles/"];
     _smoke.birthRate = 0;
-    [fireHolder addParticleSystem:ps];
+   // [fireHolder addParticleSystem:ps];
 
     SCNNode *smokeEmitter = [SCNNode node];
     smokeEmitter.position = SCNVector3Make(0, 0, 0.5);
-    [smokeEmitter addParticleSystem:_smoke];
+    //[smokeEmitter addParticleSystem:_smoke];
     [fireHolder addChildNode:smokeEmitter];
     [_scene.rootNode addChildNode:fireHolder];
 
@@ -1262,7 +1262,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     ps.birthRate = 0;
     ps.speedFactor = 3.0;
     ps.colliderNodes = @[_floorNode, colliderNode];
-    [emitter addParticleSystem:ps];
+    //[emitter addParticleSystem:ps];
 
     SCNAction *tr = [SCNAction moveBy:SCNVector3Make(60, 0, 0) duration:1];
     tr.timingMode = SCNActionTimingModeEaseInEaseOut;
@@ -1337,7 +1337,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
     ps.emitterShape = [SCNBox boxWithWidth:200 height:0 length:100 chamferRadius:0];
 
-    [_fieldEmitter addParticleSystem:ps];
+    //[_fieldEmitter addParticleSystem:ps];
     [_scene.rootNode addChildNode:_fieldEmitter];
 
     //field
@@ -1440,7 +1440,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         SCNParticleSystem *plokCopy = [_plok copy];
         plokCopy.particleImage = _plok.particleImage; // to workaround an bug in seed #1
         plokCopy.particleColor = ball.geometry.firstMaterial.diffuse.contents;
-        [_scene addParticleSystem:plokCopy withTransform:SCNMatrix4MakeTranslation(contact.contactPoint.x, contact.contactPoint.y, contact.contactPoint.z)];
+       // [_scene addParticleSystem:plokCopy withTransform:SCNMatrix4MakeTranslation(contact.contactPoint.x, contact.contactPoint.y, contact.contactPoint.z)];
 
         if (other != _torus) {
             SCNNode *node = [_splashNode clone];

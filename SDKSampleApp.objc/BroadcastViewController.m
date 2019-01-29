@@ -2,7 +2,7 @@
 //  BroadcastViewController.m
 //  SDKSampleApp
 //
-//  This code and all components © 2015 – 2018 Wowza Media Systems, LLC. All rights reserved.
+//  This code and all components © 2015 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //  This code is licensed pursuant to the BSD 3-Clause License.
 //
 
@@ -36,6 +36,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
 @property (nonatomic, weak) IBOutlet UIImageView        *bitmapOverlayImgView;
 @property (weak, nonatomic) IBOutlet UILabel            *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton           *pingButton;
+@property (weak, nonatomic) IBOutlet UILabel            *bitrateLabel;
 
 #pragma mark - GoCoder SDK Components
 @property (nonatomic, strong) WowzaGoCoder      *goCoder;
@@ -82,7 +83,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
     
     self.receivedGoCoderEventCodes = [NSMutableArray new];
     
-    [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelDefault];
+    [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelVerbose];
     
     // Load or initialization the streaming configuration settings
     NSData *savedConfig = [[NSUserDefaults standardUserDefaults] objectForKey:SDKSampleSavedConfigKey];
@@ -158,6 +159,8 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(broadcastBitrateUpdated:) name:@"WOWZBroadcastBitrateNetworkThroughputUpdate" object:nil];
 
 }
 
@@ -220,6 +223,8 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
     if (self.goCoder.status.state == WOWZStateRunning) {
         [self.goCoder endStreaming:self];
         [UIApplication sharedApplication].idleTimerDisabled = NO;
+        self.bitrateLabel.text = @"0.0 kbps";
+
     }
     else {
         [self.receivedGoCoderEventCodes removeAllObjects];
@@ -321,6 +326,16 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
 }
 
 #pragma mark - Notifications
+
+-(void) broadcastBitrateUpdated:(NSNotification *)note {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bitrateLabel.text = [NSString stringWithFormat:@"%.02f kbps", [note.userInfo[@"broadcastThroughputBitrate"] floatValue]];
+        
+        //or you could just check against the self.gocoder
+        self.bitrateLabel.text = [NSString stringWithFormat:@"%.02f kbps", [self.goCoder getCurrentBroadcastingNetworkBitrateThroughput]];
+    });
+}
 
 - (void) orientationChanged:(NSNotification *)notification {
     

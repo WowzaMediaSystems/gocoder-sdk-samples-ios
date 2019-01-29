@@ -179,6 +179,12 @@
                                 <rect key="frame" x="66" y="236" width="237" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 kbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeW-1s-9Ef" userLabel="bitrate label">
+                                <rect key="frame" x="296" y="528.5" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.36470588235294116" green="0.37647058823529411" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -193,6 +199,7 @@
                             <constraint firstItem="BMm-D1-224" firstAttribute="top" secondItem="6wq-SI-3Vf" secondAttribute="bottom" constant="45" id="Hev-5K-8HS"/>
                             <constraint firstItem="Fe0-Ba-MDc" firstAttribute="centerX" secondItem="BMm-D1-224" secondAttribute="centerX" id="HyB-KB-BU1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TN5-Ee-nq5" secondAttribute="trailing" id="XCk-2k-XpO"/>
+                            <constraint firstAttribute="trailing" secondItem="HeW-1s-9Ef" secondAttribute="trailing" constant="13" id="Xhh-rL-T8R"/>
                             <constraint firstItem="qbX-Mz-Gvi" firstAttribute="top" secondItem="720-q5-G0n" secondAttribute="bottom" constant="22" id="XuS-ej-qyB"/>
                             <constraint firstItem="6wq-SI-3Vf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="aDQ-gU-M1d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bcO-fq-Toa" secondAttribute="trailing" id="aS9-TH-C3b"/>
@@ -200,6 +207,7 @@
                             <constraint firstItem="IMC-Rk-m4x" firstAttribute="top" secondItem="6wq-SI-3Vf" secondAttribute="bottom" constant="18" id="jyC-kn-fAx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="720-q5-G0n" secondAttribute="trailing" id="kVJ-5i-dqI"/>
                             <constraint firstItem="r9O-5P-CN0" firstAttribute="centerY" secondItem="Fe0-Ba-MDc" secondAttribute="centerY" id="kzn-lj-2vy"/>
+                            <constraint firstItem="HeW-1s-9Ef" firstAttribute="centerY" secondItem="6wq-SI-3Vf" secondAttribute="centerY" id="pE1-FR-Rvo"/>
                             <constraint firstItem="IMC-Rk-m4x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qbY-fM-a1I"/>
                             <constraint firstItem="BMm-D1-224" firstAttribute="centerY" secondItem="IMC-Rk-m4x" secondAttribute="centerY" id="sMq-TY-zro"/>
                             <constraint firstItem="6wq-SI-3Vf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vFW-i3-01y"/>
@@ -214,6 +222,7 @@
                     </view>
                     <connections>
                         <outlet property="bitmapOverlayImgView" destination="xLF-36-Q7H" id="lEL-HJ-jTZ"/>
+                        <outlet property="bitrateLabel" destination="HeW-1s-9Ef" id="Qbe-1f-J7w"/>
                         <outlet property="broadcastButton" destination="IMC-Rk-m4x" id="ZyO-o3-ISu"/>
                         <outlet property="closeButton" destination="TN5-Ee-nq5" id="xe1-tK-6s3"/>
                         <outlet property="micButton" destination="r9O-5P-CN0" id="w6T-7D-Brk"/>
@@ -244,6 +253,32 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qkt-0Y-oTV">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jsw-rT-F8l">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyCell" id="adb-Ge-6cD">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="nIe-I7-rXB" id="kgr-Jl-kD0"/>
+                                    <outlet property="delegate" destination="nIe-I7-rXB" id="67X-6K-48H"/>
+                                </connections>
+                            </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gv4-pf-uZW" userLabel="Aspect">
                                 <rect key="frame" x="34" y="594.5" width="49" height="30"/>
                                 <state key="normal" title="Aspect">
@@ -262,6 +297,17 @@
                                 <state key="normal" image="playback_button"/>
                                 <connections>
                                     <action selector="didTapPlaybackButton:" destination="nIe-I7-rXB" eventType="touchUpInside" id="ahG-FB-ZGa"/>
+                                </connections>
+                            </button>
+                            <button contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m6-Ku-9yd">
+                                <rect key="frame" x="225" y="572" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="SgE-fb-HtS"/>
+                                    <constraint firstAttribute="height" constant="75" id="Z87-yz-roz"/>
+                                </constraints>
+                                <state key="normal" image="playback_button"/>
+                                <connections>
+                                    <action selector="didTapStopPlayButton:" destination="nIe-I7-rXB" eventType="touchUpInside" id="RKi-lc-1Lw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r65-cb-pZB">
@@ -329,6 +375,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 kbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2s-2j-snH" userLabel="bitrate label">
+                                <rect key="frame" x="289" y="496" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qe-Ks-ai0">
                                 <rect key="frame" x="187.5" y="333.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -344,6 +396,7 @@
                             <constraint firstItem="0qe-Ks-ai0" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="42e-VK-She"/>
                             <constraint firstItem="cDf-Bn-BjP" firstAttribute="top" secondItem="XiZ-In-SEl" secondAttribute="bottom" constant="-3" id="Cab-qk-4Nk"/>
                             <constraint firstItem="ke6-tf-MDs" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="F6I-rU-R1Q"/>
+                            <constraint firstItem="8m6-Ku-9yd" firstAttribute="leading" secondItem="ke6-tf-MDs" secondAttribute="trailing" id="FMU-ZL-vCF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r65-cb-pZB" secondAttribute="trailing" constant="20" id="JeO-zS-w5R"/>
                             <constraint firstItem="XiZ-In-SEl" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" id="KmE-da-BUk"/>
                             <constraint firstItem="gv4-pf-uZW" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" constant="18" id="Li1-k9-jAZ"/>
@@ -358,9 +411,12 @@
                             <constraint firstItem="W1k-rV-rxe" firstAttribute="leading" secondItem="2Q3-D4-pIH" secondAttribute="trailing" constant="25" id="ZWx-aY-h7c"/>
                             <constraint firstItem="gv4-pf-uZW" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="dMt-BO-X12"/>
                             <constraint firstItem="cDf-Bn-BjP" firstAttribute="leading" secondItem="XiZ-In-SEl" secondAttribute="leading" id="fIl-O9-hZS"/>
+                            <constraint firstItem="a2s-2j-snH" firstAttribute="centerY" secondItem="Hcy-pO-x8D" secondAttribute="centerY" id="g05-KF-vfx"/>
+                            <constraint firstItem="8m6-Ku-9yd" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="j5R-gL-Zne"/>
                             <constraint firstItem="r65-cb-pZB" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="kwK-Lc-AJo"/>
                             <constraint firstItem="2Q3-D4-pIH" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" constant="20" id="nRC-aU-QXk"/>
                             <constraint firstItem="yIy-CJ-hTP" firstAttribute="trailing" secondItem="XiZ-In-SEl" secondAttribute="trailing" id="pBR-jj-LNI"/>
+                            <constraint firstAttribute="trailing" secondItem="a2s-2j-snH" secondAttribute="trailing" constant="20" id="q05-by-EXl"/>
                             <constraint firstItem="BOR-Hx-NsM" firstAttribute="top" secondItem="ke6-tf-MDs" secondAttribute="bottom" constant="20" id="qvb-Lo-sk0"/>
                             <constraint firstAttribute="trailing" secondItem="WdP-h4-6FC" secondAttribute="trailing" id="rC0-md-5Xy"/>
                             <constraint firstItem="WdP-h4-6FC" firstAttribute="top" secondItem="FVX-Qn-3vt" secondAttribute="top" id="rbd-zz-DH4"/>
@@ -370,6 +426,8 @@
                     </view>
                     <connections>
                         <outlet property="aspectButton" destination="gv4-pf-uZW" id="tAD-9Y-Zol"/>
+                        <outlet property="bitrateLabel" destination="a2s-2j-snH" id="DgI-Ik-M7z"/>
+                        <outlet property="collectionView" destination="qkt-0Y-oTV" id="YvZ-kb-svy"/>
                         <outlet property="infoLabel" destination="0qe-Ks-ai0" id="naf-TN-K9f"/>
                         <outlet property="muteButton" destination="2Q3-D4-pIH" id="grV-ff-J4n"/>
                         <outlet property="playbackButton" destination="ke6-tf-MDs" id="zH9-I1-UEo"/>
@@ -391,6 +449,6 @@
         <image name="switch_camera_button" width="45" height="45"/>
         <image name="torch_on_button" width="45" height="45"/>
         <image name="volume_unmute" width="55" height="55"/>
-        <image name="wowza" width="320" height="112"/>
+        <image name="wowza" width="320" height="112.5"/>
     </resources>
 </document>

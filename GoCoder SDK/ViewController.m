@@ -3,7 +3,7 @@
 //  GoCoder SDK
 //
 //  Created by Benji Brown on 9/19/18.
-//  Copyright © 2018 Wowza. All rights reserved.
+//  Copyright © 2019 Wowza. All rights reserved.
 //
 
 #import "ViewController.h"
