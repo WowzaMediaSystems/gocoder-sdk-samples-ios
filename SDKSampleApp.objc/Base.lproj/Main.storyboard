@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n3p-KN-MuK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n3p-KN-MuK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -185,6 +185,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UNu-D3-LmH" userLabel="Zoom Slider">
+                                <rect key="frame" x="32" y="480" width="241" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="didChangeZoom:" destination="BYZ-38-t0r" eventType="valueChanged" id="dcM-UQ-mKE"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="0.36470588235294116" green="0.37647058823529411" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -231,6 +238,7 @@
                         <outlet property="switchCameraButton" destination="BMm-D1-224" id="wvk-Qo-Ddh"/>
                         <outlet property="timeLabel" destination="6wq-SI-3Vf" id="ik9-XT-UPK"/>
                         <outlet property="torchButton" destination="Fe0-Ba-MDc" id="wPr-Au-hpI"/>
+                        <outlet property="zoomSlider" destination="UNu-D3-LmH" id="LTg-cl-CPc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -279,6 +287,27 @@
                                     <outlet property="delegate" destination="nIe-I7-rXB" id="67X-6K-48H"/>
                                 </connections>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2a7-gB-hAg">
+                                <rect key="frame" x="67.5" y="94" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="4SK-Ea-pi5"/>
+                                    <constraint firstAttribute="height" constant="128" id="Ny9-5H-BSf"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFm-6L-qaG">
+                                <rect key="frame" x="150" y="143" width="75" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.41568627450000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="gZ2-3z-NTx"/>
+                                    <constraint firstAttribute="height" constant="30" id="mi1-Re-HSL"/>
+                                </constraints>
+                                <state key="normal" title="lastFrame">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapLatestFrame:" destination="nIe-I7-rXB" eventType="touchUpInside" id="3H2-yQ-kKj"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gv4-pf-uZW" userLabel="Aspect">
                                 <rect key="frame" x="34" y="594.5" width="49" height="30"/>
                                 <state key="normal" title="Aspect">
@@ -297,17 +326,6 @@
                                 <state key="normal" image="playback_button"/>
                                 <connections>
                                     <action selector="didTapPlaybackButton:" destination="nIe-I7-rXB" eventType="touchUpInside" id="ahG-FB-ZGa"/>
-                                </connections>
-                            </button>
-                            <button contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m6-Ku-9yd">
-                                <rect key="frame" x="225" y="572" width="75" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="SgE-fb-HtS"/>
-                                    <constraint firstAttribute="height" constant="75" id="Z87-yz-roz"/>
-                                </constraints>
-                                <state key="normal" image="playback_button"/>
-                                <connections>
-                                    <action selector="didTapStopPlayButton:" destination="nIe-I7-rXB" eventType="touchUpInside" id="RKi-lc-1Lw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r65-cb-pZB">
@@ -396,7 +414,6 @@
                             <constraint firstItem="0qe-Ks-ai0" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="42e-VK-She"/>
                             <constraint firstItem="cDf-Bn-BjP" firstAttribute="top" secondItem="XiZ-In-SEl" secondAttribute="bottom" constant="-3" id="Cab-qk-4Nk"/>
                             <constraint firstItem="ke6-tf-MDs" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="F6I-rU-R1Q"/>
-                            <constraint firstItem="8m6-Ku-9yd" firstAttribute="leading" secondItem="ke6-tf-MDs" secondAttribute="trailing" id="FMU-ZL-vCF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r65-cb-pZB" secondAttribute="trailing" constant="20" id="JeO-zS-w5R"/>
                             <constraint firstItem="XiZ-In-SEl" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" id="KmE-da-BUk"/>
                             <constraint firstItem="gv4-pf-uZW" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" constant="18" id="Li1-k9-jAZ"/>
@@ -408,14 +425,17 @@
                             <constraint firstItem="XiZ-In-SEl" firstAttribute="trailing" secondItem="FVX-Qn-3vt" secondAttribute="trailingMargin" id="Qau-Q7-jaS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="W1k-rV-rxe" secondAttribute="trailing" constant="20" id="Sfs-DI-Pzm"/>
                             <constraint firstItem="0qe-Ks-ai0" firstAttribute="centerY" secondItem="FVX-Qn-3vt" secondAttribute="centerY" id="T0y-RZ-TIN"/>
+                            <constraint firstItem="2a7-gB-hAg" firstAttribute="top" secondItem="W1k-rV-rxe" secondAttribute="bottom" constant="11.5" id="TZ3-cq-23g"/>
                             <constraint firstItem="W1k-rV-rxe" firstAttribute="leading" secondItem="2Q3-D4-pIH" secondAttribute="trailing" constant="25" id="ZWx-aY-h7c"/>
                             <constraint firstItem="gv4-pf-uZW" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="dMt-BO-X12"/>
                             <constraint firstItem="cDf-Bn-BjP" firstAttribute="leading" secondItem="XiZ-In-SEl" secondAttribute="leading" id="fIl-O9-hZS"/>
                             <constraint firstItem="a2s-2j-snH" firstAttribute="centerY" secondItem="Hcy-pO-x8D" secondAttribute="centerY" id="g05-KF-vfx"/>
-                            <constraint firstItem="8m6-Ku-9yd" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="j5R-gL-Zne"/>
+                            <constraint firstItem="IFm-6L-qaG" firstAttribute="centerY" secondItem="2a7-gB-hAg" secondAttribute="centerY" id="iCc-pe-HFv"/>
                             <constraint firstItem="r65-cb-pZB" firstAttribute="centerY" secondItem="ke6-tf-MDs" secondAttribute="centerY" id="kwK-Lc-AJo"/>
+                            <constraint firstItem="IFm-6L-qaG" firstAttribute="centerX" secondItem="2a7-gB-hAg" secondAttribute="centerX" id="mns-gB-q8b"/>
                             <constraint firstItem="2Q3-D4-pIH" firstAttribute="leading" secondItem="FVX-Qn-3vt" secondAttribute="leadingMargin" constant="20" id="nRC-aU-QXk"/>
                             <constraint firstItem="yIy-CJ-hTP" firstAttribute="trailing" secondItem="XiZ-In-SEl" secondAttribute="trailing" id="pBR-jj-LNI"/>
+                            <constraint firstItem="2a7-gB-hAg" firstAttribute="centerX" secondItem="FVX-Qn-3vt" secondAttribute="centerX" id="pZI-uJ-LAA"/>
                             <constraint firstAttribute="trailing" secondItem="a2s-2j-snH" secondAttribute="trailing" constant="20" id="q05-by-EXl"/>
                             <constraint firstItem="BOR-Hx-NsM" firstAttribute="top" secondItem="ke6-tf-MDs" secondAttribute="bottom" constant="20" id="qvb-Lo-sk0"/>
                             <constraint firstAttribute="trailing" secondItem="WdP-h4-6FC" secondAttribute="trailing" id="rC0-md-5Xy"/>
@@ -429,6 +449,7 @@
                         <outlet property="bitrateLabel" destination="a2s-2j-snH" id="DgI-Ik-M7z"/>
                         <outlet property="collectionView" destination="qkt-0Y-oTV" id="YvZ-kb-svy"/>
                         <outlet property="infoLabel" destination="0qe-Ks-ai0" id="naf-TN-K9f"/>
+                        <outlet property="latestFrameImageView" destination="2a7-gB-hAg" id="5FY-L3-gS4"/>
                         <outlet property="muteButton" destination="2Q3-D4-pIH" id="grV-ff-J4n"/>
                         <outlet property="playbackButton" destination="ke6-tf-MDs" id="zH9-I1-UEo"/>
                         <outlet property="previewView" destination="WdP-h4-6FC" id="Ffe-KN-b7b"/>

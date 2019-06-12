@@ -2,8 +2,7 @@
 //  WOWZPlatformInfo.h
 //  WowzaGoCoderSDK
 //
-//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
-//  reserved.
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 //  The above copyright notice and this permission notice shall be
 //  included in all copies or substantial portions of the Software.
@@ -47,6 +46,13 @@
  *  @return The version of iOS installed on the device.
  */
 + (nonnull NSString *) iOSVersion;
+
+/*!
+ *  Gets the current application.
+ *
+ *  @return The name of the current application running on the device.
+ */
++ (nonnull NSString *) applicationName;
 
 /*!
  *  Gets all of the device's WOWZPlatformInfo in a human-readable string.

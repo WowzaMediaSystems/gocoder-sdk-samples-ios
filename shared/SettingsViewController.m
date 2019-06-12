@@ -60,11 +60,11 @@
 
 - (void) addAllSections {
     [self.sectionsToDisplay removeAllObjects];
-		[self addDisplaySection:SettingsViewSectionConnectionCode];
+    [self addDisplaySection:SettingsViewSectionConnectionCode];
     [self addDisplaySection:SettingsViewSectionVideo];
     [self addDisplaySection:SettingsViewSectionAudio];
     [self addDisplaySection:SettingsViewSectionBroadcast];
-	 [self addDisplaySection:SettingsViewSectionPlayback];
+    [self addDisplaySection:SettingsViewSectionPlayback];
     [self addDisplaySection:SettingsViewSectionCaptureOrientationMode];
     [self addDisplaySection:SettingsViewSectionBroadcastOrientationMode];
     [self addDisplaySection:SettingsViewSectionBroadcastScaleMode];
@@ -72,6 +72,7 @@
     [self addDisplaySection:SettingsViewSectionBackgroundMode];
     [self addDisplaySection:SettingsViewSectionVideoMirroring];
     [self addDisplaySection:SettingsViewSectionVideoEffects];
+    [self addDisplaySection:SettingsViewSectionVideoRenderingMethod];
     [self addDisplaySection:SettingsViewSectionRecordVideoLocally];
 }
 
@@ -102,9 +103,10 @@
         case SettingsViewSectionBroadcast:
             title = @"Wowza Broadcast Settings";
             break;
-			case SettingsViewSectionPlaybackSettings:
-				title = @"Wowza Playback Settings";
-				break;
+			
+        case SettingsViewSectionPlaybackSettings:
+            title = @"Wowza Playback Settings";
+            break;
             
         case SettingsViewSectionCaptureOrientationMode:
             title = @"Capture Orientation Settings";
@@ -133,6 +135,10 @@
         case SettingsViewSectionVideoEffects:
             title = @"Video Effects";
             break;
+        
+        case SettingsViewSectionVideoRenderingMethod:
+            title = @"Video Rendering Method";
+            break;
             
         case SettingsViewSectionRecordVideoLocally:
             title = @"Video Recording";
@@ -141,12 +147,14 @@
         case SettingsViewSectionPlayback:
             title = @"Playback";
             break;
-			case SettingsViewSectionPlaybackHLS:
-				title = @"HLS";
-				break;
-			case SettingsViewSectionConnectionCode:
-				title = @"Connection Code";
-				break;
+			
+        case SettingsViewSectionPlaybackHLS:
+            title = @"HLS";
+            break;
+			
+        case SettingsViewSectionConnectionCode:
+            title = @"Connection Code";
+            break;
             
         default:
             break;
@@ -173,9 +181,9 @@
             count = SettingsBroadcastItemCount;
             break;
 				
-				case SettingsViewSectionPlaybackSettings:
-					count = SettingsBroadcastItemCount;
-					break;
+        case SettingsViewSectionPlaybackSettings:
+            count = SettingsBroadcastItemCount;
+            break;
             
         case SettingsViewSectionCaptureOrientationMode:
             count = 2;
@@ -205,15 +213,21 @@
         case SettingsViewSectionPlayback:
             count = 1;
             break;
+        
         case SettingsViewSectionVideoEffects:
             count = 2;
             break;
-			case SettingsViewSectionPlaybackHLS:
-				count = 2;
-				break;
-			case SettingsViewSectionConnectionCode:
-				count = 1;
-				break;
+        
+        case SettingsViewSectionVideoRenderingMethod:
+            count = 4;
+            break;
+        
+        case SettingsViewSectionPlaybackHLS:
+            count = 2;
+            break;
+        case SettingsViewSectionConnectionCode:
+            count = 1;
+            break;
             
         default:
             break;
@@ -359,6 +373,43 @@
                 break;
             }
         }
+    }
+    
+    else if (settingsSection == SettingsViewSectionVideoRenderingMethod) {
+        NSString *title = @"";
+        BOOL on = NO;
+        switch (indexPath.row) {
+            case 0:
+            title = @"Auto";
+            on = self.viewModel.videoRenderingMethod == WOWZVideoRenderMethodAuto;
+            break;
+            
+            case 1:
+            title = @"Metal";
+            on = self.viewModel.videoRenderingMethod == WOWZVideoRenderMethodMetal;
+            break;
+                
+            case 2:
+            title = @"Metal sRGB";
+            on = self.viewModel.videoRenderingMethod == WOWZVideoRenderMethodMetal_sRGB;
+            break;
+            
+            case 3:
+            title = @"OpenGL";
+            on = self.viewModel.videoRenderingMethod == WOWZVideoRenderMethodOpenGL;
+            break;
+            
+            default:
+            break;
+        }
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"videoSettingCell" forIndexPath:indexPath];
+        cell.textLabel.text = title;
+        
+        cell.accessoryType = on ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryView = nil;
+        
+        return cell;
     }
     
     else if (settingsSection == SettingsViewSectionRecordVideoLocally) {
@@ -630,6 +681,31 @@
         [self.tableView reloadData];
     }
     
+    else if (settingsSection == SettingsViewSectionVideoRenderingMethod) {
+        switch (indexPath.row) {
+            case 0:
+            self.viewModel.videoRenderingMethod = WOWZVideoRenderMethodAuto;
+            break;
+            
+            case 1:
+            self.viewModel.videoRenderingMethod = WOWZVideoRenderMethodMetal;
+            break;
+                
+            case 2:
+            self.viewModel.videoRenderingMethod = WOWZVideoRenderMethodMetal_sRGB;
+            break;
+            
+            case 3:
+            self.viewModel.videoRenderingMethod = WOWZVideoRenderMethodOpenGL;
+            break;
+            
+            default:
+            break;
+        }
+        
+        [self.tableView reloadData];
+    }
+    
 }
 
 
@@ -655,9 +731,8 @@
 }
 
 - (IBAction) didTapDoneButton:(id)sender {
-	if ([self validateToken]){
+    if (![self validateToken]) return;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-	}
 }
 
 - (IBAction) didChangeBitmapOverlaySwitch:(id)sender {
@@ -706,7 +781,8 @@
     }
     
     //not QA token
-	else if ( (token.length == 6 || token.length == 7) && [self validateTokenString:token] ) {
+        
+    if ( (token.length == 6 || token.length == 7) && [self validateTokenString:token] ) {
 		WSCTokenProcessor *processor = [[WSCTokenProcessor alloc] init];
 		
 		// This works but I wonder if there is a cleaner way (or a better delegate)
@@ -717,14 +793,14 @@
 		
 		return YES;
 	}
-	else if(token.length <= 0){
-		return YES;
-	}else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Connection Code" message:@"Connection Code must be 6 alphanumeric characters" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
-		
-		return NO;
+	if (0 < token.length){
+        UIAlertController *const alert = [UIAlertController alertControllerWithTitle:@"Invalid Connection Code" message:@"Connection Code must be 6 alphanumeric characters" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *const act){}]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return NO;
 	}
+
+    return YES;
 }
 
 -(BOOL) validateTokenString:(NSString *)checkString {

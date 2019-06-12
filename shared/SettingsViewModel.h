@@ -120,6 +120,8 @@ typedef NS_ENUM(NSUInteger, SettingsPlaybackItem) {
 
 // the user-selected video mirroring mode
 @property (nonatomic, assign) BOOL mirrorFrontCamera;
+    
+@property (nonatomic, assign) WOWZVideoRenderMethod videoRenderingMethod;
 
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config;
 

@@ -2,8 +2,7 @@
 //  WowzaGoCoder.h
 //  WowzaGoCoderSDK
 //
-//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
-//  reserved.
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 //  The above copyright notice and this permission notice shall be
 //  included in all copies or substantial portions of the Software.
@@ -37,37 +36,6 @@
 @interface WowzaGoCoder : NSObject <WOWZStatusCallback>
 
 
-/*!
- *  @typedef WowzaGoCoderLogLevel
- *  @constant WowzaGoCoderLogLevelOff Disable logging.
- *  @constant WowzaGoCoderLogLevelDefault Generate minimal log statements from the SDK.
- *  @constant WowzaGoCoderLogLevelVerbose Generate detailed log statements from the SDK.
- *  @discussion Settings for the log level for the GoCoder SDK.
- */
-typedef NS_ENUM(NSUInteger, WowzaGoCoderLogLevel) {
-    WowzaGoCoderLogLevelOff,
-    WowzaGoCoderLogLevelDefault,
-    WowzaGoCoderLogLevelVerbose
-};
-
-/*!
- *  @typedef WowzaGoCoderNetworkLogLevel
- *  @constant WowzaGoCoderNetworkLogLevelVerbose Output all log messages.
- *  @constant WowzaGoCoderNetworkLogLevelDebug Log debug, informational, warning, and error messsges.
- *  @constant WowzaGoCoderNetworkLogLevelInfo Log informational, warning, and error messsges.
- *  @constant WowzaGoCoderNetworkLogLevelWarn Log warning and error messages.
- *  @constant WowzaGoCoderNetworkLogLevelError Log error messages.
- *  @discussion Settings for the network log level for the GoCoder SDK.
- */
-typedef NS_ENUM(NSUInteger, WowzaGoCoderNetworkLogLevel) {
-    WowzaGoCoderNetworkLogLevelVerbose  = 1,
-    WowzaGoCoderNetworkLogLevelDebug    = 2,
-    WowzaGoCoderNetworkLogLevelInfo     = 3,
-    WowzaGoCoderNetworkLogLevelWarn     = 4,
-    WowzaGoCoderNetworkLogLevelError    = 5
-};
-
-#if ! WGC_TARGET_EXTENSION
 
 /*!
  *  @typedef WowzaGoCoderCapturePermission
@@ -98,7 +66,6 @@ typedef NS_ENUM(NSUInteger, WowzaGoCoderPermissionType) {
  */
 typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
 
-#endif
 
 
 // Class methods
@@ -110,22 +77,6 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  *  @return Nil if no error, or an NSError that describes the license validation error.
  */
 + (nullable NSError *) registerLicenseKey:(nonnull NSString *)licenseKey;
-
-/*!
- *  Sets the SDK log level.
- *
- *  @param level The log level to use.
- */
-+ (void) setLogLevel:(WowzaGoCoderLogLevel)level;
-
-/*!
- *  Sets the SDK network layer log level.
- *
- *  @param level The network layer log level to use.
- */
-+ (void) setNetworkLogLevel:(WowzaGoCoderNetworkLogLevel)level;
-
-#if ! WGC_TARGET_EXTENSION
 
 /*!
  *  Requests explicit permission to use the device's camera or microphone.
@@ -143,7 +94,6 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 + (WowzaGoCoderCapturePermission) permissionForType:(WowzaGoCoderPermissionType)type;
 
-#endif
 
 /*!
  Gets the WowzaGoCoder shared instance.
@@ -160,7 +110,6 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
 @property (nonatomic, nonnull, copy) WowzaConfig *config;
 
 
-#if ! WGC_TARGET_EXTENSION
 /*!
  *  The view to use for the camera preview.
  */
@@ -171,7 +120,6 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 @property (nonatomic, nullable, readonly) WOWZCameraPreview *cameraPreview;
 
-#endif
 
 /*!
  @property status
@@ -180,14 +128,11 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
 @property (nonatomic, nonnull, readonly) WOWZStatus *status;
 
 
-#if ! WGC_TARGET_EXTENSION
 
 /*!
  *  The muted state of the audio encoder.
  */
 @property (nonatomic, assign, getter=isAudioMuted) BOOL audioMuted;
-
-#endif
 
 /*!
  *  The AVAudioSessionCategoryOptions to use when streaming with audio. The default is AVAudioSessionCategoryOptionAllowBluetooth.
@@ -286,8 +231,6 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
 
 #pragma mark -
 
-#if ! WGC_TARGET_EXTENSION
-
 /*!
  *  Registers a WOWZVideoSink object with WowzaGoCoder.
  *  WOWZVideoSink protocol methods are called when video is being encoded.
@@ -364,6 +307,63 @@ typedef void (^WOWZPermissionBlock)(WowzaGoCoderCapturePermission permission);
  */
 - (void) unregisterDataSink:(nonnull id<WOWZDataSink>)sink eventName:(nonnull NSString *)eventName;
 
-#endif // #if ! WGC_TARGET_EXTENSION
+
+
+/*!
+ *  @typedef WowzaGoCoderLogLevel
+ *  @constant WowzaGoCoderLogLevelError Generate only error logging.
+ *  @constant WowzaGoCoderLogLevelDefault Generate minimal log statements from the SDK.
+ *  @constant WowzaGoCoderLogLevelVerbose Generate detailed log statements from the SDK.
+ *  @constant WowzaGoCoderLogLevelOff Disable logging.
+ *  @discussion Settings for the log level for the GoCoder SDK.
+ */
+typedef NS_ENUM(NSUInteger,WowzaGoCoderLogLevel) {
+    WowzaGoCoderLogLevelOff = 0,
+    WowzaGoCoderLogLevelError = 1,
+    WowzaGoCoderLogLevelDefault = 1,
+    WowzaGoCoderLogLevelVerbose = 2,
+};
+
+/*!
+*  Sets the SDK log level.
+*
+*  @param level The log level to use.
+*/
++ (void) setLogLevel:(WowzaGoCoderLogLevel)level;
+
+
+/*!
+ *  Deprecated
+ *
+ *  No longer used.
+ *
+ *  @typedef WowzaGoCoderNetworkLogLevel
+ *  @constant WowzaGoCoderNetworkLogLevelVerbose Output all log messages.
+ *  @constant WowzaGoCoderNetworkLogLevelDebug Log debug, informational, warning, and error messsges.
+ *  @constant WowzaGoCoderNetworkLogLevelInfo Log informational, warning, and error messsges.
+ *  @constant WowzaGoCoderNetworkLogLevelWarn Log warning and error messages.
+ *  @constant WowzaGoCoderNetworkLogLevelError Log error messages.
+ *  @discussion Settings for the network log level for the GoCoder SDK.
+ */
+typedef NS_ENUM(NSUInteger,WowzaGoCoderNetworkLogLevel) {
+    WowzaGoCoderNetworkLogLevelVerbose  = 1,
+    WowzaGoCoderNetworkLogLevelDebug    = 2,
+    WowzaGoCoderNetworkLogLevelInfo     = 3,
+    WowzaGoCoderNetworkLogLevelWarn     = 4,
+    WowzaGoCoderNetworkLogLevelError    = 5
+} __deprecated_msg("use WowzaGoCoderLogLevel instead");
+
+
+/*!
+ *  Deprecated
+ *
+ *  No longer used.
+ *
+ *  Sets the SDK network layer log level.
+ *
+ *  @param level The network layer log level to use.
+ */
++ (void) setNetworkLogLevel:(WowzaGoCoderNetworkLogLevel)level;
+
 
 @end

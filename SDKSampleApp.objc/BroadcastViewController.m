@@ -24,7 +24,7 @@ NSString *const SDKSampleSavedConfigKey = @"SDKSampleSavedConfigKey";
 NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // com.wowza.gocoder.sdk.bpsampleapp
 
 
-@interface BroadcastViewController () <WOWZStatusCallback, WOWZVideoSink, WOWZAudioSink, WOWZVideoEncoderSink, WOWZAudioEncoderSink, WOWZDataSink>
+@interface BroadcastViewController () <WOWZStatusCallback, WOWZVideoSink, WOWZAudioSink, WOWZVideoEncoderSink, WOWZAudioEncoderSink, WOWZDataSink, UIGestureRecognizerDelegate>
 
 #pragma mark - UI Elements
 @property (nonatomic, weak) IBOutlet UIButton           *broadcastButton;
@@ -37,6 +37,8 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
 @property (weak, nonatomic) IBOutlet UILabel            *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton           *pingButton;
 @property (weak, nonatomic) IBOutlet UILabel            *bitrateLabel;
+@property (nonatomic, weak) IBOutlet UISlider           *zoomSlider;
+
 
 #pragma mark - GoCoder SDK Components
 @property (nonatomic, strong) WowzaGoCoder      *goCoder;
@@ -83,7 +85,10 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
     
     self.receivedGoCoderEventCodes = [NSMutableArray new];
     
-    [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelVerbose];
+    self.zoomSlider.value = 0;
+
+
+
     
     // Load or initialization the streaming configuration settings
     NSData *savedConfig = [[NSUserDefaults standardUserDefaults] objectForKey:SDKSampleSavedConfigKey];
@@ -95,20 +100,14 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
     }
             
     
-    NSLog (@"WowzaGoCoderSDK version =\n major:%lu\n minor:%lu\n revision:%lu\n build:%lu\n short string: %@\n verbose string: %@",
-           (unsigned long)[WOWZVersionInfo majorVersion],
-           (unsigned long)[WOWZVersionInfo minorVersion],
-           (unsigned long)[WOWZVersionInfo revision],
-           (unsigned long)[WOWZVersionInfo buildNumber],
-           [WOWZVersionInfo string],
-           [WOWZVersionInfo verboseString]);
+    NSLog(@"WowzaGoCoderSDK version:%lu.:%lu.%lu:%lu short:%@ verbose:%@",(unsigned long)[WOWZVersionInfo majorVersion],(unsigned long)[WOWZVersionInfo minorVersion],(unsigned long)[WOWZVersionInfo revision],(unsigned long)[WOWZVersionInfo buildNumber],[WOWZVersionInfo string],[WOWZVersionInfo verboseString]);
     
-    NSLog (@"%@", [WOWZPlatformInfo string]);
-    
+    NSLog(@"Platform:%@",[WOWZPlatformInfo string]);
+
     self.goCoder = nil;
     
     // Register the GoCoder SDK license key
-    NSError *goCoderLicensingError = [WowzaGoCoder registerLicenseKey:SDKSampleAppLicenseKey];
+    NSError *const goCoderLicensingError = [WowzaGoCoder registerLicenseKey:SDKSampleAppLicenseKey];
     if (goCoderLicensingError != nil) {
         // Handle license key registration failure
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -200,6 +199,12 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
 }
 
 #pragma mark - UI Action Methods
+- (IBAction) didChangeZoom:(id)sender {
+    //UISlider *const slider = (UISlider *)sender;
+    //WOWZCamera *const c = [self.goCoderCameraPreview camera];
+    //c.zoom = slider.value;
+}
+
 
 - (IBAction) didTapBroadcastButton:(id)sender {
 
@@ -501,7 +506,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.goCoder.status.state == WOWZStateIdle || self.goCoder.status.state == WOWZStateRunning) {
-            [self.broadcastButton setImage:[UIImage imageNamed:(_goCoder.status.state == WOWZStateIdle) ? @"start_button" : @"stop_button"] forState:UIControlStateNormal];
+            [self.broadcastButton setImage:[UIImage imageNamed:(self->_goCoder.status.state == WOWZStateIdle) ? @"start_button" : @"stop_button"] forState:UIControlStateNormal];
         }
         
         [self updateUIControls];

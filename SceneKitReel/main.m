@@ -1,8 +1,5 @@
 //
-//  main.m
 //  SceneKitReel
-//
-//  Created by Thomas Goossens on 25/04/14.
 //  Copyright (c) 2014 apple. All rights reserved.
 //
 

@@ -23,7 +23,6 @@ NSString *const SDKSampleSavedConfigKey = @"SDKSampleSavedConfigKey";
 //USE NEW KEY
 NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // com.wowza.sdk.demo.GoCoder-SDK
 
-
 @interface BroadcastViewController () <WOWZStatusCallback, WOWZVideoSink, WOWZAudioSink, WOWZVideoEncoderSink, WOWZAudioEncoderSink, WOWZDataSink>
 
 #pragma mark - UI Elements
@@ -38,7 +37,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
 @property (weak, nonatomic) IBOutlet UIButton           *pingButton;
 @property (weak, nonatomic) IBOutlet UIButton           *metaDataButton;
 @property (weak, nonatomic) IBOutlet UILabel            *bitrateLabel;
-
+@property (nonatomic,assign) UIBackgroundTaskIdentifier __block bgTask;
 
 #pragma mark - GoCoder SDK Components
 @property (nonatomic, strong) WowzaGoCoder      *goCoder;
@@ -644,12 +643,42 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
             [contextOverlay render:wowzOverlayImg toCVPixelBuffer:imageBuffer];
         }
     }
+} 
+
+- (void) videoCaptureInterruptionEnded {
+    if (self.goCoderConfig.backgroundBroadcastEnabled) {
+        if(![self.goCoder isStreaming] && self.recordVideoLocally){
+            if (self.writeMP4 && self.mp4Writer.writing) {
+                if (self.video_capture_queue) {
+                    dispatch_async(self.video_capture_queue, ^{
+                        NSLog(@"We are no longer streaming [1] so we should be sure we stopped the writer.");
+                        [self.mp4Writer stopWriting];
+                    });
+                }
+                else {
+                    NSLog(@"We are no longer streaming [2] so we should be sure we stopped the writer.");
+                    [self.mp4Writer stopWriting];
+                }
+            }
+            self.writeMP4 = NO;
+        }
+    }
 }
 
 - (void) videoCaptureInterruptionStarted {
-    if (!self.goCoderConfig.backgroundBroadcastEnabled) {
-        [self.goCoder endStreaming:self];
-    }
+    UIApplication * application = [UIApplication sharedApplication];
+    _bgTask = [application beginBackgroundTaskWithName:@"WowzBackgroundStop" expirationHandler:^{
+       
+        [application endBackgroundTask:self->_bgTask];
+        self->_bgTask = UIBackgroundTaskInvalid;
+    }];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //// If background isn't enabled, end the connection.
+        if (!self.goCoderConfig.backgroundBroadcastEnabled) {
+            [self.goCoder endStreaming:self];
+        }
+    });
 }
 
 - (void) videoCaptureUsingQueue:(nullable dispatch_queue_t)queue {
@@ -691,7 +720,6 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C"; // co
 
 #warning Don't implement this protocol unless your application makes use of it
 - (void) videoFrameWasEncoded:(nonnull CMSampleBufferRef)data {
-    
     // update the broadcast time label
     if (CMTimeCompare(self.broadcastStartTime, kCMTimeInvalid) == 0) {
         self.broadcastStartTime = CMSampleBufferGetPresentationTimeStamp(data);

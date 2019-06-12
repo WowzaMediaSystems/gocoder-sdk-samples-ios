@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, SettingsViewSection) {
     SettingsViewSectionVideo = 0,
     SettingsViewSectionAudio,
     SettingsViewSectionBroadcast,
-		SettingsViewSectionPlaybackSettings,
+    SettingsViewSectionPlaybackSettings,
     SettingsViewSectionCaptureOrientationMode,
     SettingsViewSectionBroadcastOrientationMode,
     SettingsViewSectionBroadcastScaleMode,
@@ -22,10 +22,11 @@ typedef NS_ENUM(NSUInteger, SettingsViewSection) {
     SettingsViewSectionBackgroundMode,
     SettingsViewSectionVideoMirroring,
     SettingsViewSectionVideoEffects,
+    SettingsViewSectionVideoRenderingMethod,
     SettingsViewSectionRecordVideoLocally,
     SettingsViewSectionPlayback,
-		SettingsViewSectionPlaybackHLS,
-		SettingsViewSectionConnectionCode,
+    SettingsViewSectionPlaybackHLS,
+    SettingsViewSectionConnectionCode,
     SettingsViewSectionCount
 };
 

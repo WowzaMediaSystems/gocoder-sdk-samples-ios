@@ -1,8 +1,5 @@
 //
-//  WOWZPlayerViewController.m
 //  PrivateSDKSampleApp
-//
-//  Created by Mike Leavy on 9/25/16.
 //  © 2016 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 
@@ -193,6 +190,8 @@
     [settingsVC addDisplaySection:SettingsViewSectionPlayback];
 		[settingsVC addDisplaySection:SettingsViewSectionPlaybackHLS];
 	//[settingsVC addDisplaySection:SettingsViewSectionConnectionCode];
+    [settingsVC addDisplaySection:SettingsViewSectionVideoRenderingMethod];
+
     
     SettingsViewModel *settingsModel = [[SettingsViewModel alloc] initWithSessionConfig:self.goCoderConfig];
     settingsVC.viewModel = settingsModel;
@@ -214,18 +213,20 @@
 }
 
 - (IBAction) didTapCloseButton:(id)sender {
-		if([self.player currentPlayState] == WOWZStateRunning || [self.player currentPlayState] == WOWZStateBuffering){
-			[self.player stop];
-		}
+    if([self.player currentPlayState] == WOWZStateRunning || [self.player currentPlayState] == WOWZStateBuffering || [self.player currentPlayState] == WOWZStateStarting){ 
+        [self.player stop];
+    }
     [self.player unregisterDataSink:self eventName:@"onTextData"];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{ 
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 -(IBAction)syncSliderChanged:(id)sender {
 	UISlider *slider = (UISlider *)sender;
 	Float32 value = slider.value;
 	self.player.syncOffset = value;
-	
 }
 
 
@@ -288,6 +289,7 @@
 
 - (void) onWOWZEvent:(WOWZStatus *) goCoderStatus {
     // nothing to do
+    NSLog(@"WZ STATUS %@", goCoderStatus);
 }
 
 - (void) onWOWZError:(WOWZStatus *) goCoderStatus {

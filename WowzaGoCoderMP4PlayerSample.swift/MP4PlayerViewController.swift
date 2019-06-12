@@ -121,7 +121,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
 
         videoAsset = AVAsset(url: assetURL)
 
-        let videoTracks = videoAsset!.tracks(withMediaType: AVMediaTypeVideo)
+        let videoTracks = videoAsset!.tracks(withMediaType: AVMediaType.video)
 
         guard let track = videoTracks.first else {
             return false
@@ -185,7 +185,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
                     }
 
                     // send the image buffer to the Wowza encoder
-                    self.encoder.videoFrameWasCaptured(imageBuffer, framePresentationTime: kCMTimeInvalid, frameDuration: kCMTimeInvalid)
+                    self.encoder.videoFrameWasCaptured(imageBuffer, framePresentationTime: CMTime.invalid, frameDuration: CMTime.invalid)
 
                     // the below is simply here to show the video frame in the iOS UI; it has nothing
                     // to do with broadcasting to Wowza
@@ -244,14 +244,14 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
         switch (status.state) {
         case .idle:
             DispatchQueue.main.async { () -> Void in
-                self.broadcastButton.setImage(UIImage(named: "start_button"), for: UIControlState())
+                self.broadcastButton.setImage(UIImage(named: "start_button"), for: UIControl.State())
                 self.updateUIControls()
             }
 
         case .running:
             renderLoop()
             DispatchQueue.main.async { () -> Void in
-                self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControlState())
+                self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControl.State())
                 self.updateUIControls()
             }
 

@@ -43,13 +43,12 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
 @end
 
 @implementation MP4Writer
-
+ 
 - (BOOL) prepareWithConfig:(WowzaConfig *)config {
     
     BOOL result = FALSE;
     
     NSError *error = nil;
-    
     self.videoPathToUse = nil;
     self.videoPathToUse = [self videoFilePath];
     if (self.videoPathToUse) {
@@ -122,9 +121,11 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
         }
     }
 }
-
-- (void) stopWriting {
+- (void) stopWriting { 
     self.writing = NO;
+    [self.videoWriterInput markAsFinished];
+    [self.audioWriterInput markAsFinished];
+    
     [self.writer finishWritingWithCompletionHandler:^{
         NSLog(@"Stopped writing video file at: %@", self.videoPathToUse.absoluteString);
     }];
@@ -145,7 +146,7 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
     
     self.firstVideoBuffer = NO;
     
-    if (self.videoWriterInput.readyForMoreMediaData && self.writer.status == AVAssetWriterStatusWriting) {
+    if (self.writer.status == AVAssetWriterStatusWriting) {
         if (videoSample != nil) {
             if (!self.startedSession) {
                 CMTime pts = CMSampleBufferGetPresentationTimeStamp(videoSample);
@@ -153,21 +154,28 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
                 self.startedSession = YES;
                 NSLog(@"MP4Writer: started session in appendVideoSample");
             }
-            BOOL appended = [self.videoWriterInput appendSampleBuffer:videoSample];
             
-            if (CMTimeCompare(kCMTimeInvalid, self.firstVideoFrameTime) == 0) {
-                self.firstVideoFrameTime = CMSampleBufferGetPresentationTimeStamp(videoSample);
+            if(self.videoWriterInput.readyForMoreMediaData)
+            {
+                BOOL appended = [self.videoWriterInput appendSampleBuffer:videoSample];
+                
+                if (CMTimeCompare(kCMTimeInvalid, self.firstVideoFrameTime) == 0) {
+                    self.firstVideoFrameTime = CMSampleBufferGetPresentationTimeStamp(videoSample);
+                }
+                
+                [self logPresentationTime:videoSample logPrefix:@"Video Sample"];
+                
+                if (!appended) {
+                    [self logWriterStatus];
+                }
             }
-            
-            [self logPresentationTime:videoSample logPrefix:@"Video Sample"];
-            
-            if (!appended) {
-                [self logWriterStatus];
+            else{
+                NSLog(@"MP4Writer[2]:appendVideoSample - sample not appended;  av writer not ready - readyForMoreMediaData = %d ", self.audioWriterInput.readyForMoreMediaData);
             }
         }
     }
     else {
-        NSLog(@"MP4Writer:appendVideoSample - sample not appended;  readyForMoreMediaData = %d, status = %ld", self.audioWriterInput.readyForMoreMediaData, (long)self.writer.status);
+        NSLog(@"MP4Writer[2]:appendVideoSample - status = %ld",   (long)self.writer.status);
     }
 }
 
@@ -212,7 +220,6 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
             
             if (!appended) {
                 [self logWriterStatus];
-                
             }
         }
     }
@@ -225,7 +232,7 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
     switch (self.writer.status) {
         case AVAssetWriterStatusFailed:
             NSLog (@"AVAssetWriter status: AVAssetWriterStatusFailed");
-            NSLog (@"%@", self.writer.error.description);
+            NSLog (@"%@ [error] ", self.writer.error.description);
             break;
         case AVAssetWriterStatusCancelled:
             NSLog (@"AVAssetWriter status: AVAssetWriterStatusCancelled");
@@ -246,6 +253,7 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
 
 - (NSURL *) videoFilePath {
     NSArray * paths = [[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    
     if (paths.count) {
         NSURL *url = paths.lastObject;
         url = [url URLByAppendingPathComponent:MP4Filename];

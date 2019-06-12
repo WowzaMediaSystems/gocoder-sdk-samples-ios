@@ -1,8 +1,5 @@
 //
-//  ViewController.swift
 //  SwiftPlaybackSampleApp
-//
-//  Created by Benji Brown on 7/2/18.
 //  Copyright © 2019 Wowza. All rights reserved.
 //
 
@@ -95,7 +92,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
     @IBAction func didTapMuteButton(_ sender:AnyObject?) {
         self.player.muted = !self.player.muted
         let muteButtonImage = UIImage.init(named: self.player.muted ? "volume_mute" :"volume_unmute")
-        self.muteButton.setImage(muteButtonImage, for: UIControlState.normal)
+        self.muteButton.setImage(muteButtonImage, for: UIControl.State.normal)
         self.volumeSlider.isEnabled = !self.player.muted
     }
     
@@ -135,7 +132,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
             DispatchQueue.main.async { () -> Void in
                 self.settingsButton.isHidden = false;
                 self.playButton.isEnabled = true;
-                    self.playButton.setImage(UIImage.init(named: "playback_button"), for: UIControlState.normal)
+                self.playButton.setImage(UIImage.init(named: "playback_button"), for: UIControl.State.normal)
                     UIView.animate(withDuration: 0.25, animations: {
                         self.infoLabel.alpha = 0
                     })
@@ -157,7 +154,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
         case .running:
             DispatchQueue.main.async { () -> Void in
 
-            self.playButton.setImage(UIImage.init(named: "stop_playback_button"), for: UIControlState.normal)
+                self.playButton.setImage(UIImage.init(named: "stop_playback_button"), for: UIControl.State.normal)
                 self.playButton.isEnabled = true
             self.infoLabel.text = "Playing"
             UIView.animate(withDuration: 0.25, animations: {

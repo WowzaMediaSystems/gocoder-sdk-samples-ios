@@ -21,34 +21,33 @@
 #import <UIKit/UIKit.h>
 
 #import "WowzaGoCoder.h"
+#import "WOWZVersionInfo.h"
+#import "WOWZPlatformInfo.h"
 #import "WowzaConfig.h"
+#import "WOWZLogger.h"
 #import "WOWZError.h"
 #import "WOWZStatus.h"
 #import "WOWZStatusCallback.h"
-#import "WOWZVersionInfo.h"
-#import "WOWZPlatformInfo.h"
-#import "WOWZVideoSink.h"
-#import "WOWZAudioSink.h"
-#import "WOWZBroadcastComponent.h"
-#import "WOWZH264Encoder.h"
-#import "WOWZVideoEncoderSink.h"
-#import "WOWZMediaSink.h"
-#import "WOWZBroadcast.h"
-#import "WOWZAudioEncoderSink.h"
-#import "WOWZAACEncoder.h"
-#import "WOWZImageUtilities.h"
-#import "WOWZData.h"
-#import "WOWZDataEvent.h"
-#import "WOWZDataSink.h"
-#import "WOWZPlayer.h"
-#import "WSCTokenProcessor.h"
 
-#if ! WGC_TARGET_EXTENSION
+#import "WOWZPlayer.h"
+
+#import "WOWZBroadcast.h"
+#import "WOWZBroadcastComponent.h"
+#import "WOWZMediaSink.h"
 
 #import "WOWZCamera.h"
 #import "WOWZCameraPreview.h"
+#import "WOWZVideoEncoderSink.h"
+#import "WOWZH264Encoder.h"
+#import "WOWZVideoSink.h"
+#import "WOWZImageUtilities.h"
+
 #import "WOWZAudioDevice.h"
+#import "WOWZAudioEncoderSink.h"
+#import "WOWZAACEncoder.h"
+#import "WOWZAudioSink.h"
 
-#endif
-
-
+#import "WOWZData.h"
+#import "WOWZDataEvent.h"
+#import "WOWZDataSink.h"
+#import "WSCTokenProcessor.h"

@@ -318,6 +318,15 @@ NSString * const ConnectionCodeKey = @"ConnectionCodeKey";
 - (void) setConnectionCode:(NSString *)connectionCode {
 	[[NSUserDefaults standardUserDefaults] setObject:connectionCode forKey:ConnectionCodeKey];
 }
+    
+- (WOWZVideoRenderMethod) videoRenderingMethod {
+    return self.config.videoRenderingMethod;
+}
+    
+- (void) setVideoRenderingMethod:(WOWZVideoRenderMethod)videoRenderingMethod {
+    self.config.videoRenderingMethod = videoRenderingMethod;
+}
+    
 
 - (instancetype) initWithSessionConfig:(WowzaConfig *)config {
     if (self = [super init]) {

@@ -2,8 +2,7 @@
 //  WOWZMediaConfig.h
 //  WowzaGoCoderSDK
 //
-//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
-//  reserved.
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 //  The above copyright notice and this permission notice shall be
 //  included in all copies or substantial portions of the Software.
@@ -85,6 +84,32 @@ typedef NS_ENUM(NSUInteger, WOWZBroadcastScaleMode) {
 typedef NS_ENUM(NSUInteger, WOWZAudioChannels) {
     WOWZAudioChannelsMono     = 1,
     WOWZAudioChannelsStereo   = 2
+};
+    
+/*!
+ *  @typedef WOWZVideoRenderMethod
+ *  @constant WOWZVideoRenderMethodAuto If the playback device supports Apple's Metal framework, render the playback
+ *  video using the WOWZVideoRenderMethodMetal_sRGB method. Otherwise, render the playback video using the
+ *  WOWZVideoRenderMethodOpenGL method. WOWZVideoRenderMethodAuto is the default.
+ *  @constant WOWZVideoRenderMethodMetal If the playback device supports Apple's Metal framework, render the playback
+ *  video using Apple's Metal framework. Otherwise, render the playback video using the WOWZVideoRenderMethodOpenGL method.
+ *  Because using the Metal framework consumes less energy and GPU cycles, it's the preferred method for playing
+ *  Ultra Low Latency streams. The WOWZVideoRenderMethodMetal method also uses the default Metal color space, which results
+ *  in more saturated colors than either the WOWZVideoRenderMethodMetal_sRGB method or the WOWZVideoRenderMethodOpenGL method.
+ *  @constant WOWZVideoRenderMethodMetal_sRGB If the playback device supports Apple's Metal framework, render the playback
+ *  video using the Metal framework and assuming the video frames are in the sRGB color space. Otherwise, render the playback
+ *  video using the WOWZVideoRenderMethodOpenGL method. Because using the Metal framework consumes less energy and GPU cycles,
+ *  it's the preferred method for playing Ultra Low Latency streams. The WOWZVideoRenderMethodMetal_sRGB method is also
+ *  more visually consistent with the colors rendered by the WOWZVideoRenderMethodOpenGL method, which results in less saturated
+ *  colors than the WOWZVideoRenderMethodMetal method.
+ *  @constant WOWZVideoRenderMethodOpenGL Use OpenGL APIs to render the playback video.
+ *  @discussion Video rendering methods available for drawing video frames for GoCoder SDK-based playback.
+ */
+typedef NS_ENUM(NSUInteger, WOWZVideoRenderMethod) {
+    WOWZVideoRenderMethodAuto       = 1,
+    WOWZVideoRenderMethodMetal      = 2,
+    WOWZVideoRenderMethodMetal_sRGB = 3,
+    WOWZVideoRenderMethodOpenGL     = 4
 };
 
 
@@ -199,6 +224,12 @@ typedef NS_ENUM(NSUInteger, WOWZAudioChannels) {
  *  setting to 1 will never skip frames. The default is 2, which skips every other frame.
  */
 @property (nonatomic, assign) NSUInteger videoFrameRateLowBandwidthSkipCount;
+    
+/*!
+ *  The video rendering method to use when drawing video frames. See WOWZVideoRenderMethod for supported values.
+ *  The default is WOWZVideoRenderMethodAuto.
+ */
+@property (nonatomic, assign) WOWZVideoRenderMethod videoRenderingMethod;
 
 #pragma mark -
 
@@ -241,7 +272,7 @@ typedef NS_ENUM(NSUInteger, WOWZAudioChannels) {
  *  The Apple HLS playback URL to use to play the stream as a fallback if the primary WOWZ connection is unsuccessful.
  *  Can be used with ultra low latency streams from Wowza Streaming Cloud; note, however, that Apple HLS streams experience greater latency than WebSocket streams.
  */
-@property (nonatomic, assign) NSString * hlsURL;
+    @property (nonatomic, assign) NSString * _Nullable hlsURL;
 
 #pragma mark -
 

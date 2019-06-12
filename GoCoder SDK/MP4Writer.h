@@ -13,7 +13,7 @@
 @interface MP4Writer : NSObject
 
 @property (nonatomic, assign, readonly) BOOL writing;
-
+ 
 - (BOOL) prepareWithConfig:(WowzaConfig *)config;
 - (void) startWriting;
 - (void) stopWriting;

@@ -2,8 +2,7 @@
 //  WOWZPlayer.h
 //  WOWZPlayer
 //
-//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
-//  reserved.
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 //  The above copyright notice and this permission notice shall be
 //  included in all copies or substantial portions of the Software.
@@ -51,7 +50,7 @@ typedef NS_ENUM(NSUInteger, WOWZPlayerViewGravity) {
 /*!
  *  The UIView to which the player should be added.
  */
-@property (nonatomic, unsafe_unretained, nonnull) UIView *playerView;
+@property (nonatomic, weak) UIView * _Nullable playerView;
 
 /*!
 A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnterBackgroundNotification notifications. The default value is YES. If set to YES, WOWZPlayer handles the notification and in response automatically stops the playback stream. If set to NO, WOWZPlayer does not handle UIApplicationDidEnterBackgroundNotification notifications. This lets the developer control stoppage of the playback stream in another way. IMPORTANT: If the value is set to NO and the developer does not control stoppage of the playback stream in another way, the playing state is likely to enter an undesirable condition at some point.
@@ -88,6 +87,8 @@ A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnter
 @property (nonatomic, readonly, nullable) WOWZDataMap *metaData;
 
 
+
+
 /*!
  *  The timecode of the most recent frame displayed by the player, relative to the starting timecode.
  *  Returns kCMTimeInvalid if a stream isn't playing or if the player hasn't received any frames.
@@ -111,17 +112,17 @@ A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnter
 /*!
  *  The hlsPlayerItem.
  */
-@property (nonatomic, strong) AVPlayerItem *hlsPlayerItem;
+@property (nonatomic, strong) AVPlayerItem * _Nullable hlsPlayerItem;
 
 /*!
  *  The hls AVPlayer from Apple.
  */
-@property (nonatomic, strong) AVPlayer *hlsPlayer;
+@property (nonatomic, strong) AVPlayer * _Nullable hlsPlayer;
 
 /*!
  *  The hls AVPlayerLayer from Apple.
  */
-@property (nonatomic, strong) AVPlayerLayer *hlsVideoPlayerLayer;
+@property (nonatomic, strong) AVPlayerLayer * _Nullable hlsVideoPlayerLayer;
 
 /*!
  *
@@ -129,13 +130,17 @@ A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnter
  *
  */
 
-@property (nonatomic, unsafe_unretained) NSObject<WOWZStatusCallback> *clientCallback;
+@property (nonatomic, weak) NSObject<WOWZStatusCallback> * _Nullable clientCallback;
 
+/*!
+ *
+ */
+@property (nonatomic, assign) BOOL captureLastRenderedFrame;
 
 /*!
  *  Get the current playing state of the WOWZPlayer instance. 
  */
-- (WOWZState) currentPlayState;
+-(WOWZState) currentPlayState;
 
 /*!
  *  Starts playing the stream.
@@ -144,14 +149,17 @@ A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnter
  *  @param statusCallback The callback to be invoked with playback session status updates and errors.
  *
  */
-- (void) play:(nonnull WowzaConfig *)config callback:(nullable id<WOWZStatusCallback>)statusCallback;
+-(void) play:(nonnull WowzaConfig *)config callback:(nullable id<WOWZStatusCallback>)statusCallback;
 
 /*!
- *  Stops playing the stream.
+ * Sets the current playing state of the WOWZPlayer instance to WOWZStateStopping and then stops playing the stream. This method is locked using &#064;synchronized(self). After playback is stopped, the current playing state is WOWZStateStopping.
  */
-- (void) stop;
+-(void) stop;
 
--(void)updateViewLayouts;
+/*!
+ *
+ */
+-(void) updateViewLayouts;
 
 /*!
  *  Sets up the HLS fallback stream.
@@ -160,30 +168,36 @@ A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnter
 -(void)setupHLSWithView:(UIView *_Nullable)viewToAttachTo;
 
 /*!
- *  Starts playing the HLS fallback stream.
+ *  Starts playing the HLS fallback stream. Note that Apple's AVPlayer is used to play HLS fallback streams. To handle certain playback events, such as unexpected stoppages, use AVPlayer and custom notifications.
  */
--(void)startHLSPlayback;
+-(void) startHLSPlayback;
 
 /*!
- *  Stops playing the HLS fallback stream.
+ *  Stops playing the HLS fallback stream. Note that Apple's AVPlayer is used to play HLS fallback streams. To handle certain playback events, such as unexpected stoppages, use AVPlayer and custom notifications.
  */
--(void)stopHLSPlayback;
+-(void) stopHLSPlayback;
 
 /*!
- *  Pauses the HLS fallback stream.
+ *  Pauses the HLS fallback stream. Note that Apple's AVPlayer is used to play HLS fallback streams. To handle certain playback events, such as unexpected stoppages, use AVPlayer and custom notifications.
  */
--(void)pauseHLSPlayback;
+-(void) pauseHLSPlayback;
 
 /*!
  * Resets the playback error count to zero.
  */
--(void)resetPlaybackErrorCount;
+-(void) resetPlaybackErrorCount;
 
 /*!
  * Gets the current playback error count - used for HLS fallback (2 errors is default then fallback).
  */
 -(NSUInteger) currentPlaybackErrorCount;
 
+-(UIImage *_Nullable) getLastRenderedImage;
+
+/*!
+ * Sets in a range from 1 - 4 the number of seconds of latency that the audio buffer will allow until it dumps and resets on most recent incoming audio frames.  It is recommended to leave this at the defaul of 3 as having some flexible time for samplerate cross conversion is good or else you may hear glitches in audio when the buffer is flushed because of max headroom reached.
+ */
+-(void) updateMaxLatencyInSecondsForAudio:(UInt32)numberOfSeconds;
 
 /*!
  *  Registers a WOWZDataSink object with WOWZPlayer.
@@ -193,13 +207,13 @@ A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnter
  *  @param sink An object that conforms to the WOWZAudioEncoderSink protocol.
  *  @param eventName The name of the data event that the client should listen for.
  */
-- (void) registerDataSink:(nonnull id<WOWZDataSink>)sink eventName:(nonnull NSString *)eventName;
+-(void) registerDataSink:(nonnull id<WOWZDataSink>)sink eventName:(nonnull NSString *)eventName;
 
 /*!
  *  Unregisters a WOWZDataSink object from WOWZPlayer.
  *
  *  @param sink An object that conforms to the WOWZDataSink protocol.
  */
-- (void) unregisterDataSink:(nonnull id<WOWZDataSink>)sink eventName:(nonnull NSString *)eventName;
+-(void) unregisterDataSink:(nonnull id<WOWZDataSink>)sink eventName:(nonnull NSString *)eventName;
 
 @end

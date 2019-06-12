@@ -168,7 +168,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
                 receivedGoCoderEventCodes.removeAll()
                 goCoder?.startStreaming(self)
                 let audioMuted = goCoder?.isAudioMuted ?? false
-                micButton.setImage(UIImage(named: audioMuted ? "mic_off_button" : "mic_on_button"), for: UIControlState())
+                micButton.setImage(UIImage(named: audioMuted ? "mic_off_button" : "mic_on_button"), for: UIControl.State())
             }
         }
     }
@@ -181,7 +181,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
             }
 
             goCoder?.cameraPreview?.switchCamera()
-            torchButton.setImage(UIImage(named: "torch_on_button"), for: UIControlState())
+            torchButton.setImage(UIImage(named: "torch_on_button"), for: UIControl.State())
             self.updateUIControls()
         }
     }
@@ -190,14 +190,14 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
         var newTorchState = goCoder?.cameraPreview?.camera?.isTorchOn ?? true
         newTorchState = !newTorchState
         goCoder?.cameraPreview?.camera?.isTorchOn = newTorchState
-        torchButton.setImage(UIImage(named: newTorchState ? "torch_off_button" : "torch_on_button"), for: UIControlState())
+        torchButton.setImage(UIImage(named: newTorchState ? "torch_off_button" : "torch_on_button"), for: UIControl.State())
     }
 
     @IBAction func didTapMicButton(_ sender:AnyObject?) {
         var newMutedState = self.goCoder?.isAudioMuted ?? true
         newMutedState = !newMutedState
         goCoder?.isAudioMuted = newMutedState
-        micButton.setImage(UIImage(named: newMutedState ? "mic_off_button" : "mic_on_button"), for: UIControlState())
+        micButton.setImage(UIImage(named: newMutedState ? "mic_off_button" : "mic_on_button"), for: UIControl.State())
     }
 
     @IBAction func didTapSettingsButton(_ sender:AnyObject?) {
@@ -251,24 +251,24 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
         }
     }
     
-    func handleBitmapOverlayPinch(_ sender:UIPinchGestureRecognizer){
+    @objc func handleBitmapOverlayPinch(_ sender:UIPinchGestureRecognizer){
         let recognizer = sender.view;
         let state = sender.state;
         let recognizerView:UIImageView = bitmapOverlayImgView;
-        if (state == UIGestureRecognizerState.began || state == UIGestureRecognizerState.changed)
+        if (state == UIGestureRecognizer.State.began || state == UIGestureRecognizer.State.changed)
         {
             let scale  = sender.scale;
             recognizerView.transform = view.transform.scaledBy(x: scale, y: scale);
             recognizer?.contentScaleFactor = 1.0;
         }
-        if(state == UIGestureRecognizerState.ended){
+        if(state == UIGestureRecognizer.State.ended){
             bitmapOverlayImgView.frame = CGRect(x: recognizerView.frame.origin.x, y: recognizerView.frame.origin.y, width: recognizerView.frame.size.width, height: recognizerView.frame.size.height);
         }
     }
     
-    func handleBitmapDragged(_ sender:UIPanGestureRecognizer){
+    @objc func handleBitmapDragged(_ sender:UIPanGestureRecognizer){
         let recognizer:UIImageView = bitmapOverlayImgView;
-        self.view.bringSubview(toFront: recognizer)
+        self.view.bringSubviewToFront(recognizer)
         let translation = sender.translation(in: recognizer)
         recognizer.center = CGPoint(x: recognizer.center.x + translation.x, y: recognizer.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: recognizer)
@@ -282,13 +282,13 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
         switch (status.state) {
         case .idle:
             DispatchQueue.main.async { () -> Void in
-                self.broadcastButton.setImage(UIImage(named: "start_button"), for: UIControlState())
+                self.broadcastButton.setImage(UIImage(named: "start_button"), for: UIControl.State())
                 self.updateUIControls()
             }
 
         case .running:
             DispatchQueue.main.async { () -> Void in
-                self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControlState())
+                self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControl.State())
                 self.updateUIControls()
             }
         case .stopping, .starting:

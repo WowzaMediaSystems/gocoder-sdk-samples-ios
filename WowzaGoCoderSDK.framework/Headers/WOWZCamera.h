@@ -2,8 +2,7 @@
 //  WOWZCamera
 //  WowzaGoCoderSDK
 //
-//  © 2007 – 2019 Wowza Media Systems, LLC. All rights
-//  reserved.
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights reserved.
 //
 //  The above copyright notice and this permission notice shall be
 //  included in all copies or substantial portions of the Software.
@@ -110,6 +109,7 @@ typedef NS_ENUM(NSUInteger, WOWZCameraExposureMode) {
  *  The camera's exposure mode.
  */
 @property (nonatomic) WOWZCameraExposureMode exposureMode;
+
 
 #pragma mark - Instance Methods
 

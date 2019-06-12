@@ -1,38 +1,24 @@
 //
-//  WSCTokenProcessor.h
-//  GoCoder
+//  WowzaGoCoderSDK
 //
-//  Created by Barry Owen on 2/9/15.
-//  © 2015 – 2019 Wowza Media Systems, LLC. All rights reserved.
+//  © 2007 – 2019 Wowza Media Systems, LLC. All rights reserved.
+//
+//  The above copyright notice and this permission notice shall be
+//  included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import <Foundation/Foundation.h>
 #import "WowzaConfig.h"
 #import <UIKit/UIKit.h>
-
-
-// Wowza Cloud API Key
-
-//#if TESTING
-#define             QA_WSC_API_TRANSCODER_URL          @"https://api-qa.cloud.wowza.com/api/v1/token/transcoders/"
-#define             QA_WSC_API_KEANU_STREAM_TARGET_URL @"https://api-qa.cloud.wowza.com/api/v2/token/stream_targets/"
-#define             QA_WSC_API_KEY                     @"TQ8tzMv7CJxTGtewponWcygMBK99nlQhMgV11mU9I5mlc4Ar0OmJYHLQv8Ab335c"
-//#else
-#define             WSC_API_TRANSCODER_URL          @"https://api.cloud.wowza.com/api/v1/token/transcoders/"
-#define             WSC_API_KEANU_STREAM_TARGET_URL @"https://api.cloud.wowza.com/api/v2/token/stream_targets/"
-#define             WSC_API_KEY                     @"AO6vpvI1KAQEcfiQdPtF62uYuiQZqmExYA4LKkNCaJ5ae09B4r9St1DdyHgEQFA8"
-//#endif
-
-/*
-host = api.cloud.wowza.com
-api-key=M1sB9y6HdV96rQtBbci7FMNgjxThcNZvvzGJwAMs2cHtH4pvFvXruOsEe5Pw352c
-if code is 7 chars and ends in q
-host = api-qa.cloud.wowza.com
-api-key =TQ8tzMv7CJxTGtewponWcygMBK99nlQhMgV11mU9I5mlc4Ar0OmJYHLQv8Ab335c
-if code is  7 chars and ends in s
-host = api-staging.cloud.wowza.com
-api-key = A6vjuplTCyzirY0wQSRn11cIsEeajwi9dBmcxrGWLKQ9QGAHtratPk6H4NLR54Xq
-*/
 
 @protocol WSCTokenProcessorDelegate <NSObject>
 
@@ -55,7 +41,7 @@ api-key = A6vjuplTCyzirY0wQSRn11cIsEeajwi9dBmcxrGWLKQ9QGAHtratPk6H4NLR54Xq
 		WowzaConfig *config;
 }
 
-@property (nonatomic, unsafe_unretained) id <WSCTokenProcessorDelegate> delegate;
+@property (nonatomic, weak) id <WSCTokenProcessorDelegate> delegate;
 
 - (void) populateProfile:(WowzaConfig *)config fromWSCToken:(NSString *)token;
 - (void) getLongToken;
