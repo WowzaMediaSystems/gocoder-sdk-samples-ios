@@ -99,7 +99,7 @@ A Boolean value that determines whether WOWZPlayer handles UIApplicationDidEnter
 /*!
  *  The incoming bitrate during playback this is a combination of time of play calculated against length of total buffers incoming.
  */
-@property (nonatomic, assign) Float32 currentInjestBitrate;
+@property (nonatomic, readonly) Float32 currentInjestBitrate;
 
 
 /*!
