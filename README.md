@@ -4,7 +4,7 @@ This repository contains sample applications that demonstrate the capabilities o
 ## Prerequisites
 - GoCoder SDK for iOS v1.8.1.1369
 
-     **NOTE:** The GoCoder SDK binaries necessary to build the sample apps aren't provided here. To get the free SDK, complete the [GoCoder SDK sign-up form](https://www.wowza.com/products/gocoder/sdk/license) to receive a link to allow you to download the SDK along with a license key. If you already have a license key, you can download the current SDK release [here](https://www.wowza.com/pricing/installer#gocodersdk-downloads).
+     **NOTE:** The GoCoder SDK binaries necessary to build the sample apps aren't provided here. To get the free SDK, complete the [GoCoder SDK sign-up form](https://www.wowza.com/products/gocoder/sdk/license) to receive a link to allow you to download the SDK along with a license key. If you already have a license key, you can download the current SDK release [here](https://www.wowza.com/pricing/installer#gocodersdk-downloads). Be sure to add your ```WowzaGoCoderSDK.framework``` as an Embedded Binary at the bottom of your General project seettings.
 
 - iOS SDK 8.01 or later
 - Xcode 7 or later
