@@ -1,6 +1,0 @@
-framework module WowzaGoCoderSDK {
-  umbrella header "WowzaGoCoderSDK.h"
-
-  export *
-  module * { export * }
-}
