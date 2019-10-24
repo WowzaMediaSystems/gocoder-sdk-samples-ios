@@ -194,7 +194,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-6443-0101-CD19-EB0F-E04E";
         self.settingsButton.enabled     = NO;
     });
 
-    if (self.goCoder.status.state == WOWZStateRunning) {
+    if (self.goCoder.status.state == WOWZStatePlaying) {
         [self.goCoder endStreaming:self];
         [UIApplication sharedApplication].idleTimerDisabled = NO;
     }
@@ -255,7 +255,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-6443-0101-CD19-EB0F-E04E";
      is "onGetPingTime". The server module that implements "onGetPingTime" must exist in order to receive
      a callback.
     */
-    if (self.goCoder.status.state == WOWZStateRunning) {
+    if (self.goCoder.status.state == WOWZStatePlaying) {
         WOWZDataMap *params = [WOWZDataMap new];
         [self.goCoder sendDataEvent:WOWZDataScopeModule eventName:@"onGetPingTime" params:params callback:^(WOWZDataMap * _Nullable result, BOOL isError) {
             if (!isError && result) {
@@ -313,7 +313,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-6443-0101-CD19-EB0F-E04E";
 
 // Update the state of the UI controls
 - (void) updateUIControls {
-    if (self.goCoder.status.state != WOWZStateIdle && self.goCoder.status.state != WOWZStateRunning) {
+    if (self.goCoder.status.state != WOWZStateIdle && self.goCoder.status.state != WOWZStatePlaying) {
         // If a streaming broadcast session is in the process of starting up or shutting down,
         // disable the UI controls
         self.broadcastButton.enabled    = NO;
@@ -362,14 +362,14 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-6443-0101-CD19-EB0F-E04E";
             self.writeMP4 = NO;
             break;
 
-        case WOWZStateStarting:
+        case WOWZStateConnecting:
             // A streaming broadcast session is starting up
             self.broadcastStartTime = kCMTimeInvalid;
             self.timeLabel.text = @"00:00";
             self.broadcastFrameCount = 0;
             break;
 
-        case WOWZStateRunning:
+        case WOWZStatePlaying:
             // A streaming broadcast session is running
             self.timeLabel.hidden = NO;
             self.writeMP4 = NO;
@@ -391,7 +391,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-6443-0101-CD19-EB0F-E04E";
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.goCoder.status.state == WOWZStateIdle || self.goCoder.status.state == WOWZStateRunning) {
+        if (self.goCoder.status.state == WOWZStateIdle || self.goCoder.status.state == WOWZStatePlaying) {
             [self.broadcastButton setImage:[UIImage imageNamed:(_goCoder.status.state == WOWZStateIdle) ? @"start_button" : @"stop_button"] forState:UIControlStateNormal];
         }
 

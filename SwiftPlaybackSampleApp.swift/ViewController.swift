@@ -6,7 +6,7 @@
 import UIKit
 import WowzaGoCoderSDK
 
-class ViewController: UIViewController, WOWZStatusCallback  {
+class ViewController: UIViewController, WOWZPlayerStatusCallback  {
     
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
     let SDKSampleAppLicenseKey = "GOSK-3245-010C-F211-6F2F-FC79"
@@ -23,7 +23,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
     @IBOutlet weak var previewView:UIView!
 
     
-    var receivedGoCoderEventCodes = Array<WOWZEvent>()
+    var receivedGoCoderEventCodes = Array<WOWZPlayerEvent>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +97,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
     }
     
     @IBAction func didTapPlayButton(_ sender:AnyObject?) {
-        if(self.player.currentPlayState() == WOWZState.idle){
+        if(self.player.currentPlayState() == WOWZPlayerState.idle){
             self.infoLabel.text = "Connecting..."
             
             self.infoLabel.isHidden = false;
@@ -125,7 +125,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
         self.player.volume = slider.value
     }
 
-    func onWOWZStatus(_ status: WOWZStatus!) {
+    func onWOWZStatus(_ status: WOWZPlayerStatus!) {
         switch (status.state) {
         case .idle:
             
@@ -140,10 +140,10 @@ class ViewController: UIViewController, WOWZStatusCallback  {
             }
             break
         
-        case .starting:
+        case .connecting:
             DispatchQueue.main.async { () -> Void in
 
-            // A streaming playback session is starting up
+            // A streaming playback session is.connecting up
             self.settingsButton.isHidden = true
             self.playButton.isEnabled = false
             self.infoLabel.text = "Starting..."
@@ -151,7 +151,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
             self.player.playerView = self.previewView;
             }
             break;
-        case .running:
+        case .playing:
             DispatchQueue.main.async { () -> Void in
 
                 self.playButton.setImage(UIImage.init(named: "stop_playback_button"), for: UIControl.State.normal)
@@ -183,7 +183,7 @@ class ViewController: UIViewController, WOWZStatusCallback  {
         }
     }
     
-    func onWOWZError(_ status: WOWZStatus!) {
+    func onWOWZError(_ status: WOWZPlayerStatus!) {
         print(status.error?.localizedDescription ?? "error occured")
     }
     

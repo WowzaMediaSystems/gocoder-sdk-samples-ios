@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import WowzaGoCoderSDK
 
-class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
+class MoviePlayerViewController: UIViewController, WOWZBroadcastStatusCallback {
 
     @IBOutlet var imageView:UIImageView!
     @IBOutlet var settingsButton:UIButton!
@@ -46,7 +46,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
     let SDKSampleAppLicenseKey = "GOSK-8145-010C-2722-98D0-227C"
     var goCoderConfig:WowzaConfig!
-    var goCoderStatus = WOWZStatus()
+    var goCoderStatus = WOWZBroadcastStatus()
     var goCoderRegistrationChecked = false
 
     lazy var broadcast:WOWZBroadcast = {
@@ -86,13 +86,12 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
             goCoderConfig.videoHeight = UInt(videoTrack!.naturalSize.height)
             goCoderConfig.videoFrameRate = UInt(videoTrack!.nominalFrameRate > 0 ? videoTrack!.nominalFrameRate : 30)
         }
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let savedConfigData = NSKeyedArchiver.archivedData(withRootObject: goCoderConfig)
+        let savedConfigData = NSKeyedArchiver.archivedData(withRootObject: goCoderConfig!)
         UserDefaults.standard.set(savedConfigData, forKey: SDKSampleSavedConfigKey)
         UserDefaults.standard.synchronize()
     }
@@ -144,8 +143,8 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
     }
 
     func updateUIControls() {
-        if goCoderStatus.state != .idle && goCoderStatus.state != .running {
-            // If a streaming broadcast session is in the process of starting up or shutting down,
+        if goCoderStatus.state != .idle && goCoderStatus.state != .broadcasting {
+            // If a streaming broadcast session is in the process of.connecting up or shutting down,
             // disable the UI controls
             self.broadcastButton.isEnabled    = false
             self.settingsButton.isEnabled     = false
@@ -154,7 +153,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
             // Set the UI control state based on the streaming broadcast status, configuration,
             // and device capability
             self.broadcastButton.isEnabled    = true
-            let isStreaming                 = self.broadcast.status.state == .running
+            let isStreaming                 = self.broadcast.status.state == .broadcasting
             self.settingsButton.isEnabled     = !isStreaming
         }
     }
@@ -176,7 +175,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
 
                 reader.startReading()
 
-                while reader.status == .reading && self.broadcast.status.state == .running {
+                while reader.status == .reading && self.broadcast.status.state == .broadcasting {
                     guard let sampleBuffer = self.readerOutput.copyNextSampleBuffer() else {
                         continue
                     }
@@ -218,7 +217,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
                 if self.loop {
                     let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        if self.setupAssetReader() && self.broadcast.status.state == .running {
+                        if self.setupAssetReader() && self.broadcast.status.state == .broadcasting {
                             self.renderLoop()
                         }
                     })
@@ -239,47 +238,42 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
         }
     }
 
-    //MARK: - WOWZStatusCallback Protocol Instance Methods
+    //MARK: - WOWZBroadcastStatusCallback Protocol Instance Methods
 
-    func onWOWZStatus(_ status: WOWZStatus!) {
+    func onWOWZStatus(_ status: WOWZBroadcastStatus!) {
         switch (status.state) {
         case .idle:
+            assetReader?.cancelReading()
             DispatchQueue.main.async { () -> Void in
                 self.broadcastButton.setImage(UIImage(named: "start_button"), for: UIControl.State())
                 self.updateUIControls()
             }
 
-        case .running:
+        case .broadcasting:
             renderLoop()
             DispatchQueue.main.async { () -> Void in
                 self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControl.State())
                 self.updateUIControls()
             }
 
-        case .stopping:
-            assetReader?.cancelReading()
+        case .ready:
             DispatchQueue.main.async { () -> Void in
                 self.updateUIControls()
             }
 
-        case .starting:
-            DispatchQueue.main.async { () -> Void in
-                self.updateUIControls()
-            }
-
-        case .buffering: break
         default: break
         }
+
     }
 
-    func onWOWZEvent(_ status: WOWZStatus!) {
+    func onWOWZEvent(_ status: WOWZBroadcastStatus!) {
         DispatchQueue.main.async { () -> Void in
             self.showAlert("Live Streaming Event", status: status)
             self.updateUIControls()
         }
     }
 
-    func onWOWZError(_ status: WOWZStatus!) {
+    func onWOWZError(_ status: WOWZBroadcastStatus!) {
         // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
         DispatchQueue.main.async { () -> Void in
             self.showAlert("Live Streaming Error", status: status)
@@ -289,7 +283,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
 
     //MARK: - Actions
     @IBAction func didTapClose(_ sender:AnyObject?) {
-        if broadcast.status.state == .running {
+        if broadcast.status.state == .broadcasting {
             stopBroadcast()
         }
         dismiss(animated: true, completion: nil)
@@ -297,6 +291,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
     
     @IBAction func didTapSettings(_ sender:AnyObject?) {
         if let settingsNavigationController = UIStoryboard(name: "AppSettings", bundle: nil).instantiateViewController(withIdentifier: "settingsNavigationController") as? UINavigationController {
+            settingsNavigationController.modalPresentationStyle = .fullScreen
 
             if let settingsViewController = settingsNavigationController.topViewController as? SettingsViewController {
                 settingsViewController.addDisplay(.broadcast)
@@ -321,7 +316,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
             broadcastButton.isEnabled    = false
             settingsButton.isEnabled     = false
 
-            if broadcast.status.state == .running {
+            if broadcast.status.state == .broadcasting {
                 stopBroadcast()
             }
             else {
@@ -341,7 +336,7 @@ class MoviePlayerViewController: UIViewController, WOWZStatusCallback {
 
     //MARK: - Alerts
 
-    func showAlert(_ title:String, status:WOWZStatus) {
+    func showAlert(_ title:String, status:WOWZBroadcastStatus) {
         let alertController = UIAlertController(title: title, message: status.description, preferredStyle: .alert)
 
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)

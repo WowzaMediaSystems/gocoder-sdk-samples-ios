@@ -12,7 +12,7 @@
 #import "BroadcastViewController.h"
 
 
-@interface WOWZPlayerViewController () <WOWZStatusCallback, WOWZDataSink, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface WOWZPlayerViewController () <WOWZPlayerStatusCallback, WOWZDataSink, UICollectionViewDelegate, UICollectionViewDataSource>
 
 #pragma mark - UI Elements
 @property (nonatomic, weak) IBOutlet UIButton *playbackButton;
@@ -48,8 +48,6 @@
     [super viewDidLoad];
 
     [WowzaGoCoder setLogLevel:WowzaGoCoderLogLevelVerbose];
-    [WOWZLogger setLogLevel:WowzaGoCoderLogLevelVerbose];
-    [WOWZLogger setLogOutput:WowzaGoCoderLogOutputAll];
     
     // Load or initialization the streaming configuration settings
     NSData *const savedConfig = [[NSUserDefaults standardUserDefaults] objectForKey:SDKSampleSavedConfigKey];
@@ -138,16 +136,16 @@
 
 
 
-#pragma mark - WOWZStatusCallback Protocol Instance Methods
+#pragma mark - WOWZPlayerStatusCallback Protocol Instance Methods
 
-- (void) onWOWZStatus:(WOWZStatus *) goCoderStatus {
-    NSLog(@"onWOWXStatus %@",[goCoderStatus description]);
+- (void) onWOWZStatus:(WOWZPlayerStatus *) goCoderStatus {
+    NSLog(@"onWOWZStatus %@",[goCoderStatus description]);
     
     switch (goCoderStatus.state) {
         default: NSLog(@"Unknown:%d",(int)goCoderStatus.state); break;
             
-        case WOWZStateIdle: {
-            NSLog(@"WOWZStateIdle");
+        case WOWZPlayerStateIdle: {
+            NSLog(@"WOWZPlayerStateIdle");
 
             self.settingsButton.hidden = NO;
             self.closeButton.hidden = NO;
@@ -161,8 +159,8 @@
             
             break;
         }
-        case WOWZStateStarting: {
-            NSLog(@"WOWZStateStarting");
+        case WOWZPlayerStateConnecting: {
+            NSLog(@"WOWZPlayerStateConnecting");
 
             // A streaming playback session is starting up
             self.closeButton.hidden = YES;
@@ -174,8 +172,8 @@
             self.player.playerViewGravity = WOWZPlayerViewGravityResizeAspect;
             break;
         }
-        case WOWZStateRunning: {
-            NSLog(@"WOWZStateRunning");
+        case WOWZPlayerStatePlaying: {
+            NSLog(@"WOWZPlayerStatePlaying");
 
             [self.playbackButton setImage:[UIImage imageNamed:(@"stop_playback_button")] forState:UIControlStateNormal];
             self.playbackButton.enabled = YES;
@@ -187,16 +185,16 @@
             
             break;
         }
-        case WOWZStateStopping: {
-            NSLog(@"WOWZStateStopping");
+        case WOWZPlayerStateStopping: {
+            NSLog(@"WOWZPlayerStateStopping");
 
             self.playbackButton.enabled = NO;
             self.infoLabel.alpha = 1;
             self.infoLabel.text = @"Stopping";
             break;
         }
-        case WOWZStateBuffering: {
-            NSLog(@"WOWZStateBuffering");
+        case WOWZPlayerStateBuffering: {
+            NSLog(@"WOWZPlayerStateBuffering");
 
             self.infoLabel.text = @"Buffering...";
             break;
@@ -204,11 +202,11 @@
     }
 }
 
-- (void) onWOWZEvent:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZEvent:(WOWZPlayerStatus *) goCoderStatus {
     NSLog(@"onWOWZEvent %@",[goCoderStatus description]);
 }
 
-- (void) onWOWZError:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZError:(WOWZPlayerStatus *) goCoderStatus {
     NSLog(@"onWOWZError %@",[goCoderStatus description]);
     
     // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
@@ -290,7 +288,7 @@
 
 - (IBAction) didTapPlaybackButton:(id)sender {
     
-    if ([self.player currentPlayState] == WOWZStateIdle && self.player.hlsPlayer.timeControlStatus != AVPlayerTimeControlStatusPlaying) {
+    if ([self.player currentPlayState] == WOWZPlayerStateIdle && self.player.hlsPlayer.timeControlStatus != AVPlayerTimeControlStatusPlaying) {
         if([self.player currentPlaybackErrorCount] > 2){
             self.infoLabel.text = @"Connecting to HLS fallback...";
         }else{
@@ -351,7 +349,7 @@
 }
 
 - (IBAction) didTapCloseButton:(id)sender {
-    if([self.player currentPlayState] == WOWZStateRunning || [self.player currentPlayState] == WOWZStateBuffering){
+    if([self.player currentPlayState] == WOWZPlayerStatePlaying || [self.player currentPlayState] == WOWZPlayerStateBuffering){
         [self.player stop];
     }else{
         
@@ -372,7 +370,7 @@
 
 #pragma mark -
 
-+ (void) showAlertWithTitle:(NSString *)title status:(WOWZStatus *)status presenter:(UIViewController *)presenter {
++ (void) showAlertWithTitle:(NSString *)title status:(WOWZPlayerStatus *)status presenter:(UIViewController *)presenter {
     
     [SettingsViewController presentAlert:title message:status.description presenter:presenter];
 }

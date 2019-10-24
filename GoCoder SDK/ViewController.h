@@ -9,7 +9,7 @@
 
 @interface ViewController : UITableViewController
 
-@property IBOutlet UITableView *tableView;
-@property IBOutlet UILabel *versionLabel;
+@property (nonatomic, nullable) IBOutlet UITableView *tableView;
+@property (nonatomic, nullable) IBOutlet UILabel *versionLabel;
 @end
 
