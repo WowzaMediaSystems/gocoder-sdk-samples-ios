@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class WOWZStatus;
+@class WOWZBroadcastStatus;
 
 extern NSString *const SDKSampleSavedConfigKey;
 extern NSString *const SDKSampleAppLicenseKey;
 
 @interface BroadcastViewController : UIViewController
 
-+ (void) showAlertWithTitle:(NSString *)title status:(WOWZStatus *)status presenter:(UIViewController *)presenter;
++ (void) showAlertWithTitle:(NSString *)title status:(WOWZBroadcastStatus *)status presenter:(UIViewController *)presenter;
 + (void) showAlertWithTitle:(NSString *)title error:(NSError *)error presenter:(UIViewController *)presenter;
 
 - (void)handleBitmapDragged:(UIPanGestureRecognizer *)recognizer;

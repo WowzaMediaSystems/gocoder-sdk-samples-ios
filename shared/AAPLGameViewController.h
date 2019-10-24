@@ -9,7 +9,7 @@
 #if TARGET_OS_IPHONE
 @import UIKit;
 @import ReplayKit;
-@interface AAPLGameViewController : UIViewController <SCNSceneRendererDelegate, SCNPhysicsContactDelegate, WOWZStatusCallback, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, RPBroadcastActivityViewControllerDelegate, RPBroadcastControllerDelegate>
+@interface AAPLGameViewController : UIViewController <SCNSceneRendererDelegate, SCNPhysicsContactDelegate, WOWZBroadcastStatusCallback, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, RPBroadcastActivityViewControllerDelegate, RPBroadcastControllerDelegate>
 #else
 @interface AAPLGameViewController : NSViewController <SCNSceneRendererDelegate, SCNPhysicsContactDelegate>
 #endif

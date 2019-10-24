@@ -12,7 +12,7 @@
 #import "MetaDataBroadcastViewController.h"
 
 
-@interface WOWZPlayerViewController () <WOWZStatusCallback, WOWZDataSink>
+@interface WOWZPlayerViewController () <WOWZPlayerStatusCallback, WOWZDataSink>
 
 #pragma mark - UI Elements
 @property (nonatomic, weak) IBOutlet UIButton           *playbackButton;
@@ -110,7 +110,7 @@
 	
 	[self.player resetPlaybackErrorCount];
 	
-	NSError *error;// = nil;
+	//NSError *error;// = nil;
 	//[[AVAudioSession sharedInstance] setCategory:AVAudioSessionModeMoviePlayback withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:&error];
 	//[[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
 }
@@ -124,7 +124,7 @@
 
 - (IBAction) didTapPlaybackButton:(id)sender {
     
-    if ([self.player currentPlayState] == WOWZStateIdle) {
+    if ([self.player currentPlayState] == WOWZPlayerStateIdle) {
         self.infoLabel.text = @"Connecting...";
         
         self.infoLabel.hidden = NO;
@@ -172,7 +172,7 @@
 }
 
 - (IBAction) didTapCloseButton:(id)sender {
-        if([self.player currentPlayState] == WOWZStateRunning || [self.player currentPlayState] == WOWZStateBuffering){
+        if([self.player currentPlayState] == WOWZPlayerStatePlaying || [self.player currentPlayState] == WOWZPlayerStateBuffering){
 			[self.player stop];
 		}
     [self.player unregisterDataSink:self eventName:@"onTextData"];
@@ -187,14 +187,14 @@
 }
 
 
-#pragma mark - WOWZStatusCallback Protocol Instance Methods
+#pragma mark - WOWZPlayerStatusCallback Protocol Instance Methods
 
-- (void) onWOWZStatus:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZStatus:(WOWZPlayerStatus *) goCoderStatus {
     // A successful status transition has been reported by the GoCoder SDK
     
     switch (goCoderStatus.state) {
             
-        case WOWZStateIdle:
+        case WOWZPlayerStateIdle:
             
             self.settingsButton.hidden = NO;
             self.closeButton.hidden = NO;
@@ -207,7 +207,7 @@
             }
             break;
             
-        case WOWZStateStarting:
+        case WOWZPlayerStateConnecting:
             // A streaming playback session is starting up
             self.closeButton.hidden = YES;
             self.settingsButton.hidden = YES;
@@ -218,7 +218,7 @@
 
             break;
             
-        case WOWZStateRunning:
+        case WOWZPlayerStatePlaying:
             [self.playbackButton setImage:[UIImage imageNamed:(@"stop_playback_button")] forState:UIControlStateNormal];
             self.playbackButton.enabled = YES;
             self.infoLabel.text = @"Playing";
@@ -229,13 +229,13 @@
             }
             break;
             
-        case WOWZStateStopping:
+        case WOWZPlayerStateStopping:
             self.playbackButton.enabled = NO;
             self.infoLabel.alpha = 1;
             self.infoLabel.text = @"Stopping";
             break;
             
-        case WOWZStateBuffering:
+        case WOWZPlayerStateBuffering:
             self.infoLabel.text = @"Buffering...";
             break;
             
@@ -244,11 +244,11 @@
     }
 }
 
-- (void) onWOWZEvent:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZEvent:(WOWZPlayerStatus *) goCoderStatus {
     // nothing to do
 }
 
-- (void) onWOWZError:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZError:(WOWZPlayerStatus *) goCoderStatus {
     // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
     [WOWZPlayerViewController showAlertWithTitle:@"Playback Error" status:goCoderStatus presenter:self];
 }
@@ -263,7 +263,7 @@
 
 #pragma mark -
 
-+ (void) showAlertWithTitle:(NSString *)title status:(WOWZStatus *)status presenter:(UIViewController *)presenter {
++ (void) showAlertWithTitle:(NSString *)title status:(WOWZPlayerStatus *)status presenter:(UIViewController *)presenter {
 	
 	[SettingsViewController presentAlert:title message:status.description presenter:presenter];
 }
