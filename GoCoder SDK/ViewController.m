@@ -14,6 +14,7 @@
 @end
 
 @implementation ViewController
+@synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

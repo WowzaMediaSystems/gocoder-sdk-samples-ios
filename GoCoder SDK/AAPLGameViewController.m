@@ -25,7 +25,7 @@
 #define MAX_SMOKE 20.0
 
 static NSString *const SDKSampleSavedConfigKey = @"SDKSampleSavedConfigKey";
-static NSString *const SDKSampleAppLicenseKey = @"GOSK-8145-010C-2722-98D0-227C";
+static NSString *const SDKSampleAppLicenseKey = @"GOSK-XXXX-XXXX-XXXX-XXXX-XXXX";
 
 
 // utility function
@@ -264,14 +264,14 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         return;
     }
 
-    if (self.broadcast.status.state != WOWZStateRunning) {
+    if (self.broadcast.status.state != WOWZBroadcastStateBroadcasting) {
         return;
     }
 
     SCNView *scnView = (SCNView *) self.view;
     UIImage *sceneSnapshot = scnView.snapshot;
 
-    if (self.broadcast.status.state == WOWZStateIdle) {
+    if (self.broadcast.status.state == WOWZBroadcastStateIdle) {
         self.config.videoWidth = sceneSnapshot.size.width;
         self.config.videoHeight = sceneSnapshot.size.height;
     }
@@ -298,7 +298,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
 // Update the state of the UI controls
 - (void) updateUIControls {
-    if (self.broadcast.status.state != WOWZStateIdle && self.broadcast.status.state != WOWZStateRunning) {
+    if (self.broadcast.status.state != WOWZBroadcastStateIdle && self.broadcast.status.state != WOWZBroadcastStateBroadcasting) {
         // If a streaming broadcast session is in the process of starting up or shutting down,
         // disable the UI controls
         self.broadcastButton.enabled    = NO;
@@ -309,8 +309,8 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         // Set the UI control state based on the streaming broadcast status, configuration,
         // and device capability
         self.broadcastButton.enabled    = YES;
-        self.settingsButton.enabled     = self.broadcast.status.state == WOWZStateIdle;
-        self.micButton.enabled          = self.broadcast.status.state == WOWZStateRunning && self.config.audioEnabled;
+        self.settingsButton.enabled     = self.broadcast.status.state == WOWZBroadcastStateIdle;
+        self.micButton.enabled          = self.broadcast.status.state == WOWZBroadcastStateBroadcasting && self.config.audioEnabled;
         self.micButton.hidden           = !self.micButton.enabled;
     }
 }
@@ -322,7 +322,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 }
 
 - (IBAction) didTapClose:(id)sender {
-    if (self.broadcast.status.state == WOWZStateRunning) {
+    if (self.broadcast.status.state == WOWZBroadcastStateBroadcasting) {
         [self.broadcast endBroadcast:nil];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -345,7 +345,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     });
 
 
-    if (self.broadcast.status.state == WOWZStateRunning) {
+    if (self.broadcast.status.state == WOWZBroadcastStateBroadcasting) {
         [self.broadcast endBroadcast:nil];
     }
     else {
@@ -372,6 +372,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
 - (IBAction) didTapSettingsButton:(id)sender {
     UIViewController *settingsNavigationController = [[UIStoryboard storyboardWithName:@"AppSettings" bundle:nil] instantiateViewControllerWithIdentifier:@"settingsNavigationController"];
+    settingsNavigationController.modalPresentationStyle = UIModalPresentationFullScreen;
 
     SettingsViewController *settingsVC = (SettingsViewController *)(((UINavigationController *)settingsNavigationController).topViewController);
     [settingsVC addDisplaySection:SettingsViewSectionBroadcast];
@@ -383,27 +384,23 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     [self presentViewController:settingsNavigationController animated:YES completion:NULL];
 }
 
-#pragma mark - WOWZStatusCallback Protocol Instance Methods
+#pragma mark - WOWZBroadcastStatusCallback Protocol Instance Methods
 
-- (void) onWOWZStatus:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZStatus:(WOWZBroadcastStatus *) goCoderStatus {
     // A successful status transition has been reported by the GoCoder SDK
 
     switch (goCoderStatus.state) {
 
-        case WOWZStateIdle:
+        case WOWZBroadcastStateIdle:
             // There is no active streaming broadcast session
             break;
 
-        case WOWZStateStarting:
+        case WOWZBroadcastStateReady:
             // A streaming broadcast session is starting up
             break;
 
-        case WOWZStateRunning:
+        case WOWZBroadcastStateBroadcasting:
             // A streaming broadcast session is running
-            break;
-
-        case WOWZStateStopping:
-            // A streaming broadcast session is shutting down
             break;
 
         default:
@@ -411,15 +408,15 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.broadcast.status.state == WOWZStateIdle || self.broadcast.status.state == WOWZStateRunning) {
-            [self.broadcastButton setImage:[UIImage imageNamed:(self.broadcast.status.state == WOWZStateIdle) ? @"start_button" : @"stop_button"] forState:UIControlStateNormal];
+        if (self.broadcast.status.state == WOWZBroadcastStateIdle || self.broadcast.status.state == WOWZBroadcastStateBroadcasting) {
+            [self.broadcastButton setImage:[UIImage imageNamed:(self.broadcast.status.state == WOWZBroadcastStateIdle) ? @"start_button" : @"stop_button"] forState:UIControlStateNormal];
         }
 
         [self updateUIControls];
     });
 }
 
-- (void) onWOWZError:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZError:(WOWZBroadcastStatus *) goCoderStatus {
     // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
 
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -445,12 +442,9 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 #pragma mark - WowzaGoCoder Other -
 
 - (void) showGoCoderAlertWithTitle:(NSString *)title error:(NSError *)error {
-    UIAlertView *alertDialog = [[UIAlertView alloc] initWithTitle:title
-                                                          message:error.localizedDescription
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-    [alertDialog show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - View Lifecycle
@@ -826,8 +820,8 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     animation.timeOffset = -animation.duration*0.5;
     [shipXTranslate addAnimation:animation forKey:nil];
 
-    SCNNode *emitter = [_shipNode childNodeWithName:@"emitter" recursively:YES];
-    SCNParticleSystem *ps = [SCNParticleSystem particleSystemNamed:@"reactor.scnp" inDirectory:@"assets.scnassets/particles"];
+//    SCNNode *emitter = [_shipNode childNodeWithName:@"emitter" recursively:YES];
+//    SCNParticleSystem *ps = [SCNParticleSystem particleSystemNamed:@"reactor.scnp" inDirectory:@"assets.scnassets/particles"];
     //[emitter addParticleSystem:ps];
     _shipHandle.position = SCNVector3Make(_shipHandle.position.x, _shipHandle.position.y, _shipHandle.position.z-50);
 
@@ -836,13 +830,18 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     //wait, then fade in light
     [SCNTransaction begin];
     [SCNTransaction setAnimationDuration:1.0];
+
+    __weak typeof(self) wself = self;
     [SCNTransaction setCompletionBlock:^{
+        __strong typeof(self) sself = wself;
+        if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
         [SCNTransaction begin];
         [SCNTransaction setAnimationDuration:2.5];
 
-        _shipHandle.position = SCNVector3Make(_shipHandle.position.x+500, _shipHandle.position.y, _shipHandle.position.z);
+        sself->_shipHandle.position = SCNVector3Make(sself->_shipHandle.position.x+500, sself->_shipHandle.position.y, sself->_shipHandle.position.z);
 
-        _spotLightNode.light.color = [SKColor colorWithWhite:1 alpha:1];
+        sself->_spotLightNode.light.color = [SKColor colorWithWhite:1 alpha:1];
         sceneKitLogo.geometry.firstMaterial.emission.intensity = 0.80;
 
         [SCNTransaction commit];
@@ -877,22 +876,26 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
     [SCNTransaction begin];
     [SCNTransaction setAnimationDuration:1.0];
-    [SCNTransaction setCompletionBlock:^{
 
-        if (_introductionStep == 0) {
+    __weak typeof(self) wself = self;
+    [SCNTransaction setCompletionBlock:^{
+        __strong typeof(self) sself = wself;
+        if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
+        if (sself->_introductionStep == 0) {
             //We did finish introduction step
 
-            [_shipHandle removeFromParentNode];
-            _shipHandle = nil;
-            _shipPivot = nil;
-            _shipNode = nil;
+            [sself->_shipHandle removeFromParentNode];
+            sself->_shipHandle = nil;
+            sself->_shipPivot = nil;
+            sself->_shipNode = nil;
 
-            _floorNode.renderingOrder = 0;
+            sself->_floorNode.renderingOrder = 0;
 
             //We did finish the whole introduction
-            [_introNodeGroup removeFromParentNode];
-            _introNodeGroup = nil;
-            [self next];
+            [sself->_introNodeGroup removeFromParentNode];
+            sself->_introNodeGroup = nil;
+            [sself next];
         }
     }];
 
@@ -1142,10 +1145,13 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     __block NSInteger remainingCount = count;
     __block BOOL right = NO;
 
+    __weak typeof(self) wself = self;
     dispatch_source_set_event_handler(_timer, ^{
+        __strong typeof(self) sself = wself;
+        if (nil == sself) { NSLog(@"weak self is nil"); return; }
 
-        if (_step > 1) {
-            dispatch_source_cancel(_timer);
+        if (sself->_step > 1) {
+            dispatch_source_cancel(sself->_timer);
             return;
         }
 
@@ -1156,18 +1162,18 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         SCNNode *box = [self boxAtPosition:pos];
 
         //add to scene
-        [_scene.rootNode addChildNode:box];
+        [sself->_scene.rootNode addChildNode:box];
 
 
         [box.physicsBody setVelocity:SCNVector3Make(FACTOR * (right ? -50 : 50), FACTOR * (30+randFloat(-spread, spread)), FACTOR * (randFloat(-spread, spread)))];
         [box.physicsBody setAngularVelocity:SCNVector4Make(randFloat(-1, 1),randFloat(-1, 1),randFloat(-1, 1),randFloat(-3, 3))];
         [SCNTransaction commit];
 
-        [_boxes addObject:box];
+        [sself->_boxes addObject:box];
 
         // ensure we stop firing
         if (--remainingCount < 0)
-            dispatch_source_cancel(_timer);
+            dispatch_source_cancel(sself->_timer);
 
         right = 1-right;
     });
@@ -1198,7 +1204,7 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     //add truck
     SCNScene *fireTruckScene = [SCNScene sceneNamed:@"firetruck.dae" inDirectory:@"assets.scnassets/models/" options:nil];
     SCNNode *fireTruck = [fireTruckScene.rootNode childNodeWithName:@"firetruck" recursively:YES];
-    SCNNode *emitter = [fireTruck childNodeWithName:@"emitter" recursively:YES];
+    //SCNNode *emitter = [fireTruck childNodeWithName:@"emitter" recursively:YES];
     _handle = [fireTruck childNodeWithName:@"handle" recursively:YES];
 
     fireTruck.position = SCNVector3Make(120, 10, 0);
@@ -1551,10 +1557,13 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
     __block BOOL right = NO;
 
+    __weak typeof(self) wself = self;
     dispatch_source_set_event_handler(_timer, ^{
+        __strong typeof(self) sself = wself;
+        if (nil == sself) { NSLog(@"weak self is nil"); return; }
 
-        if (_step != 4) {
-            dispatch_source_cancel(_timer);
+        if (sself->_step != 4) {
+            dispatch_source_cancel(sself->_timer);
             return;
         }
 
@@ -1571,10 +1580,10 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
         [SCNTransaction begin];
 
-        ball.position = SCNVector3Make(_cameraHandle.position.x, 20, 100);
+        ball.position = SCNVector3Make(sself->_cameraHandle.position.x, 20, 100);
 
         //add to scene
-        [_scene.rootNode addChildNode:ball];
+        [sself->_scene.rootNode addChildNode:ball];
 
 #define PAINT_FACTOR 2
 
@@ -1621,11 +1630,16 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
             [SCNTransaction begin];
             [SCNTransaction setAnimationDuration:0.5];
             [node.geometry setValue:@0.0 forKey:@"Amplitude"];
+
+            __weak typeof(self) wself = self;
             [SCNTransaction setCompletionBlock:^{
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
                 [SCNTransaction begin];
                 [SCNTransaction setAnimationDuration:1.5];
-                node.geometry.shaderModifiers = @{SCNShaderModifierEntryPointSurface : _surfModifier,
-                                                  SCNShaderModifierEntryPointLightingModel : _lightModifier };
+                node.geometry.shaderModifiers = @{SCNShaderModifierEntryPointSurface : sself->_surfModifier,
+                                                  SCNShaderModifierEntryPointLightingModel : sself->_lightModifier };
                 [node.geometry setValue:@1.0 forKey:@"surfIntensity"];
                 [SCNTransaction commit];
             }];
@@ -1637,11 +1651,16 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
             [SCNTransaction setAnimationDuration:0.5];
 
             [node.geometry setValue:@0.0 forKey:@"surfIntensity"];
+
+            __weak typeof(self) wself = self;
             [SCNTransaction setCompletionBlock:^{
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
                 [SCNTransaction begin];
                 [SCNTransaction setAnimationDuration:1.5];
-                node.geometry.shaderModifiers = @{SCNShaderModifierEntryPointFragment : _fragModifier,
-                                                  SCNShaderModifierEntryPointLightingModel : _lightModifier};
+                node.geometry.shaderModifiers = @{SCNShaderModifierEntryPointFragment :sself-> _fragModifier,
+                                                  SCNShaderModifierEntryPointLightingModel : sself->_lightModifier};
                 [node.geometry setValue:@1.0 forKey:@"fragIntensity"];
                 [node.geometry setValue:@1.0 forKey:@"lightIntensity"];
                 [SCNTransaction commit];
@@ -1741,12 +1760,17 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         _cameraOrientationTransforms[step] = _cameraOrientation.transform;
     }
 
+    __weak typeof(self) wself = self;
+
     switch(step) {
         case 1:
         {
             [overlay showLabel:@"Physics"];
             [overlay runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction runBlock:^{
-                if (_step == 1)
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
+                if (sself->_step == 1)
                     [overlay showLabel:nil];
             }]]]];
 
@@ -1759,7 +1783,10 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         {
             [overlay showLabel:@"Particles"];
             [overlay runAction:[SKAction sequence:@[[SKAction waitForDuration:4], [SKAction runBlock:^{
-                if (_step == 2)
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
+                if (sself->_step == 2)
                     [overlay showLabel:nil];
             }]]]];
 
@@ -1770,7 +1797,10 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         {
             [overlay showLabel:@"Physics Fields"];
             [overlay runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction runBlock:^{
-                if (_step == 3)
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
+                if (sself->_step == 3)
                     [overlay showLabel:nil];
             }]]]];
 
@@ -1781,7 +1811,10 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         {
             [overlay showLabel:@"SceneKit + SpriteKit"];
             [overlay runAction:[SKAction sequence:@[[SKAction waitForDuration:4], [SKAction runBlock:^{
-                if (_step == 4)
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
+                if (sself->_step == 4)
                     [overlay showLabel:nil];
             }]]]];
 
@@ -1838,8 +1871,13 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 
     [SCNTransaction begin];
     [SCNTransaction setAnimationDuration:0.75];
+
+    __weak typeof(self) wself = self;
     [SCNTransaction setCompletionBlock:^{
-        [self presentStep:_step];
+        __strong typeof(self) sself = wself;
+        if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
+        [sself presentStep:sself->_step];
     }];
 
     _cameraHandle.transform = _cameraHandleTransforms[_step];
@@ -1948,15 +1986,25 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
 #define HIT_DELAY 3.0
 
         if (angle <= 0.66 && angle >= 0.48) {
+
+            __weak typeof(self) wself = self;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(HIT_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
                 //hit the fire!
-                _hitFire = YES;
+                sself->_hitFire = YES;
             });
         }
         else {
+
+            __weak typeof(self) wself = self;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(HIT_DELAY * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __strong typeof(self) sself = wself;
+                if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
                 //hit the fire!
-                _hitFire = NO;
+                sself->_hitFire = NO;
             });
         }
 
@@ -1982,10 +2030,16 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
     AAPLSpriteKitOverlayScene *overlay = (AAPLSpriteKitOverlayScene *)((SCNView*)self.view).overlaySKScene;
     [overlay.nextButton runAction:[SKAction fadeAlphaBy:-0.5 duration:0.5]];
     [overlay.previousButton runAction:[SKAction fadeAlphaBy:-0.5 duration:0.5]];
+
+
+    __weak typeof(self) wself = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _preventNext = NO;
-        [overlay.previousButton runAction:[SKAction fadeAlphaTo:_step > 1 ? 1 : 0 duration:0.75]];
-        [overlay.nextButton runAction:[SKAction fadeAlphaTo:_introductionStep == 0 && _step < 5 ? 1 : 0 duration:0.75]];
+        __strong typeof(self) sself = wself;
+        if (nil == sself) { NSLog(@"weak self is nil"); return; }
+
+        sself->_preventNext = NO;
+        [overlay.previousButton runAction:[SKAction fadeAlphaTo:sself->_step > 1 ? 1 : 0 duration:0.75]];
+        [overlay.nextButton runAction:[SKAction fadeAlphaTo:sself->_introductionStep == 0 && sself->_step < 5 ? 1 : 0 duration:0.75]];
     });
 }
 
@@ -2052,6 +2106,44 @@ static CGFloat randFloat(CGFloat min, CGFloat max)
         //shader
         [self showNextShaderStage];
     }
+}
+
+- (void)broadcastActivityViewController:(nonnull RPBroadcastActivityViewController *)broadcastActivityViewController didFinishWithBroadcastController:(nullable RPBroadcastController *)broadcastController error:(nullable NSError *)error { 
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)aCoder { 
+}
+
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection { 
+}
+
+- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container { 
+}
+
+- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
+    return parentSize;
+}
+
+- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container { 
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator { 
+}
+
+- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator { 
+}
+
+- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator { 
+}
+
+- (void)setNeedsFocusUpdate { 
+}
+
+- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
+    return YES;
+}
+
+- (void)updateFocusIfNeeded { 
 }
 
 @end

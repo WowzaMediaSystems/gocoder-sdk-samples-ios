@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import WowzaGoCoderSDK
 
-class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
+class MP4PlayerViewController: UIViewController, WOWZBroadcastStatusCallback {
 
     @IBOutlet var imageView:UIImageView!
     @IBOutlet var settingsButton:UIButton!
@@ -43,9 +43,9 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
 
     //MARK: - GoCoder variables
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
-    let SDKSampleAppLicenseKey = "GOSK-8145-010C-3743-CAA4-2962"
+    let SDKSampleAppLicenseKey = "GOSK-XXXX-XXXX-XXXX-XXXX-XXXX"
     var goCoderConfig:WowzaConfig!
-    var goCoderStatus = WOWZStatus()
+    var goCoderStatus = WOWZBroadcastStatus()
     var goCoderRegistrationChecked = false
 
     lazy var broadcast:WOWZBroadcast = {
@@ -85,7 +85,6 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
             goCoderConfig.videoHeight = UInt(videoTrack!.naturalSize.height)
             goCoderConfig.videoFrameRate = UInt(videoTrack!.nominalFrameRate > 0 ? videoTrack!.nominalFrameRate : 30)
         }
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -143,8 +142,8 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
     }
 
     func updateUIControls() {
-        if goCoderStatus.state != .idle && goCoderStatus.state != .running {
-            // If a streaming broadcast session is in the process of starting up or shutting down,
+        if goCoderStatus.state != .idle && goCoderStatus.state != .broadcasting {
+            // If a streaming broadcast session is in the process of.connecting up or shutting down,
             // disable the UI controls
             self.broadcastButton.isEnabled    = false
             self.settingsButton.isEnabled     = false
@@ -153,7 +152,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
             // Set the UI control state based on the streaming broadcast status, configuration,
             // and device capability
             self.broadcastButton.isEnabled    = true
-            let isStreaming                 = self.broadcast.status.state == .running
+            let isStreaming                 = self.broadcast.status.state == .broadcasting
             self.settingsButton.isEnabled     = !isStreaming
         }
     }
@@ -175,7 +174,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
 
                 reader.startReading()
 
-                while reader.status == .reading && self.broadcast.status.state == .running {
+                while reader.status == .reading && self.broadcast.status.state == .broadcasting {
                     guard let sampleBuffer = self.readerOutput.copyNextSampleBuffer() else {
                         continue
                     }
@@ -217,7 +216,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
                 if self.loop {
                     let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                     DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
-                        if self.setupAssetReader() &&  self.broadcast.status.state == .running {
+                        if self.setupAssetReader() &&  self.broadcast.status.state == .broadcasting {
                             self.renderLoop()
                         }
                     })
@@ -238,47 +237,41 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
         }
     }
 
-    //MARK: - WOWZStatusCallback Protocol Instance Methods
+    //MARK: - WOWZBroadcastStatusCallback Protocol Instance Methods
 
-    func onWOWZStatus(_ status: WOWZStatus!) {
+    func onWOWZStatus(_ status: WOWZBroadcastStatus!) {
         switch (status.state) {
         case .idle:
+            assetReader?.cancelReading()
             DispatchQueue.main.async { () -> Void in
                 self.broadcastButton.setImage(UIImage(named: "start_button"), for: UIControl.State())
                 self.updateUIControls()
             }
 
-        case .running:
+        case .broadcasting:
             renderLoop()
             DispatchQueue.main.async { () -> Void in
                 self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControl.State())
                 self.updateUIControls()
             }
 
-        case .stopping:
-            assetReader?.cancelReading()
+        case .ready:
             DispatchQueue.main.async { () -> Void in
                 self.updateUIControls()
             }
 
-        case .starting:
-            DispatchQueue.main.async { () -> Void in
-                self.updateUIControls()
-            }
-
-        case .buffering: break
         default: break
         }
     }
 
-    func onWOWZEvent(_ status: WOWZStatus!) {
+    func onWOWZEvent(_ status: WOWZBroadcastStatus!) {
         DispatchQueue.main.async { () -> Void in
             self.showAlert("Live Streaming Event", status: status)
             self.updateUIControls()
         }
     }
 
-    func onWOWZError(_ status: WOWZStatus!) {
+    func onWOWZError(_ status: WOWZBroadcastStatus!) {
         // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
         DispatchQueue.main.async { () -> Void in
             self.showAlert("Live Streaming Error", status: status)
@@ -314,7 +307,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
             broadcastButton.isEnabled    = false
             settingsButton.isEnabled     = false
 
-            if broadcast.status.state == .running {
+            if broadcast.status.state == .broadcasting {
                 stopBroadcast()
             }
             else {
@@ -334,7 +327,7 @@ class MP4PlayerViewController: UIViewController, WOWZStatusCallback {
 
     //MARK: - Alerts
 
-    func showAlert(_ title:String, status:WOWZStatus) {
+    func showAlert(_ title:String, status:WOWZBroadcastStatus) {
         let alertController = UIAlertController(title: title, message: status.description, preferredStyle: .alert)
 
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)

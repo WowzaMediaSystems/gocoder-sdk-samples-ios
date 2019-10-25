@@ -18,13 +18,12 @@
 #pragma mark VideoPlayerViewController (GoCoder SDK Sample App) -
 
 NSString *const SDKSampleSavedConfigKey = @"SDKSampleSavedConfigKey";
-//NSString *const SDKSampleAppLicenseKey = @"GOSK-6443-0101-CD19-EB0F-E04E"; //old-no-features
 
 //USE NEW KEY
-NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // com.wowza.gocoder.sdk.bpsampleapp
+NSString *const SDKSampleAppLicenseKey = @"GOSK-XXXX-XXXX-XXXX-XXXX-XXXX"; // com.wowza.gocoder.sdk.bpsampleapp
 
 
-@interface BroadcastViewController () <WOWZStatusCallback, WOWZVideoSink, WOWZAudioSink, WOWZVideoEncoderSink, WOWZAudioEncoderSink, WOWZDataSink, UIGestureRecognizerDelegate>
+@interface BroadcastViewController () <WOWZBroadcastStatusCallback, WOWZVideoSink, WOWZAudioSink, WOWZVideoEncoderSink, WOWZAudioEncoderSink, WOWZDataSink, UIGestureRecognizerDelegate>
 
 #pragma mark - UI Elements
 @property (nonatomic, weak) IBOutlet UIButton           *broadcastButton;
@@ -225,7 +224,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
         self.closeButton.enabled        = NO;
     });
     
-    if (self.goCoder.status.state == WOWZStateRunning) {
+    if (self.goCoder.status.state == WOWZBroadcastStateBroadcasting) {
         [self.goCoder endStreaming:self];
         [UIApplication sharedApplication].idleTimerDisabled = NO;
         self.bitrateLabel.text = @"0.0 kbps";
@@ -298,7 +297,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
      is "onGetPingTime". The server module that implements "onGetPingTime" must exist in order to receive
      a callback.
     */
-    if (self.goCoder.status.state == WOWZStateRunning) {
+    if (self.goCoder.status.state == WOWZBroadcastStateBroadcasting) {
         [self.goCoder sendPingRequest:^(WOWZDataMap * _Nullable result, BOOL isError) {
             if (!isError && result) {
                 WOWZDataItem *item = [result.data valueForKey:@"responseTime"];
@@ -385,7 +384,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
 
 // Update the state of the UI controls
 - (void) updateUIControls {
-    if (self.goCoder.status.state != WOWZStateIdle && self.goCoder.status.state != WOWZStateRunning) {
+    if (self.goCoder.status.state != WOWZBroadcastStateIdle && self.goCoder.status.state != WOWZBroadcastStateBroadcasting) {
         // If a streaming broadcast session is in the process of starting up or shutting down,
         // disable the UI controls
         self.broadcastButton.enabled    = NO;
@@ -454,14 +453,14 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
         [_bitmapOverlayImgView setFrame: CGRectMake(recognizer.view.frame.origin.x,recognizer.view.frame.origin.y, recognizer.view.frame.size.width,recognizer.view.frame.size.height)];
     }
 }
-#pragma mark - WOWZStatusCallback Protocol Instance Methods
+#pragma mark - WOWZBroadcastStatusCallback Protocol Instance Methods
 
-- (void) onWOWZStatus:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZStatus:(WOWZBroadcastStatus *) goCoderStatus {
     // A successful status transition has been reported by the GoCoder SDK
     
     switch (goCoderStatus.state) {
 
-        case WOWZStateIdle:
+        case WOWZBroadcastStateIdle:
             self.timeLabel.hidden = YES;
             if (self.writeMP4 && self.mp4Writer.writing) {
                 if (self.video_capture_queue) {
@@ -476,14 +475,14 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
             self.writeMP4 = NO;
             break;
             
-        case WOWZStateStarting:
+        case WOWZBroadcastStateReady:
             // A streaming broadcast session is starting up
             self.broadcastStartTime = kCMTimeInvalid;
             self.timeLabel.text = @"00:00";
             self.broadcastFrameCount = 0;
             break;
             
-        case WOWZStateRunning:
+        case WOWZBroadcastStateBroadcasting:
             // A streaming broadcast session is running
             self.timeLabel.hidden = NO;
             self.writeMP4 = NO;
@@ -496,24 +495,20 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
             }
             break;
 
-        case WOWZStateStopping:
-            // A streaming broadcast session is shutting down
-            break;
-            
         default:
             break;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.goCoder.status.state == WOWZStateIdle || self.goCoder.status.state == WOWZStateRunning) {
-            [self.broadcastButton setImage:[UIImage imageNamed:(self->_goCoder.status.state == WOWZStateIdle) ? @"start_button" : @"stop_button"] forState:UIControlStateNormal];
+        if (self.goCoder.status.state == WOWZBroadcastStateIdle || self.goCoder.status.state == WOWZBroadcastStateBroadcasting) {
+            [self.broadcastButton setImage:[UIImage imageNamed:(self->_goCoder.status.state == WOWZBroadcastStateIdle) ? @"start_button" : @"stop_button"] forState:UIControlStateNormal];
         }
         
         [self updateUIControls];
     });
 }
 
-- (void) onWOWZEvent:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZEvent:(WOWZBroadcastStatus *) goCoderStatus {
     // If an event is reported by the GoCoder SDK, display an alert dialog describing the event,
     // but only if we haven't already shown an alert for this event
     
@@ -535,7 +530,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
     });
 }
 
-- (void) onWOWZError:(WOWZStatus *) goCoderStatus {
+- (void) onWOWZError:(WOWZBroadcastStatus *) goCoderStatus {
     // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -670,7 +665,7 @@ NSString *const SDKSampleAppLicenseKey = @"GOSK-4144-010C-A3FA-1EA0-832F"; // co
 
 #pragma mark -
 
-+ (void) showAlertWithTitle:(NSString *)title status:(WOWZStatus *)status presenter:(UIViewController *)presenter {
++ (void) showAlertWithTitle:(NSString *)title status:(WOWZBroadcastStatus *)status presenter:(UIViewController *)presenter {
     
     [SettingsViewController presentAlert:title message:status.description presenter:presenter];
 }

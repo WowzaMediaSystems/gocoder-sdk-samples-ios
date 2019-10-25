@@ -10,12 +10,12 @@
 import UIKit
 import WowzaGoCoderSDK
 
-class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, WOWZAudioSink {
+class VideoViewController: UIViewController, WOWZBroadcastStatusCallback, WOWZVideoSink, WOWZAudioSink {
 
     //MARK: - Class Member Variables
 
     let SDKSampleSavedConfigKey = "SDKSampleSavedConfigKey"
-    let SDKSampleAppLicenseKey = "GOSK-8945-010C-E544-5344-FBAB"
+    let SDKSampleAppLicenseKey = "GOSK-XXXX-XXXX-XXXX-XXXX-XXXX"
     let BlackAndWhiteEffectKey = "BlackAndWhiteKey"
     let BitmapOverlayEffectKey = "BitmapOverlayKey"
 
@@ -30,7 +30,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
     var goCoder:WowzaGoCoder?
     var goCoderConfig:WowzaConfig!
 
-    var receivedGoCoderEventCodes = Array<WOWZEvent>()
+    var receivedGoCoderEventCodes = Array<WOWZBroadcastEvent>()
 
     var blackAndWhiteVideoEffect = false
     var bitmapOverlayVideoEffect = false /// Not supported in swift version
@@ -76,7 +76,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let savedConfigData = NSKeyedArchiver.archivedData(withRootObject: goCoderConfig)
+        let savedConfigData = NSKeyedArchiver.archivedData(withRootObject: goCoderConfig!)
         UserDefaults.standard.set(savedConfigData, forKey: SDKSampleSavedConfigKey)
         UserDefaults.standard.synchronize()
 
@@ -161,7 +161,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
             switchCameraButton.isEnabled = false
             settingsButton.isEnabled     = false
 
-            if goCoder?.status.state == .running {
+            if goCoder?.status.state == .broadcasting {
                 goCoder?.endStreaming(self)
             }
             else {
@@ -217,8 +217,8 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
     }
 
     func updateUIControls() {
-        if self.goCoder?.status.state != .idle && self.goCoder?.status.state != .running {
-            // If a streaming broadcast session is in the process of starting up or shutting down,
+        if self.goCoder?.status.state != .idle && self.goCoder?.status.state != .broadcasting {
+            // If a streaming broadcast session is in the process of.connecting up or shutting down,
             // disable the UI controls
             self.broadcastButton.isEnabled    = false
             self.torchButton.isEnabled        = false
@@ -276,9 +276,9 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
         bitmapOverlayImgView.frame = CGRect(x: recognizer.frame.origin.x, y: recognizer.frame.origin.y, width: recognizer.frame.size.width, height: recognizer.frame.size.height);
     }
 
-    //MARK: - WOWZStatusCallback Protocol Instance Methods
+    //MARK: - WOWZBroadcastStatusCallback Protocol Instance Methods
 
-    func onWOWZStatus(_ status: WOWZStatus!) {
+    func onWOWZStatus(_ status: WOWZBroadcastStatus!) {
         switch (status.state) {
         case .idle:
             DispatchQueue.main.async { () -> Void in
@@ -286,22 +286,17 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
                 self.updateUIControls()
             }
 
-        case .running:
+        case .broadcasting:
             DispatchQueue.main.async { () -> Void in
                 self.broadcastButton.setImage(UIImage(named: "stop_button"), for: UIControl.State())
                 self.updateUIControls()
             }
-        case .stopping, .starting:
-            DispatchQueue.main.async { () -> Void in
-                self.updateUIControls()
-            }
 
-        case .buffering: break
         default: break
         }
     }
 
-    func onWOWZEvent(_ status: WOWZStatus!) {
+    func onWOWZEvent(_ status: WOWZBroadcastStatus!) {
         // If an event is reported by the GoCoder SDK, display an alert dialog describing the event,
         // but only if we haven't already shown an alert for this event
 
@@ -315,7 +310,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
         }
     }
 
-    func onWOWZError(_ status: WOWZStatus!) {
+    func onWOWZError(_ status: WOWZBroadcastStatus!) {
         // If an error is reported by the GoCoder SDK, display an alert dialog containing the error details
         DispatchQueue.main.async { () -> Void in
             self.showAlert("Live Streaming Error", status: status)
@@ -383,7 +378,7 @@ class VideoViewController: UIViewController, WOWZStatusCallback, WOWZVideoSink, 
 
     //MARK: - Alerts
 
-    func showAlert(_ title:String, status:WOWZStatus) {
+    func showAlert(_ title:String, status:WOWZBroadcastStatus) {
         let alertController = UIAlertController(title: title, message: status.description, preferredStyle: .alert)
 
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
